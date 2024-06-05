@@ -6,11 +6,12 @@ CC 			= cc
 #------------ SOURCE -------------#
 SRC			= $(addprefix ./src/, )
 
-INIT		= $(addprefix ./init/, is_valid_map.c i_exit.c utils.c)
+INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
+			  edit_scene.c main.c)
 
 GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
-C_FILES		= $(SRC) $(GNL) $(INIT) main.c
+C_FILES		= $(SRC) $(GNL) $(INIT)
 
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g

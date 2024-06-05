@@ -6,11 +6,19 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:45:06 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 15:32:27 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:06:17 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	cub_isspace(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	else
+		return (0);
+}
 
 char	*get_path(char *str, int skip)
 {
@@ -19,23 +27,25 @@ char	*get_path(char *str, int skip)
 	int		len;
 	
 	i = -1;
-	len = -skip;
-	spl = NULL;
+	len = 0;
 	while (str && str[++i])
-		if (str[i] != ' ' && str[i] != '\t')
+		if (!cub_isspace(str[i]))
 			len++;
-	if (len >= 0)
+	if (len < skip)
+		return (NULL);
+	spl = malloc(sizeof(char) * len + 1 - skip);
+	if (!spl)
+		return (map_error("", MALLOC, 1), NULL);
+	i = -1;
+	len = 0;
+	while (str && str[++i])
 	{
-		spl = malloc(sizeof(char) * len + 1);
-		if (!spl)
-			return (map_error("", MALLOC, 1), NULL);
-		i = -1;
-		len = 0;
-		while (str && str[++i])
-			if (str[i] != ' ' && str[i] != '\t')
-				spl[len++] = str[i]; // tentative de ++ le len apres !!!!
-		spl[len] = '\0';
+		if (!cub_isspace(str[i]) && skip <= 0)
+			spl[len++] = str[i];		
+		else if (!cub_isspace(str[i]) && skip > 0)
+			skip--;
 	}
+	spl[len] = '\0';
 	return (spl);
 }
 

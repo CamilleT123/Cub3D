@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 15:32:29 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 20:41:33 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@
 # define EXTENSION ": is not .cub extension"
 # define MALLOC " cannot allocate memory"
 # define NO_FILE ": no path to xpm"
-# define TM_FILE ": too much paths to xpm"
+# define TM_FILE ": too many paths to xpm"
 # define TM_ELEMENT ": wall defined two times"
 # define TF_ELEMENT ": too few elements"
 # define LINES "the map don't accept empty lines"
+# define BIG_NUM ": is a too big number (max 255,255,255)"
+# define INVALID_NUM ": is an invalid number"
+# define TM_NUM ": too many numbers"
+# define TF_NUM ": too few numbers"
 
 # define NB_ELEMENT 6
 
@@ -43,8 +47,12 @@ typedef struct s_scene
 	char		*south;
 }			t_scene;
 
+/*------------ EDIT -------------*/
+int		edit_wall(char **path, char *info);
+int		edit_back(int *color, char *info);
 
 /*------------ UTILS -------------*/
+int		cub_isspace(char c);
 char	*get_all_lines(char *ber);
 char	*get_path(char *str, int skip);
 int		map_error(char *s1, char *s2, int status);

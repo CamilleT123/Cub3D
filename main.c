@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/04 20:06:26 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/05 19:12:29 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,6 @@ int	main(int ac, char **av)
 		return (printf("%s", "Error\nNo map"), 0);
 	if (ac > 2)
 		return (printf("%s", "Error\n include only 1 map"), 0);
-	// if (check_map_format(av[1]) == 0)
-	// 	return (ft_printf("Error\nError in map format\n"), 0);
 	if (struct_init(&minimap, av[1]) != 0)
 		return (printf("Error\nError in reading map\n"), 0);
 	// if (check_map(&game) == 0)

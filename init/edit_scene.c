@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:08:31 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 22:20:23 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/06 00:01:56 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static int	get_color(char **code)
 	b = ft_atoi(code[2]);
 	if (b < 0 || b > 255)
 		return (map_error(code[2], BIG_NUM, -1));
-	color = r * 65536 + g * 256 + b;
+	color = (r << 16) + (g << 8) + b;
+//	color = r * 65536 + g * 256 + b;
 	return (color);
 }
 

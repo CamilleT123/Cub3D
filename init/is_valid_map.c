@@ -6,103 +6,101 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:31:25 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 11:46:33 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:32:25 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*strspaceless(char *str)
+int	check_elements(char *info)
 {
-	char	*spl;
 	int		i;
-	int		len;
-	
-	i = 0;
-	len = 0;
-	while (str && str[i])
-	{
-		if (str[i] != ' ' && str[i] != '\t')
-			len++;
-		i++;
-	}
-	spl = malloc(sizeof(char) * len + 1);
-	if (!spl)
-		return (map_error("", MALLOC, 1), NULL);
-	i = 0;
-	len = 0;
-	while (str && str[i])
-	{
-		if (str[i] != ' ' && str[i] != '\t')
-			spl[len++] = str[i]; // tentative de ++ le len apres !!!!
-		i++;
-	}
-	spl[len] = '\0';
-	return (spl);
-}
+	int		element;
 
-char	*get_path(char *info)
-{
-	char	*path;
-	int		i;
-
-	path = strspaceless(info);
-	while (path && *path >= 'A' && *path <= 'Z')
-		path++;
+	i = 0;
+	element = 0;
 	while (info && info[i])
 	{
 		while (info[i] == ' ' || info[i] == '\t')
 			i++;
-		while (info[i] >= 'A' && info[i] <= 'Z')
-			i++;
-		while (info[i] == ' ' || info[i] == '\t')
-			i++;
-		
-
-
+		if (info[i] != ' ' && info[i] != '\t' && info[i] != 0)
+		{
+			element++;
+			while (info[i] != ' ' && info[i] != '\t' && info[i] != 0)
+				i++;
+		}
 	}
+	if (element < 2)
+		return (map_error(info, NO_FILE, 1));
+	else if (element > 2)
+		return (map_error(info, TM_FILE, 1));
+	return (0);
 }
-int	edit_wall(void **sprite, char *info)
+
+int	edit_wall(char **path, char *info)
 {
-	char *path;
-
-	path = get_path(info);
-	if (!*sprite)
-	{
-		*sprite
-	}
+	if (check_elements(info))
+		return (1);
+	if (*path != NULL)
+		return (map_error("", TM_ELEMENT, 1));
+	*path = get_path(info, 2);
+	if (!path)
+		return (1);
+	return (0);
 }
 
-int	is_valid_map(t_cub *cub, char **map)
+int	edit_back(int *color, char *info)
+{
+
+}
+int	check_wall(t_cub *cub, char *info)
 {
 	int	i;
-	int	j;
+	int	res;
 
 	i = 0;
-	while (map && map[i])
+	while (info[i] == ' ' || info[i] == '\t')
+		i++;
+	if (info[i] == 'N' && info[i + 1] == 'O' && info[i + 2] == ' ')
+		res = edit_wall(&cub->scene->north, info);
+	else if (info[i] == 'S' && info[i + 1] == 'O' && info[i + 2] == ' ')
+		res = edit_wall(&cub->scene->south, info);
+	else if (info[i] == 'W' && info[i + 1] == 'E' && info[i + 2] == ' ')
+		res = edit_wall(&cub->scene->west, info);
+	else if (info[i] == 'E' && info[i + 1] == 'A' && info[i + 2] == ' ')
+		res = edit_wall(&cub->scene->east, info);
+	else if (info[i] == 'F' && info[i + 1] == ' ')
+		res = edit_back(&cub->scene->f_color, info);
+	else if (info[i] == 'C'&& info[i + 1] == ' ')
+		res = edit_back(&cub->scene->f_color, info);
+	else
+		res = 1;
+	return (res);
+}
+
+int	is_valid_info(t_cub *cub, char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map && map[i] && i < NB_ELEMENT)
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			while (map[i][j] == ' ' || map[i][j] == '\t')
-				j++;
-			if (map[i][j] == 'N' && map[i][j + 1] == 'O')
-				edit_wall(cub->scene->north, map[i]);
-			else if (map[i][j] == 'S' && map[i][j + 1] == 'O')
-				edit_wall(cub->scene->south, map[i]);
-			else if (map[i][j] == 'W' && map[i][j + 1] == 'E')
-				edit_wall(cub->scene->west, map[i]);
-			else if (map[i][j] == 'E' && map[i][j + 1] == 'A')
-				edit_wall(cub->scene->east, map[i]);
-			else if (map[i][j] == 'F' && map[i][j + 1] == ' ')
-				test_n(map, i);
-			else if (map[i] == 'C')
-				test_n(map, i);
-			else
-				return (exit_map(cub, map, 1));
-		}
+		if (check_wall(cub, map[i]))
+			return (1);
 		i++;
 	}
+	if (i != NB_ELEMENT)
+		return (map_error("", TF_ELEMENT, 1));
+	return (0);
+}
+
+int	init_scene(t_cub *cub, char **map)
+{
+	ft_bzero(cub->scene, sizeof(t_scene));
+	if (is_valid_info(cub, map))
+		return (1);
+	if (is_valid_map(cub, map))
+		return (1);
 	return (0);
 }
 
@@ -131,6 +129,35 @@ int check_file(char *file, char *ext)
 	// check permissions !!!!
 }
 
+int	check_lines(char *line)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (line && line[i] && count < NB_ELEMENT)
+	{
+		while (line[i] == '\n')
+			i++;
+		if (line[i] != '\n' && line[i] != 0)
+			count++;
+		while (line[i] != '\n' && line[i] != 0)
+			i++;
+	}
+	if (count != NB_ELEMENT)
+		return (1);
+	while (line[i] == '\n')
+		i++;
+	while (line[i])
+	{
+		if (line[i] == '\n' && line[i + 1] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	init_cub(char *file, t_cub *cub)
 {
 	char	*line;
@@ -142,12 +169,15 @@ int	init_cub(char *file, t_cub *cub)
 	line = get_all_lines(file);
 	if (!line)
 		return (perror("Error\n"), 1);
+	if (check_lines(line))
+		return (map_error("", LINES, 1));
 	scene = ft_split(line, '\n');
 	free(line);
 	if (!scene)
 		return (perror("Error\n"), 1);
+	if (init_scene(cub, scene))
+		return (1);
 	ft_putar(scene);
-
 	return (0);
 }
 /*

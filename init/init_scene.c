@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 21:05:34 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 23:21:55 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ static int	check_info(t_cub *cub, char *info)
 
 static int	is_valid_map(t_cub *cub, char **map)
 {
-
-	(void)cub;
-	(void)map;
+	cub->scene.map = tab_dup(&map[6]);
+	if (!cub->scene.map)
+		return (map_error("", MALLOC, 1));
+	if (check_map(cub))
+		return (1);
 	return (0);
 }
 
@@ -61,14 +63,14 @@ static int	is_valid_info(t_cub *cub, char **map)
 	return (0);
 }
 
-int	init_scene(t_cub *cub, char **map)
+int	init_scene(t_cub *cub, char **ar_scene)
 {
 	ft_bzero(&cub->scene, sizeof(t_scene));
 	cub->scene.f_color = -1;
 	cub->scene.c_color = -1;
-	if (is_valid_info(cub, map))
+	if (is_valid_info(cub, ar_scene))
 		return (1);
-	if (is_valid_map(cub, map))
+	if (is_valid_map(cub, ar_scene))
 		return (1);
 	return (0);
 }

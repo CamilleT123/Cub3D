@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:45:06 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 21:06:17 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:16:23 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ char	**tab_dup(char **tab)
 	res[i] = NULL;
 	return (res);
 }
-

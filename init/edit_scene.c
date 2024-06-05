@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:08:31 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 20:55:05 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:20:23 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	check_colors(char **code)
 	int	j;
 
 	i = 0;
-	ft_putar(code);
 	while (code && code[i])
 	{
 		if (i > 3)

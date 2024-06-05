@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 20:41:33 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/05 23:14:35 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define INVALID_NUM ": is an invalid number"
 # define TM_NUM ": too many numbers"
 # define TF_NUM ": too few numbers"
+# define FORBIDDEN_CHAR "wrong map format (check accepted char !!)"
 
 # define NB_ELEMENT 6
 
@@ -52,6 +53,7 @@ int		edit_wall(char **path, char *info);
 int		edit_back(int *color, char *info);
 
 /*------------ UTILS -------------*/
+char	**tab_dup(char **tab);
 int		cub_isspace(char c);
 char	*get_all_lines(char *ber);
 char	*get_path(char *str, int skip);

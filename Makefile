@@ -7,7 +7,7 @@ CC 			= cc
 SRC			= $(addprefix ./src/, )
 
 INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
-			  edit_scene.c edit_map.c main.c)
+			  edit_scene.c edit_map.c check_walls.c main.c)
 
 GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
@@ -16,9 +16,11 @@ C_FILES		= $(SRC) $(GNL) $(INIT)
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g
 
-HEADERS		= -Imlx -I./include
+HEADERS		=  -I./include
+#HEADERS		= -Imlx -I./include
 
-LIBRARIES	= -Lmlx -lmlx -L./libft -lft -lXext -lX11 -lm -lz
+#LIBRARIES	= -Lmlx -lmlx -L./libft -lft -lXext -lX11 -lm -lz
+LIBRARIES	= -L./libft -lft
 
 #------------ COMPILING -------------#
 OBJ			:= $(C_FILES:.c=.o)
@@ -26,7 +28,7 @@ OBJ			:= $(C_FILES:.c=.o)
 all			: $(NAME)
 
 $(NAME)		: $(OBJ)
-	make -C mlx
+#	make -C mlx
 	make -C libft
 	$(CC) $(CFLAGS) $^ $(LIBRARIES) -o $@
 
@@ -35,12 +37,12 @@ $(NAME)		: $(OBJ)
 
 clean		:
 	rm -f $(OBJ) $(GNL_OBJ)
-	make clean -C mlx
+#	make clean -C mlx
 	make clean -C libft
 
 fclean		: clean
 	rm -f $(NAME)
-	make clean -C mlx
+#	make clean -C mlx
 	make fclean -C libft
 	
 re			: fclean all

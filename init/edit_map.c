@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:29:50 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 23:25:06 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:01:43 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_startchar(char c)
 {
-	if (c != 'N' && c != 'S' && c != 'E' && c != 'W')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	else
 		return (0);
@@ -22,13 +22,13 @@ int	is_startchar(char c)
 
 int	is_mapchar(char c)
 {
-	if (c != '0' && c != '1')
+	if (c == '0' || c == '1')
 		return (1);
 	else
 		return (0);
 }
 
-int	only_goodchar(char **map)
+static int	only_goodchar(char **map)
 {
 	int	i;
 	int	j;
@@ -47,7 +47,10 @@ int	only_goodchar(char **map)
 				return (map_error("", FORBIDDEN_CHAR, 1));
 			j++;
 		}
+		i++;
 	}
+	if (count == 0)
+		return (map_error("", NO_START, 1));
 	return (0);
 }
 
@@ -55,8 +58,8 @@ int	check_map(t_cub *cub)
 {
 	if (only_goodchar(cub->scene.map))
 		return (1);
-	// verif mur
-	// verif que les bons char
+	if (check_walls(cub->scene.map))
+		return (1);
 	// verif jouable
 	return (0);
 }

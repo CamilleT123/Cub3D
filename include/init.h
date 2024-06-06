@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 23:14:35 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/06 08:56:53 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define TM_NUM ": too many numbers"
 # define TF_NUM ": too few numbers"
 # define FORBIDDEN_CHAR "wrong map format (check accepted char !!)"
+# define NO_START "no start position on the map"
+# define WALLS "map is not surrounded by walls"
+# define TOO_SMALL "the map is too small"
 
 # define NB_ELEMENT 6
 
@@ -52,6 +55,8 @@ typedef struct s_scene
 int		edit_wall(char **path, char *info);
 int		edit_back(int *color, char *info);
 
+int		check_walls(char **map);
+int		is_mapchar(char c);
 /*------------ UTILS -------------*/
 char	**tab_dup(char **tab);
 int		cub_isspace(char c);

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 08:53:04 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/06 13:00:29 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:19:29 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,12 @@ static int check_arround(char **map, int i, int j)
 {
 	int	check;
 
-	if (i == 0 || j == 0)
-		return (map_error("", WALLS, 1));
-	check = !is_mapchar(map[i + 1][j]) + !is_mapchar(map[i - 1][j]);
-	check = check + !is_mapchar(map[i][j - 1]) + !is_mapchar(map[i][j + 1]);
-
-	if (!map[i + 1] || !is_mapchar(map[i + 1][j]) || !is_mapchar(map[i - 1][j])
-			|| !is_mapchar(map[i][j - 1]) || !is_mapchar(map[i][j + 1]))
-	{
-		printf("%d %d %d %d\n", !is_mapchar(map[i + 1][j]), !is_mapchar(map[i - 1][j]), !is_mapchar(map[i][j - 1]), !is_mapchar(map[i][j + 1]));
-		printf("i: %d j: %d\n", i, j);
-		return (map_error("", WALLS, 1));
-	}
+	if (i == 0 || j == 0 || !map[i + 1])
+		return (1);
+	check = cub_isspace(map[i + 1][j]) + cub_isspace(map[i - 1][j]);
+	check = check + cub_isspace(map[i][j - 1]) + cub_isspace(map[i][j + 1]);
+	if (check)
+		return (1);
 	return (0);
 }
 

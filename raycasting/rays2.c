@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 14:37:19 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/06 16:53:26 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 			rays->distv = distance(cub->px, cub->py, rays->vx,
 					rays->vy);
 			rays->dof = 8;
+			// vmt = cub->map[rays->mp] - 1;
 		}
 		else
 		{
@@ -78,13 +79,20 @@ int	compare_distances(t_rays *rays)
 		rays->ry = rays->hy;
 		rays->distt = rays->disth;
 		rays->color = 0xB40000;
+		if (rays->ra > PI)
+			rays->wall = 1;
 	}
 	if (rays->distv < rays->disth)
 	{
+		// hmt = vmt; // map value
 		rays->rx = rays->vx;
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;
 		rays->color = 0xE60000;
+		if (rays->ra > (PI / 2) && rays->ra < (3 * PI / 2))
+			rays->wall = 2;
+		else
+			rays->wall = 3;
 	}
 	return (0);
 }

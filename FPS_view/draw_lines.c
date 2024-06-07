@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:08:43 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 14:37:19 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:48:20 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,11 @@ int	draw_vertical(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 {
 	int	y;
 
+	y = line->y1;
+	while (y != line->y2 + bres->incy)
 	{
-		y = line->y1;
-		while (y != line->y2 + bres->incy)
-		{
-			my_mlx_pixel_put(cub, line->x1, y, rays->color);
-			y += bres->incy;
-		}
+		my_mlx_pixel_put(cub, line->x1, y, rays->color);
+		y += bres->incy;
 	}
 	return (0);
 }

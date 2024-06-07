@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 14:37:19 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:08:56 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
 			&& cub->map[rays->mp] == 1)
 		{
+			// hmt = cub->map[rays->mp] - 1;
 			rays->dof = 8;
 			rays->hx = rays->rx;
 			rays->hy = rays->ry;
@@ -74,6 +75,7 @@ int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 
 int	rays_init(t_cub *cub, t_rays *rays)
 {
+	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
 	rays->ra = cub->pa - (30 * DR);
@@ -102,6 +104,7 @@ int	init_each_ray(t_cub *cub, t_rays *rays)
 	rays->vy = cub->py;
 	rays->disth = 1000000;
 	rays->distv = 1000000;
+	rays->wall = 0;
 	return (0);
 }
 
@@ -109,25 +112,23 @@ int	draw_rays(t_cub *cub)
 {
 	t_rays	rays;
 	t_line	line;
-	int		r;
 
 	rays_init(cub, &rays);
-	r = 0;
-	while (r < 60)
+	while (rays.r < 120)
 	{
 		init_each_ray(cub, &rays);
 		check_horizontal_lines(cub, &rays);
 		check_vertical_lines(cub, &rays);
 		compare_distances(&rays);
 		init_line(cub, &rays, &line);
-		draw_line(cub, &rays, &line);
-		draw_walls(cub, &rays, r);
-		rays.ra += DR;
+		// draw_line(cub, &rays, &line);
+		draw_walls(cub, &rays);
+		rays.ra += 0.5 * DR;
 		if (rays.ra < 0)
 			rays.ra += 2 * PI;
 		if (rays.ra > 2 * PI)
 			rays.ra -= 2 * PI;
-		r++;
+		rays.r++;
 	}
 	return (0);
 }

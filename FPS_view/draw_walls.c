@@ -6,11 +6,12 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 14:37:19 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:09:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 int	init_line(t_cub *cub, t_rays *rays, t_line *line)
 {
@@ -37,26 +38,31 @@ int	fix_fish_eye(t_cub *cub, t_rays *rays)
 // ca is use ti fix fish eye effect
 // lineh is the line height and lineo is the line offset
 
-int	draw_walls(t_cub *cub, t_rays *rays, int r)
+int	draw_walls(t_cub *cub, t_rays *rays)
 {
+ // appelee pour chaqun des 60 rays
 	t_line	wall;
-	float	lineh;
 	int		i;
-	float	lineo;
+	float	line_off;
 
 	fix_fish_eye(cub, rays);
-	lineh = (cub->mapsize * 320) / rays->distt;
-	if (lineh > 512)
-		lineh = 512;
-	lineo = 256 - (lineh / 2);
-	i = 0;
-	while (i < 16)
+	wall.lineh = (cub->mapsize * 320) / rays->distt;
+	wall.ty_step = 32.0 / (float)wall.lineh;
+	wall.ty_off = 0;
+	if (wall.lineh > 512) // dans tuto utilise un affichage de 320
 	{
-		wall.x1 = 523 + (r * 8) + i;
-		wall.y1 = lineo;
-		wall.x2 = 523 + (r * 8) + i;
-		wall.y2 = lineh + lineo;
-		draw_line(cub, rays, &wall);
+		wall.ty_off = (wall.lineh - 512) / 2.0;
+		wall.lineh = 512;
+	}	
+	line_off = 256 - (wall.lineh / 2); // 160
+	i = 0;
+	while (i < 4)
+	{
+		wall.x1 = 523 + (rays->r * 4) + i;
+		wall.y1 = line_off;
+		wall.x2 = 523 + (rays->r * 4) + i;
+		wall.y2 = wall.lineh + line_off;
+		draw_line_walls(cub, rays, &wall); // plutot que tirer un trait, imprimer chaque pixel
 		i++;
 	}
 	return (0);

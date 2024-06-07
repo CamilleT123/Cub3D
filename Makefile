@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/05 14:50:57 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/06/06 17:49:43 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ CC 			= cc
 
 # GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
-RAYT		= $(addprefix ./raytracing/, rays.c rays2.c)
+RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
 FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c)
 MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
+TEXTURES	= $(addprefix ./textures/, draw_textures.c)
 
 # SRC		= main.c \
 # 			draw.c \
@@ -35,7 +36,7 @@ MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
 # 			rays2.c \
 # 			utils.c \
 
-C_FILES		= $(RAYT) $(FPS) $(MINIMAP) main.c moving.c
+C_FILES		= $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES) main.c moving.c
 # C_FILES		= $(SRC) $(GNL) $(INIT) main.c
 # C_FILES		= $(SRC)
 

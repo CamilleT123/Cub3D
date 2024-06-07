@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 17:54:29 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:55:52 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 typedef struct s_cub
 {
 	void	*mlx;
+	int 	win_width;
+	int 	win_height;
 	void	*win;
 	t_scene	*scene;
 	int		xmap;
@@ -56,6 +58,7 @@ typedef struct s_cub
 
 typedef struct s_rays
 {
+	int		r;
 	float	rx;
 	float	ry;
 	float	ra;
@@ -77,6 +80,7 @@ typedef struct s_rays
 	int		color;
 	float	atan;
 	float	ntan;
+	int 	wall; // utiliser enum ?
 }			t_rays;
 
 typedef struct s_line
@@ -85,6 +89,11 @@ typedef struct s_line
 	int		y1;
 	int		x2;
 	int		y2;
+	float	lineh;
+	float	ty_step;
+	float ty_off;
+	float ty;
+	float tx;
 }			t_line;
 
 typedef struct s_bres
@@ -126,8 +135,9 @@ int			compare_distances(t_rays *rays);
 int			draw_line(t_cub *cub, t_rays *rays, t_line *line);
 
 // draw_walls.c
-int			draw_walls(t_cub *cub, t_rays *rays, int r);
+int			draw_walls(t_cub *cub, t_rays *rays);
 int			init_line(t_cub *cub, t_rays *rays, t_line *line);
+int	draw_line_walls(t_cub *cub, t_rays *rays, t_line *line);
 
 // utils.c
 int			ft_abs(int n);

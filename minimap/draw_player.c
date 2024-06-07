@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 17:57:12 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:18:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	draw_player(t_cub *cub, float x, float y)
 	return (0);
 }
 
-
 int	draw_square(t_cub *cub, float x, float y)
 {
 	int	i;
@@ -68,7 +67,6 @@ int	draw_square(t_cub *cub, float x, float y)
 			my_mlx_pixel_put(cub, j++, i, 0x666999);
 		++i;
 	}
-	printf("here\n");
 	// draw_direction(cub, x, y);
 	return (0);
 }

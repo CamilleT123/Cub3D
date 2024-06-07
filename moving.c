@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 23:10:33 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:01:57 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,110 +31,6 @@ void	changing_direction(int key, t_cub *cub)
 		cub->pdy = sin(cub->pa) * 1;
 	}
 }
-
-
-// int	keymapping(int key, t_cub *cub)
-// {
-// 	if (key == 65307)
-// 		close_win(cub);
-// 	if (key == 65363 || key == 65361)
-// 		changing_direction(key, cub);
-// 	// int xo; // offset = la boule de securite
-// 	// int yo;
-// 	int ipx; // player's position sur la grille
-// 	int ipx_add_xo; // player's position + the offset
-// 	// int ipx_sub_xo; // player's position - the offset
-// 	int ipy;
-// 	int ipy_add_yo;
-// 	// int ipy_sub_yo;
-// 	// pour pa = 0;
-// 	int x_boule_devant = 20; 
-// 	int y_boule_devant = 0;
-// 	int x_boule_droite = 0;
-// 	int y_boule_droite = 20;
-// 	// int x_boule_derriere = -20; 
-// 	// int y_boule_derriere = 0;
-// 	int x_boule_gauche = 0;
-// 	int y_boule_gauche = -20;
-
-// 	// si j'avance 
-	
-// 	if (key == 119) // avance
-// 	{
-// 		ipx = cub->px / 64.0; // la case de mon player
-// 		ipx_add_xo = (cub->px + x_boule_devant) / 64.0; // dans quelle case est ma boule
-// 		ipy = cub->py / 64.0; // la case de mon player
-// 		ipy_add_yo = (cub->py + y_boule_devant) / 64.0;
-// 			printf("1.cub->map[%d] = %d\n", ipy * cub->mapx + ipx_add_xo, cub->map[ipy * cub->mapx + ipx_add_xo]);
-// 			printf("ipy = %d\n", ipy);
-// 			printf("ipx_add_xo = %d\n", ipx_add_xo);
-// 		if (cub->map[ipy * cub->mapx + ipx_add_xo] == 0)
-// 		{
-// 			// printf("px + xo = %f\n", cub->px + xo);
-// 			// draw_square(cub, ipx_add_xo * 64, ipy_add_yo * 64);
-// 			// draw_line(cub, cub->px, cub->py, cub->px + xo, cub->py);
-// 			// my_mlx_pixel_put(cub, ipx_add_xo, ipy_add_yo, 0x00FFFF);
-// 			// printf("xo = %d\n", xo);
-// 			cub->px += cub->pdx;
-// 		}
-// 			printf("2.cub->map[%d] = %d\n", ipy_add_yo * cub->mapx + ipx, cub->map[ipy_add_yo * cub->mapx + ipx]);
-// 			printf("ipx = %d\n", ipx);
-// 			printf("ipy_add_xo = %d\n", ipy_add_yo);
-// 		if (cub->map[ipy_add_yo * cub->mapx + ipx] == 0)
-// 		{
-// 			// printf("ipy_add_xo = %d\n", ipx_add_yo);
-// 			// printf("yo = %d\n", yo);
-// 			cub->py += cub->pdy;
-// 		}
-// 		// cub->px += cub->pdx;
-// 		// cub->py += cub->pdy;
-// 	}
-// 	if (key == 115) // recule
-// 	{
-// 		if (cub->map[ipy * cub->mapx + ipx_sub_xo] == 0)
-// 			cub->px -= cub->pdx;
-// 		if (cub->map[ipy_sub_yo * cub->mapx + ipx] == 0)
-// 			cub->py -= cub->pdy;
-// 		// cub->px -= cub->pdx;
-// 		// cub->py -= cub->pdy;
-// 	}
-// 	if (key == 97) // vers la gauche
-// 	{
-// 		ipx = cub->px / 64.0; // la case de mon player
-// 		ipx_add_xo = (cub->px + x_boule_gauche) / 64.0; // dans quelle case est ma boule
-// 		ipy = cub->py / 64.0; // la case de mon player
-// 		ipy_add_yo = (cub->py + y_boule_gauche) / 64.0;
-// 			printf("1.cub->map[%d] = %d\n", ipy * cub->mapx + ipx_add_xo, cub->map[ipy * cub->mapx + ipx_add_xo]);
-// 			printf("ipy = %d\n", ipy);
-// 			printf("ipx_add_xo = %d\n", ipx_add_xo);
-// 		if (cub->map[ipy_add_yo * cub->mapx + ipx] == 0)
-// 			cub->px += cub->pdy;
-// 		printf("2.cub->map[%d] = %d\n", ipy_add_yo * cub->mapx + ipx, cub->map[ipy_add_yo * cub->mapx + ipx]);
-// 		printf("ipx = %d\n", ipx);
-// 		printf("ipy_add_yo = %d\n", ipy_add_yo);
-// 		if (cub->map[ipy_add_yo * cub->mapx + ipx] == 0)
-// 			cub->py -= cub->pdx;
-// 	}
-// 	if (key == 100) // droite
-// 	{
-// 		ipx = cub->px / 64.0; // la case de mon player
-// 		ipx_add_xo = (cub->px + x_boule_droite) / 64.0; // dans quelle case est ma boule
-// 		ipy = cub->py / 64.0; // la case de mon player
-// 		ipy_add_yo = (cub->py + y_boule_droite) / 64.0;
-// 			printf("1.cub->map[%d] = %d\n", ipy * cub->mapx + ipx_add_xo, cub->map[ipy * cub->mapx + ipx_add_xo]);
-// 			printf("ipy = %d\n", ipy);
-// 			printf("ipx_add_xo = %d\n", ipx_add_xo);
-// 		if (cub->map[ipy_add_yo * cub->mapx + ipx] == 0)
-// 			cub->px -= cub->pdy;
-// 		printf("2.cub->map[%d] = %d\n", ipy_add_yo * cub->mapx + ipx, cub->map[ipy_add_yo * cub->mapx + ipx]);
-// 		printf("ipx = %d\n", ipx);
-// 		printf("ipy_add_yo = %d\n", ipy_add_yo);
-// 		if (cub->map[ipy_add_yo * cub->mapx + ipx] == 0)
-// 			cub->py += cub->pdx;
-// 	}
-// 	display(cub);
-// 	return (0);
-// }
 
 typedef struct s_collision
 {

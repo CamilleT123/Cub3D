@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 22:49:44 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:05:02 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ int	struct_init(t_cub *cub, char *av)
 {
 	int	i;
 
+	cub->win_width = 960;
+	cub->win_height = 640;
 	cub->mlx = NULL;
 	cub->win = NULL;
 	cub->img = NULL;
 	cub->addr = NULL;
 	// cub->ymap = get_ymap(cub);
 	// cub->xmap = get_xmap(cub);
-	cub->xmap = 512;
-	cub->ymap = 512;
+	cub->xmap = 128;
+	cub->ymap = 128;
 	cub->px = 224;
 	cub->py = 224;
-	cub->pa = 250 * DR;
+	cub->pa = 0 * DR;
 	cub->pdx = cos(cub->pa) * 5;
 	cub->pdy = sin(cub->pa) * 5;
 	cub->mapx = 8;
@@ -36,9 +38,9 @@ int	struct_init(t_cub *cub, char *av)
 		1,1,1,1,1,1,1,1,
 		1,0,1,0,0,0,0,1,
 		1,0,1,0,0,0,0,1,
-		1,0,1,0,1,0,0,1,
+		1,0,1,0,0,0,0,1,
 		1,0,0,0,1,0,0,1,
-		1,0,0,0,0,0,0,1,
+		1,0,0,1,0,0,0,1,
 		1,0,0,0,0,1,0,1,
 		1,1,1,1,1,1,1,1,
 	};
@@ -81,9 +83,9 @@ int	main(int ac, char **av)
 	// if (check_map(&game) == 0)
 	// 	return (0);
 	cub.mlx = mlx_init();
-	cub.win = mlx_new_window(cub.mlx, cub.xmap * 2, cub.ymap,
+	cub.win = mlx_new_window(cub.mlx, cub.win_width, cub.win_height,
 			"Cub3D");
-	cub.img = mlx_new_image(cub.mlx, 512 * 2, 512);
+	cub.img = mlx_new_image(cub.mlx, cub.win_width, cub.win_height);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
 	display(&cub);

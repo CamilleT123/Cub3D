@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/05 17:59:14 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:08:28 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int	display_floor(t_cub *cub) // garder le return et la protection ?
 
 	if (cub->win == NULL)
 		return (1);
-	i = cub->ymap / 2;
-	while (i < cub->ymap)
+	i = cub->win_height / 2;
+	while (i < cub->win_height)
 	{
-		j = 523;
-		while (j < cub->xmap * 2 && j < 1011)
+		j = 0;
+		while (j < cub->win_width)
 			my_mlx_pixel_put(cub, j++, i, 0x515072);
+			// my_mlx_pixel_put(cub, j++, i, cub->scene->f_color);
 		++i;
 	}
 	return (0);
@@ -38,11 +39,12 @@ int	display_ceiling(t_cub *cub)
 	if (cub->win == NULL)
 		return (1);
 	i = 0;
-	while (i < cub->ymap / 2)
+	while (i < cub->win_height / 2)
 	{
-		j = 523;
-		while (j < cub->xmap * 2 && j < 1011)
+		j = 0;
+		while (j < cub->win_width)
 			my_mlx_pixel_put(cub, j++, i, 0xb3b2dc);
+			// my_mlx_pixel_put(cub, j++, i, cub->scene->c_color);
 		++i;
 	}
 	return (0);
@@ -50,15 +52,15 @@ int	display_ceiling(t_cub *cub)
 
 int	display(t_cub *cub)
 {
-	display_back(cub);
+	// display_back(cub);
 	display_floor(cub);
 	display_ceiling(cub);
-	draw_map(cub);
-	draw_player(cub, cub->px, cub->py);
+	// draw_map(cub);
+	// draw_player(cub, cub->px, cub->py);
 	draw_rays(cub);
-	draw_square(cub, cub->px + 20, cub->py + 20);
-	draw_square(cub, cub->px + 20, cub->py);
-	draw_square(cub, cub->px, cub->py + 20);
+	// draw_square(cub, cub->px + 20, cub->py + 20);
+	// draw_square(cub, cub->px + 20, cub->py);
+	// draw_square(cub, cub->px, cub->py + 20);
 
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);

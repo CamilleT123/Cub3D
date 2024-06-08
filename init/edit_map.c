@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:29:50 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/06 09:01:43 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/08 10:20:15 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	only_goodchar(char **map)
 		{
 			if (is_startchar(map[i][j]) && count == 0)
 				count++;
+			else if (is_startchar(map[i][j]) && count > 0)
+				return (map_error("", TM_START, 1));
 			else if (!is_mapchar(map[i][j]) && !cub_isspace(map[i][j]))
 				return (map_error("", FORBIDDEN_CHAR, 1));
 			j++;
@@ -61,5 +63,6 @@ int	check_map(t_cub *cub)
 	if (check_walls(cub->scene.map))
 		return (1);
 	// verif jouable
+	// position joueur et direction
 	return (0);
 }

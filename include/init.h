@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/06 08:56:53 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/08 10:20:58 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define NO_START "no start position on the map"
 # define WALLS "map is not surrounded by walls"
 # define TOO_SMALL "the map is too small"
+# define TM_START "too many starting position"
 
 # define NB_ELEMENT 6
 

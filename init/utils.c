@@ -6,11 +6,13 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:45:06 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 22:16:23 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:30:39 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "get_next_line.h"
+
 
 int	cub_isspace(char c)
 {
@@ -25,7 +27,7 @@ char	*get_path(char *str, int skip)
 	char	*spl;
 	int		i;
 	int		len;
-	
+
 	i = -1;
 	len = 0;
 	while (str && str[++i])
@@ -41,7 +43,7 @@ char	*get_path(char *str, int skip)
 	while (str && str[++i])
 	{
 		if (!cub_isspace(str[i]) && skip <= 0)
-			spl[len++] = str[i];		
+			spl[len++] = str[i];
 		else if (!cub_isspace(str[i]) && skip > 0)
 			skip--;
 	}

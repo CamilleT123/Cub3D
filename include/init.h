@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/08 10:20:58 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:30:38 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define INIT_H
 
 # include <fcntl.h>
-# include "get_next_line.h"
 
 /*------------ MACROS -------------*/
 # define IS_DIR ": is a directory"
@@ -39,9 +38,8 @@
 
 /*------------ STRUCT -------------*/
 typedef struct s_scene
-
 {
-	char 		**map;
+	char		**map;
 	float		start_x;
 	float		start_y;
 	int			f_color;

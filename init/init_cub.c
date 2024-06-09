@@ -6,13 +6,13 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:31:25 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 22:07:27 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:20:18 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int check_file(char *file, char *ext)
+static int	check_file(char *file, char *ext)
 {
 	int	f;
 	int	e;
@@ -34,8 +34,8 @@ static int check_file(char *file, char *ext)
 		return (0);
 	close(fd);
 	return (map_error(file, IS_DIR, 1));
-	// check permissions !!!!
 }
+// check permissions !!!!
 
 static int	check_lines(char *line)
 {
@@ -51,7 +51,6 @@ static int	check_lines(char *line)
 		while (line[i] != '\n' && line[i] != 0)
 			i++;
 		while (line[i] == '\n')
-
 			i++;
 	}
 	if (count != NB_ELEMENT)

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/05 23:21:55 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:29:51 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	check_info(t_cub *cub, char *info)
 		res = edit_wall(&cub->scene.east, info);
 	else if (info[i] == 'F' && cub_isspace(info[i + 1]))
 		res = edit_back(&cub->scene.f_color, info);
-	else if (info[i] == 'C'&& cub_isspace(info[i + 1]))
+	else if (info[i] == 'C' && cub_isspace(info[i + 1]))
 		res = edit_back(&cub->scene.c_color, info);
 	else
 		res = 1;

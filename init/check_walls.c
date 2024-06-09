@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 08:53:04 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/07 11:19:29 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:23:21 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_topbot(char **map, int j)
 	return (0);
 }
 
-static int check_arround(char **map, int i, int j)
+static int	check_arround(char **map, int i, int j)
 {
 	int	check;
 
@@ -46,7 +46,7 @@ static int check_arround(char **map, int i, int j)
 	return (0);
 }
 
-static int check_midmap(char **map, int lim)
+static int	check_midmap(char **map, int lim)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:29:50 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/08 10:20:15 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 10:49:21 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	check_map(t_cub *cub)
 	if (check_walls(cub->scene.map))
 		return (1);
 	// verif jouable
+	// check files extension et open
 	// position joueur et direction
 	return (0);
 }

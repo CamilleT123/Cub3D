@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/06 09:02:03 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:25:49 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,32 +103,32 @@ int		init_scene(t_cub *cub, char **ar_scene);
 int		check_map(t_cub *cub);
 
 // draw.c
-int			display(t_cub *minimap);
-int			draw_player(t_cub *minimap, float x, float y);
+int		display(t_cub *minimap);
+int		draw_player(t_cub *minimap, float x, float y);
 
 // draw_map_back.c
-int	display_back(t_cub *minimap);
-int	display_back2(t_cub *minimap);
-int	draw_map(t_cub *minimap);
+int		display_back(t_cub *minimap);
+int		display_back2(t_cub *minimap);
+int		draw_map(t_cub *minimap);
 
 // rays.c
-int			draw_rays(t_cub *minimap);
+int		draw_rays(t_cub *minimap);
 
 // rays2.c
-int			check_vertical_lines(t_cub *minimap, t_rays *rays);
-int			compare_distances(t_rays *rays);
+int		check_vertical_lines(t_cub *minimap, t_rays *rays);
+int		compare_distances(t_rays *rays);
 
 // draw_lines
-int			draw_line(t_cub *minimap, t_rays *rays, t_line *line);
+int		draw_line(t_cub *minimap, t_rays *rays, t_line *line);
 
 // draw_walls.c
-int			draw_walls(t_cub *minimap, t_rays *rays, int r);
-int			init_line(t_cub *minimap, t_rays *rays, t_line *line);
+int		draw_walls(t_cub *minimap, t_rays *rays, int r);
+int		init_line(t_cub *minimap, t_rays *rays, t_line *line);
 
 // utils.c
-int			ft_abs(int n);
-int			ft_sign(int n);
-float		distance(float x1, float y1, float x2, float y2);
-void		my_mlx_pixel_put(t_cub *minimap, int x, int y, int color);
+int		ft_abs(int n);
+int		ft_sign(int n);
+float	distance(float x1, float y1, float x2, float y2);
+void	my_mlx_pixel_put(t_cub *minimap, int x, int y, int color);
 
 #endif

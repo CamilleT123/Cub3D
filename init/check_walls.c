@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 08:53:04 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/09 11:23:21 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:21:52 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	check_midmap(char **map, int lim)
 					return (map_error("", WALLS, 1));
 			j++;
 		}
-		i++;
 	}
 	return (0);
 }
@@ -75,7 +74,7 @@ int	check_walls(char **map)
 	while (map && map[i])
 		i++;
 	i--;
-	if (i < 3)
+	if (i < 2)
 		return (map_error("", TOO_SMALL, 1));
 	if (check_topbot(map, i))
 		return (1);

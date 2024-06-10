@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/09 11:25:49 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:49:58 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_bres
 int		init_cub(char *map, t_cub *cub);
 int		init_scene(t_cub *cub, char **ar_scene);
 int		check_map(t_cub *cub);
+int		exit_map(t_cub *cub, int status);
 
 // draw.c
 int		display(t_cub *minimap);

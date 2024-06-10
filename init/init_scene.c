@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/09 11:29:51 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:25:54 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	is_valid_info(t_cub *cub, char **map)
 	i = 0;
 	while (map && map[i] && i < NB_ELEMENT)
 	{
-		if (check_info(cub, map[i]))
+	if (check_info(cub, map[i]))
 			return (1);
 		i++;
 	}
@@ -70,7 +70,9 @@ int	init_scene(t_cub *cub, char **ar_scene)
 	cub->scene.c_color = -1;
 	if (is_valid_info(cub, ar_scene))
 		return (1);
+//		return (exit_map(cub, 1));
 	if (is_valid_map(cub, ar_scene))
 		return (1);
+//		return (exit_map(cub, 1));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/09 11:30:38 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:51:11 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		edit_back(int *color, char *info);
 
 int		check_walls(char **map);
 int		is_mapchar(char c);
+
 /*------------ UTILS -------------*/
 char	**tab_dup(char **tab);
 int		cub_isspace(char c);

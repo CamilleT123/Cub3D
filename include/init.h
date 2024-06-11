@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 16:25:52 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:03:23 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define TF_ELEMENT "not enough scene elements"
 # define LINES "the map don't accept empty lines"
 # define BIG_NUM ": is a too big number (max 255,255,255)"
-# define INVALID_NUM ": is an invalid color number"
+# define INVALID_NUM ": is not a valid color number (0 to 255)"
 # define TM_NUM "wrong color format (R,G,B): too many colors"
 # define TF_NUM "wrong color format: (R,G,B) not enough colors"
 # define FORBIDDEN_CHAR "wrong map format (check accepted char !!)"

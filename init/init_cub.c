@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:31:25 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 15:11:34 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:53:41 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_file(char *file, char *ext)
 		return (close(fd), map_error(file, IS_DIR, 1));
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (perror("Error"), 1);
+		return (ft_putstr_fd("Error\n", 2), perror(file), 1);
 	close(fd);
 	return (0);
 }
@@ -71,9 +71,9 @@ int	init_cub(char *file, t_cub *cub)
 	if (!scene)
 		return (perror("Error\n"), free(line), 1);
 	if (init_scene(cub, scene))
-		return (free(line), 1);
+		return (ft_freetab(scene), free(line), 1);
 	if (check_lines(line))
-		return (free(line), map_error("", LINES, 1));
+		return (ft_freetab(scene), free(line), map_error("", LINES, 1));
 	free(line);
 	ft_freetab(scene);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 15:07:02 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:25:52 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # define NO_FILE ": no path to xpm"
 # define TM_FILE ": too many paths to xpm"
 # define TM_ELEMENT ": element defined two times"
-# define TF_ELEMENT ": too few elements"
+# define TF_ELEMENT "not enough scene elements"
 # define LINES "the map don't accept empty lines"
 # define BIG_NUM ": is a too big number (max 255,255,255)"
-# define INVALID_NUM ": is an invalid number"
-# define TM_NUM ": too many numbers"
-# define TF_NUM ": too few numbers"
+# define INVALID_NUM ": is an invalid color number"
+# define TM_NUM "wrong color format (R,G,B): too many colors"
+# define TF_NUM "wrong color format: (R,G,B) not enough colors"
 # define FORBIDDEN_CHAR "wrong map format (check accepted char !!)"
 # define NO_START "no start position on the map"
 # define WALLS "map is not surrounded by walls"

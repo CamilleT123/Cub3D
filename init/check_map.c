@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 08:53:04 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 13:43:19 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:32:06 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static int	check_arround(char **map, int i, int j)
 {
 	if (i == 0 || j == 0 || !map[i + 1])
 		return (1);
-	if (map[i + 1][j] == ' ')
+	if (map[i + 1][j] == ' ' || map[i + 1][j] == 0)
 		return (1);
-	if (map[i - 1][j] == ' ')
+	if (map[i - 1][j] == ' ' || map[i - 1][j] == 0)
 		return (1);
-	if (map[i][j + 1] == ' ')
+	if (map[i][j + 1] == ' ' || map[i][j + 1] == 0)
 		return (1);
-	if (map[i][j - 1] == ' ')
+	if (map[i][j - 1] == ' ' || map[i][j - 1] == 0)
 		return (1);
 	return (0);
 }

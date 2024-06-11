@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:22:39 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 13:39:42 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:34:47 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	main(int ac, char **av)
 	printf("%f\n", cub.scene.start_x);
 	printf("%f\n", cub.scene.start_y);
 	printf("%f\n", cub.scene.start_angle);
+	exit_map(&cub, 1);
 	return (0);
 }

@@ -10,7 +10,6 @@ neutre='\e[0;m'
 
 echo -e "${jaune}"
 
-
 echo -e "	 ██████ ██    ██ ██████  ██████  ██████  "
 echo -e "	██      ██    ██ ██   ██      ██ ██   ██ "
 echo -e "	██      ██    ██ ██████   █████  ██   ██ "
@@ -65,7 +64,8 @@ if [ $mode -eq 1 ] || [ $mode -eq 3 ]; then
 		echo -e "        ${vert}$i${neutre}" # nom de l'argument (map)
 
 		valgrind --track-fds=yes --leak-check=full ./cub3d ./maps/valid/$i 2>tmp >/dev/null # on copie stderr (2) vers un fichier temporaire (tmp) et stdout vers null
-		error=$(cat tmp | grep "segmentation fault" | wc -l)                                # on recupère le resultat de grep error sur tmp dans une variable : error
+		error=$(cat tmp | grep "Error" | wc -l)                                             # on recupère le resultat de grep error sur tmp dans une variable : error
+		errorseg=$(cat tmp | grep "segmentation fault" | wc -l)                             # on recupère le resultat de grep error sur tmp dans une variable : error
 		errjump=$(cat tmp | grep "Conditional jump" | wc -l)                                # on recupère le resultat de grep error sur tmp dans une variable : error
 		leaks=$(cat tmp | grep "no leaks are possible" | wc -l)
 		fdclose=$(cat tmp | grep "FILE DESCRIPTOR" | awk '{gsub(/\(/, "", $6); print $6}')

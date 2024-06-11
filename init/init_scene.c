@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/10 17:25:54 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:59:15 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,8 @@ static int	check_info(t_cub *cub, char *info)
 	else if (info[i] == 'C' && cub_isspace(info[i + 1]))
 		res = edit_back(&cub->scene.c_color, info);
 	else
-		res = 1;
+		res = (map_error(&info[i], VALID_COORD, 1));
 	return (res);
-}
-
-static int	is_valid_map(t_cub *cub, char **map)
-{
-	cub->scene.map = tab_dup(&map[6]);
-	if (!cub->scene.map)
-		return (map_error("", MALLOC, 1));
-	if (check_map(cub))
-		return (1);
-	return (0);
 }
 
 static int	is_valid_info(t_cub *cub, char **map)
@@ -54,12 +44,31 @@ static int	is_valid_info(t_cub *cub, char **map)
 	i = 0;
 	while (map && map[i] && i < NB_ELEMENT)
 	{
-	if (check_info(cub, map[i]))
+		if (check_info(cub, map[i]))
 			return (1);
 		i++;
 	}
 	if (i != NB_ELEMENT)
 		return (map_error("", TF_ELEMENT, 1));
+	return (0);
+}
+
+int	check_map(t_cub *cub)
+{
+	if (only_goodchar(&cub->scene))
+		return (1);
+	if (check_walls(cub->scene.map))
+		return (1);
+	return (0);
+}
+
+static int	is_valid_map(t_cub *cub, char **map)
+{
+	cub->scene.map = tab_dup(&map[6]);
+	if (!cub->scene.map)
+		return (map_error("", MALLOC, 1));
+	if (check_map(cub))
+		return (1);
 	return (0);
 }
 

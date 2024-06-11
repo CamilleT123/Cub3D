@@ -7,7 +7,7 @@ CC 			= cc
 SRC			= $(addprefix ./src/, )
 
 INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
-			  edit_scene.c edit_map.c check_walls.c main.c)
+			  edit_scene.c char_condition.c check_map.c main.c)
 
 GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 

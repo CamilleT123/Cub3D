@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_walls.c                                      :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 08:53:04 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/10 17:21:52 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 13:43:19 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	check_topbot(char **map, int j)
 	i = 0;
 	while (map[0][i])
 	{
-		if (!cub_isspace(map[0][i]) && map[0][i] != '1')
+		if (map[0][i] != ' ' && map[0][i] != '1')
 			return (map_error("", WALLS, 1));
 		i++;
 	}
 	i = 0;
 	while (map[j][i])
 	{
-		if (!cub_isspace(map[j][i]) && map[j][i] != '1')
+		if (map[j][i] != ' ' && map[j][i] != '1')
 			return (map_error("", WALLS, 1));
 		i++;
 	}
@@ -35,13 +35,15 @@ static int	check_topbot(char **map, int j)
 
 static int	check_arround(char **map, int i, int j)
 {
-	int	check;
-
 	if (i == 0 || j == 0 || !map[i + 1])
 		return (1);
-	check = cub_isspace(map[i + 1][j]) + cub_isspace(map[i - 1][j]);
-	check = check + cub_isspace(map[i][j - 1]) + cub_isspace(map[i][j + 1]);
-	if (check)
+	if (map[i + 1][j] == ' ')
+		return (1);
+	if (map[i - 1][j] == ' ')
+		return (1);
+	if (map[i][j + 1] == ' ')
+		return (1);
+	if (map[i][j - 1] == ' ')
 		return (1);
 	return (0);
 }

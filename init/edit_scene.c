@@ -6,11 +6,12 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:08:31 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/09 11:22:16 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:10:03 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "init.h"
 
 static int	check_elements(char *info)
 {
@@ -87,11 +88,13 @@ static int	get_color(char **code)
 int	edit_wall(char **path, char *info)
 {
 	if (*path != NULL)
-		return (map_error("", TM_ELEMENT, 1));
+		return (map_error(info, TM_ELEMENT, 1));
 	if (check_elements(info))
 		return (1);
 	*path = get_path(info, 2);
 	if (!*path)
+		return (1);
+	if (check_extension(*path, ".xpm"))
 		return (1);
 	return (0);
 }
@@ -102,7 +105,7 @@ int	edit_back(int *color, char *info)
 	char	*path;
 
 	if (*color >= 0)
-		return (map_error("", TM_ELEMENT, 1));
+		return (map_error(info, TM_ELEMENT, 1));
 	path = get_path(info, 1);
 	if (!path)
 		return (1);

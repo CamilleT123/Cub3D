@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:31:25 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/09 11:20:18 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:11:34 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,19 @@
 
 static int	check_file(char *file, char *ext)
 {
-	int	f;
-	int	e;
 	int	fd;
 
-	if (!file || !ext)
+	if (check_extension(file, ext))
 		return (1);
-	f = ft_strlen(file) - 1;
-	e = ft_strlen(ext) - 1;
-	while (f >= e && e >= 0)
-	{
-		if (file[f] != ext[e])
-			return (map_error(file, EXTENSION, 1));
-		e--;
-		f--;
-	}
 	fd = open(file, O_DIRECTORY);
+	if (fd != -1)
+		return (close(fd), map_error(file, IS_DIR, 1));
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (perror("Error"), 1);
 	close(fd);
-	return (map_error(file, IS_DIR, 1));
+	return (0);
 }
-// check permissions !!!!
 
 static int	check_lines(char *line)
 {
@@ -76,14 +67,14 @@ int	init_cub(char *file, t_cub *cub)
 	line = get_all_lines(file);
 	if (!line)
 		return (perror("Error\n"), 1);
+	scene = ft_split(line, '\n');
+	if (!scene)
+		return (perror("Error\n"), free(line), 1);
+	if (init_scene(cub, scene))
+		return (free(line), 1);
 	if (check_lines(line))
 		return (free(line), map_error("", LINES, 1));
-	scene = ft_split(line, '\n');
 	free(line);
-	if (!scene)
-		return (perror("Error\n"), 1);
-	if (init_scene(cub, scene))
-		return (1);
 	ft_freetab(scene);
 	return (0);
 }

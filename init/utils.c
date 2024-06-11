@@ -6,20 +6,30 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:45:06 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/09 11:30:39 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:37:40 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "get_next_line.h"
 
-
-int	cub_isspace(char c)
+int	check_extension(char *file, char *ext)
 {
-	if (c == ' ' || c == '\t')
+	int	f;
+	int	e;
+
+	if (!file || !ext)
 		return (1);
-	else
-		return (0);
+	f = ft_strlen(file) - 1;
+	e = ft_strlen(ext) - 1;
+	while (f >= e && e >= 0)
+	{
+		if (file[f] != ext[e])
+			return (map_ext_error(file, ext, 1));
+		e--;
+		f--;
+	}
+	return (0);
 }
 
 char	*get_path(char *str, int skip)

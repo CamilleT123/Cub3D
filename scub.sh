@@ -99,10 +99,14 @@ if [ $mode -eq 1 ] || [ $mode -eq 3 ]; then
 
 	done
 	rm maps.sh # on efface le fichier maps.sh
-	make fclean >/dev/null
+	if [ $mode -eq 1 ]; then
+		make fclean >/dev/null
+	fi
+fi
+if [ $mode -eq 2 ]; then
+	make 2>/dev/null >/dev/null
 fi
 if [ $mode -eq 2 ] || [ $mode -eq 3 ]; then
-	make 2>/dev/null >/dev/null                        # make et stdout et stderr redirigé vers null cad empeche l'affichage
 	cd maps/invalid                                    # on se déplace dans le fichier des maps non valides
 	chmod 000 forbidden.cub                            # supprime toutes les permissions des maps et maps/dir pour les tests
 	echo "ARG=(" >>../../maps.sh                       # on creer le fichier maps.sh qui sert de liste d'arguments (ARG)
@@ -120,7 +124,7 @@ if [ $mode -eq 2 ] || [ $mode -eq 3 ]; then
 		valgrind --track-fds=yes --leak-check=full ./cub3d ./maps/invalid/$i 2>tmp >/dev/null # on copie stderr (2) vers un fichier temporaire (tmp) et stdout vers null
 		error=$(cat tmp | grep "Error" | wc -l)                                               # on recupère le resultat de grep error sur tmp dans une variable : error
 		leaks=$(cat tmp | grep "no leaks are possible" | wc -l)                               # on recupere la chaine entre "" dans leaks
-		fdclose=$(cat tmp | grep "FILE DESCRIPTOR" | awk '{gsub(/\(/, "", $6); print $6}')    # gsub (global substitution) remplace tous ce qu'il y a entre les 2 / ( \) car ) est protegee) par "" dans la colonne 6
+		fdclose=$(cat tmp | grep "FILE DESCRIPTOR" | awk '{gsub(/\(/, "", $6); print $6}')    # gsub (global substitution) remplace tous ce qu'il y a entre les 2 / ; cad '(' ; par "" dans la colonne 6
 		fdopen=$(cat tmp | grep "FILE DESCRIPTOR" | awk '{print $4}')
 
 		if [ $fdopen -ne $fdclose ]; then # si fdopen est different de fdclose

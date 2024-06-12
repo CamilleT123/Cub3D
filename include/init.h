@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 17:03:23 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:18:13 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 /*------------ MACROS -------------*/
 # define IS_DIR ": is a directory"
 # define MALLOC " cannot allocate memory"
-# define NO_FILE ": no path to xpm"
-# define TM_FILE ": too many paths to xpm"
+# define NO_FILE ": no path to texture"
+# define TM_FILE ": too many paths to texture"
 # define TM_ELEMENT ": element defined two times"
 # define TF_ELEMENT "not enough scene elements"
 # define LINES "the map don't accept empty lines"
@@ -59,8 +59,8 @@ int		check_walls(char **map);
 
 /*------------ CHAR-COND -------------*/
 int		is_mapchar(char c);
-int		cub_isspace(char c);
 int		is_startchar(char c);
+int		cub_isspace(char c);
 
 /*------------ UTILS -------------*/
 int		check_extension(char *file, char *ext);

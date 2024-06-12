@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 14:59:15 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:16:05 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	is_valid_info(t_cub *cub, char **map)
 	return (0);
 }
 
-int	check_map(t_cub *cub)
+static int	check_map(t_cub *cub)
 {
 	if (only_goodchar(&cub->scene))
 		return (1);

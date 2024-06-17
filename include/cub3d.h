@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 11:53:09 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:55:01 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,13 @@ typedef struct s_bres
 int		init_cub(char *map, t_cub *cub);
 int		init_scene(t_cub *cub, char **ar_scene);
 int		exit_map(t_cub *cub, int status);
+
+// main.c
+int		close_win(t_cub *cub);
+
+// moving.c
+void	changing_direction(int key, t_cub *cub);
+int		keymapping(int key, t_cub *cub);
 
 // draw.c
 int		display(t_cub *minimap);

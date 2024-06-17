@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/05/30 18:36:36 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:22:10 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 // check where the ray hit the horizontal lines
 
-int	check_if_horizontal_wall(t_minimap *minimap, t_rays *rays)
+int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->rx <= minimap->xmap && rays->dof < 8)
+	while (rays->rx <= cub->xmap && rays->dof < 8)
 	{
-		rays->mx = (int)(rays->rx) / 64;
-		rays->my = (int)(rays->ry) / 64;
-		rays->mp = rays->my * minimap->mapx + rays->mx;
-		if (rays->mp > 0 && rays->mp < minimap->mapx * minimap->mapy
-			&& minimap->map[rays->mp] == 1)
+		rays->mx = (int)(rays->rx) / cub->ppc;
+		rays->my = (int)(rays->ry) / cub->ppc;
+		rays->mp = rays->my * cub->mapx + rays->mx;
+		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
+			&& cub->map[rays->mp] == 1)
 		{
 			rays->dof = 8;
 			rays->hx = rays->rx;
 			rays->hy = rays->ry;
-			rays->disth = distance(minimap->px, minimap->py, rays->hx,
+			rays->disth = distance(cub->px, cub->py, rays->hx,
 					rays->hy);
 		}
 		else
@@ -44,39 +44,40 @@ int	check_if_horizontal_wall(t_minimap *minimap, t_rays *rays)
 // check where the ray hit the vertical lines first if player is looking up, 
 // then if looking down and finally if looking left or right
 
-int	check_horizontal_lines(t_minimap *minimap, t_rays *rays)
+int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 {
 	rays->dof = 0;
 	rays->atan = (-1) / (tan(rays->ra));
 	if (rays->ra > PI)
 	{
-		rays->ry = (((int)minimap->py / 64) * 64) - 0.0001;
-		rays->rx = (minimap->py - rays->ry) * rays->atan + minimap->px;
-		rays->yo = -64;
+		rays->ry = (((int)cub->py / cub->ppc) * cub->ppc) - 0.0001;
+		rays->rx = (cub->py - rays->ry) * rays->atan + cub->px;
+		rays->yo = -cub->ppc; 
 		rays->xo = -rays->yo * rays->atan;
 	}
 	if (rays->ra < PI && rays->ra > 0)
 	{
-		rays->ry = (((int)minimap->py / 64) * 64) + 64;
-		rays->rx = (minimap->py - rays->ry) * rays->atan + minimap->px;
-		rays->yo = 64;
+		rays->ry = (((int)cub->py / cub->ppc) * cub->ppc) + cub->ppc;
+		rays->rx = (cub->py - rays->ry) * rays->atan + cub->px;
+		rays->yo = cub->ppc;
 		rays->xo = -rays->yo * rays->atan;
 	}
 	if (rays->ra == 0 || rays->ra == PI)
 	{
-		rays->rx = minimap->px;
-		rays->ry = minimap->py;
+		rays->rx = cub->px;
+		rays->ry = cub->py;
 		rays->dof = 8;
 	}
-	check_if_horizontal_wall(minimap, rays);
+	check_if_horizontal_wall(cub, rays);
 	return (0);
 }
 
-int	rays_init(t_minimap *minimap, t_rays *rays)
+int	rays_init(t_cub *cub, t_rays *rays)
 {
+	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = minimap->pa - (30 * DR);
+	rays->ra = cub->pa - (30 * DR);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)
@@ -94,40 +95,34 @@ int	rays_init(t_minimap *minimap, t_rays *rays)
 	return (0);
 }
 
-int	init_each_ray(t_minimap *minimap, t_rays *rays)
+int	init_each_ray(t_cub *cub, t_rays *rays)
 {
-	rays->hx = minimap->px;
-	rays->hy = minimap->py;
-	rays->vx = minimap->px;
-	rays->vy = minimap->py;
+	rays->hx = cub->px;
+	rays->hy = cub->py;
+	rays->vx = cub->px;
+	rays->vy = cub->py;
 	rays->disth = 1000000;
 	rays->distv = 1000000;
+	rays->wall = 0;
 	return (0);
 }
 
-int	draw_rays(t_minimap *minimap)
+int	calculate_rays(t_cub *cub, t_rays *rays)
 {
-	t_rays	rays;
-	t_line	line;
-	int		r;
-
-	rays_init(minimap, &rays);
-	r = 0;
-	while (r < 60)
+	rays_init(cub, rays);
+	while (rays->r < 120)
 	{
-		init_each_ray(minimap, &rays);
-		check_horizontal_lines(minimap, &rays);
-		check_vertical_lines(minimap, &rays);
-		compare_distances(&rays);
-		init_line(minimap, &rays, &line);
-		draw_line(minimap, &rays, &line);
-		draw_walls(minimap, &rays, r);
-		rays.ra += DR;
-		if (rays.ra < 0)
-			rays.ra += 2 * PI;
-		if (rays.ra > 2 * PI)
-			rays.ra -= 2 * PI;
-		r++;
+		init_each_ray(cub, rays);
+		check_horizontal_lines(cub, rays);
+		check_vertical_lines(cub, rays);
+		compare_distances(rays);
+		draw_walls(cub, rays);
+		rays->ra += 0.5 * DR;
+		if (rays->ra < 0)
+			rays->ra += 2 * PI;
+		if (rays->ra > 2 * PI)
+			rays->ra -= 2 * PI;
+		rays->r++;
 	}
 	return (0);
 }

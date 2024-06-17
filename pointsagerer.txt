@@ -1,0 +1,1 @@
+gerer la taille de la fenetre et l'ajustement de l'affichage a la taille ?

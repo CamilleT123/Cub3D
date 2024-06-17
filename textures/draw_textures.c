@@ -6,12 +6,14 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:08:43 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/07 11:02:53 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:35:21 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../textures/text4.ppm"
+// #include "../textures/text4.ppm"
+// #include "../textures/text128.ppm"
+
 
 // int All_Textures[]=               //all 32x32 textures
 // {
@@ -89,10 +91,8 @@
 //  0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,
 // };
 
-
 unsigned int check_color(int rouge, int vert, int bleu) 
 {
-    // Vérifiez que les valeurs sont dans la plage 0-255
     if (rouge < 0) rouge = 0;
     if (rouge > 255) rouge = 255;
     if (vert < 0) vert = 0;
@@ -100,7 +100,6 @@ unsigned int check_color(int rouge, int vert, int bleu)
     if (bleu < 0) bleu = 0;
     if (bleu > 255) bleu = 255;
 
-    // Combinez les composants en un entier de 32 bits
     unsigned int couleur = (rouge << 16) | (vert << 8) | bleu;
     return couleur;
 }
@@ -108,64 +107,47 @@ unsigned int check_color(int rouge, int vert, int bleu)
 int	draw_vertical_walls(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 {
 	int	y;
-	// float c;
-	// int green = 0;
-	// int red = 0;
-	// int blue = 0;
-
-	// int ybis = 0;
-	// while (ybis < 32)
-	// {	
-	// 	int xbis = 0;
-	// 	while (xbis < 32)
-	// 	{
-			// int pixel = (ybis*32 + xbis) * 3;
-			// red = text4[pixel];
-			// green = text4[pixel + 1];
-			// blue = text4[pixel + 2];
-			// int color = check_color(red, green, blue);
-			// printf("color = %d\n", color);
-	// 		my_mlx_pixel_put(cub, xbis, ybis, color);
-	// 		xbis++;
-	// 	}
-	// 	ybis++;
-	// }
-	
+	int pixel;
+	// int red;
+	// int green;
+	// int blue;
+		
 	line->ty = line->ty_off * line->ty_step;
 	if (rays->disth < rays->distv) // si mur horizontal
 	{
-		line->tx = (int)(rays->rx / 2.0) % 32;
+		line->tx = (int)(rays->rx / 2.0) % 128; // pourquoi /2?? // size of the texture
 		if (rays->ra < 180 * DR)
-			line->tx = 31 - line->tx;
+			line->tx = 127 - line->tx;
 	}
 	else
 	{
-		line->tx = (int)(rays->ry / 2.0) % 32;
+		line->tx = (int)(rays->ry / 2.0) % 128;
 		if (rays->ra > (90 * DR) && rays->ra < (270 * DR))
-			line->tx = 31 - line->tx;	
+			line->tx = 127 - line->tx;	
 	}
 	// if (rays->wall == 1 || rays->wall == 3)
 		// line->ty +=32;
-		
 	y = line->y1;
-	
 	while (y != line->y2 + bres->incy)
 	{
-		int pixel = ((int)line->ty * 32 + (int)line->tx) * 3;
-		int red = text4[pixel];
-		int green = text4[pixel + 1];
-		int blue = text4[pixel + 2];
+		pixel = ((int)line->ty * 128 + (int)line->tx);
+		// pixel = ((int)line->ty * 128 + (int)line->tx) * 3;
+		// red = text128[pixel];
+		// green = text128[pixel + 1];
+		// blue = text128[pixel + 2];
 		// if (y == line->y1)
 		// 	printf("red = %d, green = %d, blue = %d\n", red, green, blue);
-		if (rays->wall == 2 || rays->wall == 3)
-		{
-			red = (text4[pixel] * 0.70);
-			green = (text4[pixel + 1] * 0.70);
-			blue = (text4[pixel + 2] * 0.70);
-		}
+		// if (rays->wall == 2 || rays->wall == 3)
+		// {
+		// 	red = (text4[pixel] * 0.70);
+		// 	green = (text4[pixel + 1] * 0.70);
+		// 	blue = (text4[pixel + 2] * 0.70);
+		// }
 		// if (y == line->y1)
 		// 	printf("red = %d, green = %d, blue = %d\n", red, green, blue);
-		rays->color = check_color(red, green, blue);
+		// rays->color = check_color(red, green, blue);
+		rays->color = bres->ptr_texture->addr[pixel];
+		printf("color = %d", rays->color);
 		my_mlx_pixel_put(cub, line->x1, y, rays->color);
 		y += bres->incy;
 		line->ty += line->ty_step;
@@ -173,19 +155,58 @@ int	draw_vertical_walls(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 	return (0);
 }
 
+int get_adresses(t_cub *cub, t_texture *texture)
+{
+	// printf("texture->bits_per_pixel=%d\n", texture->bits_per_pixel);
+	// printf("\ntexture->add=%p\n", texture->addr);
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
+	// printf("\ntexture->add=%p\n", texture->addr);
+	(void)cub;
+	return (0);
+}
+
+int get_texture(t_cub *cub, t_texture *texture)
+{
+	int	img_width = 0;
+	int	img_height = 0;
+
+	// printf("\ntexture->img1=%p\n", texture->img);
+	// printf("->mlx=%p\n", cub->mlx);
+	// printf("->w=%p\n", &img_width);
+	// printf("->h=%p\n", &img_height);
+	// printf("->w=%d\n", img_width);
+	// printf("->h=%d\n", img_height);
+	texture->img = mlx_xpm_file_to_image(cub->mlx, "./Brick128.xpm",
+			&img_width, &img_height);
+	// printf("texture->img=%p\n", texture->img);
+	// printf("->mlx=%p\n", cub->mlx);
+	// printf("->w=%p\n", &img_width);
+	// printf("->h=%p\n", &img_height);
+	// printf("->w=%d\n", img_width);
+	// printf("->h=%d\n", img_height);
+	return (0);
+}
+
 int	draw_line_walls(t_cub *cub, t_rays *rays, t_line *line)
 {
 	t_bres	bres;
+	t_texture	texture;
+	// printf("ptr=%p\n", &texture);
 
+	get_texture(cub, &texture);
+	get_adresses(cub, &texture);
 	bres.dx = line->x2 - line->x1;
 	bres.dy = line->y2 - line->y1;
 	bres.incx = ft_sign(bres.dx);
 	bres.incy = ft_sign(bres.dy);
 	bres.dx = ft_abs(bres.dx);
 	bres.dy = ft_abs(bres.dy);
+	bres.ptr_texture = &texture;
+	// printf("ptr=%p\n", bres.ptr_texture);
 	
-	if (bres.dx == 0)
-		draw_vertical_walls(line, &bres, cub, rays);
+		if (bres.dx == 0)
+			draw_vertical_walls(line, &bres, cub, rays);
 	else
 		printf("\nERROR\n");
 	// if (bres.dy == 0)

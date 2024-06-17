@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/07 10:55:52 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:00:53 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 # define DR 0.0174533 // 1 degree in radian
 
 /*------------ STRUCT -------------*/
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_texture;
+
 typedef struct s_cub
 {
 	void	*mlx;
@@ -36,12 +45,13 @@ typedef struct s_cub
 	t_scene	*scene;
 	int		xmap;
 	int		ymap;
+	int 	ppc;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	float	px;
+	float	px;// position player en pixel
 	float	py;
 	float	pdx;
 	float	pdy;
@@ -50,7 +60,9 @@ typedef struct s_cub
 	int		mapy;
 	int		map[64];
 	int		mapsize;
+	// t_texture	*texture;
 }			t_cub;
+
 // ry et rx sont les coordonnées du point d'intersection
 // yo et xo sont les valeurs d'incrémentation pour les coordonnées x et y
 // mx et my sont les coordonnées de la carte, mp est l'index de la carte
@@ -104,7 +116,10 @@ typedef struct s_bres
 	int		incy;
 	int		x2;
 	int		y2;
+	t_texture	*ptr_texture;
 }			t_bres;
+
+
 
 int	init_cub(char *map, t_cub *cub);
 int	close_win(t_cub *cub);
@@ -125,7 +140,10 @@ int			draw_player(t_cub *cub, float x, float y);
 int	draw_square(t_cub *cub, float x, float y);
 
 // rays.c
-int			draw_rays(t_cub *cub);
+int	calculate_rays(t_cub *cub, t_rays *rays);
+int	draw_rays(t_cub *cub, t_rays *rays, t_line *line);
+int	check_horizontal_lines(t_cub *cub, t_rays *rays);
+int	init_each_ray(t_cub *cub, t_rays *rays);
 
 // rays2.c
 int			check_vertical_lines(t_cub *cub, t_rays *rays);

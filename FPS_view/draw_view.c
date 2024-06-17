@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/07 11:08:28 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:23:07 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,13 @@ int	display_ceiling(t_cub *cub)
 
 int	display(t_cub *cub)
 {
-	// display_back(cub);
+	t_rays	rays;
+	t_line	line;
 	display_floor(cub);
 	display_ceiling(cub);
-	// draw_map(cub);
-	// draw_player(cub, cub->px, cub->py);
-	draw_rays(cub);
-	// draw_square(cub, cub->px + 20, cub->py + 20);
-	// draw_square(cub, cub->px + 20, cub->py);
-	// draw_square(cub, cub->px, cub->py + 20);
-
+	calculate_rays(cub, &rays);
+	draw_map(cub);
+	draw_rays(cub, &rays, &line);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }

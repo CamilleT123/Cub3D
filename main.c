@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/07 11:05:02 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:37:15 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int	struct_init(t_cub *cub, char *av)
 	cub->win = NULL;
 	cub->img = NULL;
 	cub->addr = NULL;
-	// cub->ymap = get_ymap(cub);
-	// cub->xmap = get_xmap(cub);
 	cub->xmap = 128;
 	cub->ymap = 128;
-	cub->px = 224;
-	cub->py = 224;
-	cub->pa = 0 * DR;
+	cub->mapx = 8; // x map en cases
+	cub->mapy = 8; // y en case
+	cub->mapsize = 64; // taille map en cases
+	cub->ppc = cub->xmap / cub->mapx; // voir si case pas carree
+	cub->px = 1 * cub->ppc + cub->ppc / 2; // x de depart (milieu de case)
+	cub->py = 4 * cub->ppc + cub->ppc / 2;
+	cub->pa = 0 * DR; // start angle
 	cub->pdx = cos(cub->pa) * 5;
 	cub->pdy = sin(cub->pa) * 5;
-	cub->mapx = 8;
-	cub->mapy = 8;
-	cub->mapsize = 64;
-	int tableau[64] = {
+	
+	int tableau[64] = { // 
 		1,1,1,1,1,1,1,1,
 		1,0,1,0,0,0,0,1,
 		1,0,1,0,0,0,0,1,

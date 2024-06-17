@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/06 16:53:26 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:16:27 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 {
 	while (rays->ry <= cub->ymap && rays->dof < 8)
 	{
-		rays->mx = (int)(rays->rx) / 64;
-		rays->my = (int)(rays->ry) / 64;
+		rays->mx = (int)(rays->rx) / cub->ppc;
+		rays->my = (int)(rays->ry) / cub->ppc;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
 			&& cub->map[rays->mp] == 1)
@@ -27,7 +27,6 @@ int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 			rays->distv = distance(cub->px, cub->py, rays->vx,
 					rays->vy);
 			rays->dof = 8;
-			// vmt = cub->map[rays->mp] - 1;
 		}
 		else
 		{
@@ -47,16 +46,16 @@ int	check_vertical_lines(t_cub *cub, t_rays *rays)
 	rays->ntan = -tan(rays->ra);
 	if (rays->ra > (PI / 2) && rays->ra < (3 * PI / 2))
 	{
-		rays->rx = (((int)cub->px / 64) * 64) - 0.0001;
+		rays->rx = (((int)cub->px / cub->ppc) * cub->ppc) - 0.0001;
 		rays->ry = (cub->px - rays->rx) * rays->ntan + cub->py;
-		rays->xo = -64;
+		rays->xo = -cub->ppc;
 		rays->yo = -rays->xo * rays->ntan;
 	}
 	if (rays->ra < (PI / 2) || rays->ra > (3 * PI / 2))
 	{
-		rays->rx = (((int)cub->px / 64) * 64) + 64;
+		rays->rx = (((int)cub->px / cub->ppc) * cub->ppc) + cub->ppc;
 		rays->ry = (cub->px - rays->rx) * rays->ntan + cub->py;
-		rays->xo = 64;
+		rays->xo = cub->ppc;
 		rays->yo = -rays->xo * rays->ntan;
 	}
 	if (rays->ra == (PI / 2) || rays->ra == (3 * PI / 2))
@@ -84,7 +83,6 @@ int	compare_distances(t_rays *rays)
 	}
 	if (rays->distv < rays->disth)
 	{
-		// hmt = vmt; // map value
 		rays->rx = rays->vx;
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;

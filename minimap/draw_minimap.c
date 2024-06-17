@@ -30,16 +30,19 @@ int	display_back(t_cub *cub)
 	return (0);
 }
 
+// soustraire -1 aux 2 while pour quadriller la map
+
+
 int	draw_map_1(t_cub *cub, int x, int y)
 {
 	int	yo;
 	int	xo;
 
-	yo = y * cub->mapsize;
-	while (yo < y * cub->mapsize + cub->mapsize - 1)
+	yo = y * cub->ppc;
+	while (yo < y * cub->ppc + cub->ppc) 
 	{
-		xo = x * cub->mapsize;
-		while (xo < x * cub->mapsize + cub->mapsize - 1)
+		xo = x * cub->ppc;
+		while (xo < x * cub->ppc + cub->ppc)
 			my_mlx_pixel_put(cub, xo++, yo, 0x7f388b);
 		++yo;
 	}
@@ -51,11 +54,11 @@ int	draw_map_0(t_cub *cub, int x, int y)
 	int	yo;
 	int	xo;
 
-	yo = y * cub->mapsize;
-	while (yo < y * cub->mapsize + cub->mapsize - 1)
+	yo = y * cub->ppc;
+	while (yo < y * cub->ppc + cub->ppc)
 	{
-		xo = x * cub->mapsize;
-		while (xo < x * cub->mapsize + cub->mapsize - 1)
+		xo = x * cub->ppc;
+		while (xo < x * cub->ppc + cub->ppc)
 			my_mlx_pixel_put(cub, xo++, yo, 0xbdabc4);
 		++yo;
 	}
@@ -81,5 +84,7 @@ int	draw_map(t_cub *cub)
 		}
 		++y;
 	}
+	// draw_player(cub, cub->scene->start_x, cub->scene->start_y);
+	draw_player(cub, cub->px, cub->py);
 	return (0);
 }

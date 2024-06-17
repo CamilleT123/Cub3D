@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/12 14:16:05 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:40:04 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ int	init_scene(t_cub *cub, char **ar_scene)
 	cub->scene.f_color = -1;
 	cub->scene.c_color = -1;
 	if (is_valid_info(cub, ar_scene))
-		return (1);
-//		return (exit_map(cub, 1));
+		return (exit_map(cub, 1));
 	if (is_valid_map(cub, ar_scene))
-		return (1);
-//		return (exit_map(cub, 1));
+		return (exit_map(cub, 1));
 	return (0);
 }

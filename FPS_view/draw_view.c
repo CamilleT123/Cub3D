@@ -19,11 +19,11 @@ int	display_floor(t_cub *cub) // garder le return et la protection ?
 
 	if (cub->win == NULL)
 		return (1);
-	i = cub->win_height / 2;
-	while (i < cub->win_height)
+	i = WINH / 2;
+	while (i < WINH)
 	{
 		j = 0;
-		while (j < cub->win_width)
+		while (j < WINW)
 			my_mlx_pixel_put(cub, j++, i, 0x515072);
 			// my_mlx_pixel_put(cub, j++, i, cub->scene->f_color);
 		++i;
@@ -39,10 +39,10 @@ int	display_ceiling(t_cub *cub)
 	if (cub->win == NULL)
 		return (1);
 	i = 0;
-	while (i < cub->win_height / 2)
+	while (i < WINH / 2)
 	{
 		j = 0;
-		while (j < cub->win_width)
+		while (j < WINW)
 			my_mlx_pixel_put(cub, j++, i, 0xb3b2dc);
 			// my_mlx_pixel_put(cub, j++, i, cub->scene->c_color);
 		++i;

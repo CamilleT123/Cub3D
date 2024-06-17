@@ -14,7 +14,7 @@
 
 int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->ry <= cub->ymap && rays->dof < 8)
+	while (rays->ry <= SMINIMAPY && rays->dof < 8)
 	{
 		rays->mx = (int)(rays->rx) / cub->ppc;
 		rays->my = (int)(rays->ry) / cub->ppc;

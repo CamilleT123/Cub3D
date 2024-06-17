@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 11:55:58 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:19:50 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@
 /*------------ MACROS -------------*/
 # define PI 3.1415926535
 # define DR 0.0174533 // 1 degree in radian
+					  //
+/*------------ SETUP -------------*/
+# define WINW 960
+# define WINH 640
+# define SMINIMAPX 128
+# define SMINIMAPY 128
+
+/*------------ ENUM -------------*/
+typedef enum s_walls
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}			t_walls;
+
+typedef enum s_tile
+{
+	FLOOR,
+	WALL,
+	HOLE
+}		t_tile;
 
 /*------------ STRUCT -------------*/
 typedef struct s_texture
@@ -33,6 +55,8 @@ typedef struct s_texture
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
+	int		width;
+	int		height;
 	int		endian;
 }			t_texture;
 
@@ -43,9 +67,7 @@ typedef struct s_cub
 	int 	win_height;
 	void	*win;
 	t_scene	scene;
-	int		xmap;
-	int		ymap;
-	int 	ppc;
+	float 	ppc;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -58,9 +80,9 @@ typedef struct s_cub
 	float	pa;
 	int		mapx;
 	int		mapy;
-	int		map[64];
+	int		*map;
 	int		mapsize;
-	// t_texture	*texture;
+	t_texture	texture[4];
 }			t_cub;
 
 // ry et rx sont les coordonnées du point d'intersection
@@ -124,7 +146,9 @@ typedef struct s_bres
 /*------------ PARSING/INIT -------------*/
 int		init_cub(char *map, t_cub *cub);
 int		init_scene(t_cub *cub, char **ar_scene);
+int		init_map(t_cub *cub);
 int		exit_map(t_cub *cub, int status);
+int		init_textures(t_cub *cub);
 
 // main.c
 int		close_win(t_cub *cub);

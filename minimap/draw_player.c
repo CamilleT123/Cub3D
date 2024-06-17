@@ -36,7 +36,7 @@ int	draw_player(t_cub *cub, float x, float y)
 
 	if (cub->win == NULL)
 		return (1);
-	if (x < 0 || x > cub->xmap || y < 0 || y > cub->ymap)
+	if (x < 0 || x > SMINIMAPX || y < 0 || y > SMINIMAPY)
 		return (1);
 	i = y - 4; // reduire
 	while (i < y + 4)
@@ -87,7 +87,7 @@ int draw_rays(t_cub *cub, t_rays *rays, t_line *line)
 
 // 	if (cub->win == NULL)
 // 		return (1);
-// 	if (x < 0 || x > cub->xmap || y < 0 || y > cub->ymap)
+// 	if (x < 0 || x > SMINIMAPX || y < 0 || y > SMINIMAPY)
 // 		return (1);
 // 	i = y - 2;
 // 	while (i < y + 2)

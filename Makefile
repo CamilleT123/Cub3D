@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
+#    By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/17 11:57:20 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/06/17 16:15:53 by aduvilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ CC 			= cc
 # SRC			= $(addprefix ./src/, )
 
 INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
-			  edit_scene.c char_condition.c check_map.c)
+			  edit_scene.c char_condition.c check_map.c init_map.c)
 
-# GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
+GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
-RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
-FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c)
-MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
-TEXTURES	= $(addprefix ./textures/, draw_textures.c)
+#RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
+#FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c)
+#MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
+#TEXTURES	= $(addprefix ./textures/, draw_textures.c)
 
 # SRC		= main.c \
 # 			draw.c \
@@ -37,8 +37,8 @@ TEXTURES	= $(addprefix ./textures/, draw_textures.c)
 # 			rays2.c \
 # 			utils.c \
 
-C_FILES		= $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES) main.c moving.c
-# C_FILES		= $(SRC) $(GNL) $(INIT) main.c
+#C_FILES		= $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES) main.c moving.c
+C_FILES		= $(SRC) $(GNL) $(INIT) main.c
 # C_FILES		= $(SRC)
 
 #------------ FLAGS + INCLUDE -------------#

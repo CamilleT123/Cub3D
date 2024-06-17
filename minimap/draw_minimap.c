@@ -20,10 +20,10 @@ int	display_back(t_cub *cub)
 	if (cub->win == NULL)
 		return (1);
 	i = 0;
-	while (i < cub->ymap)
+	while (i < SMINIMAPY)
 	{
 		j = 0;
-		while (j < cub->xmap)
+		while (j < SMINIMAPX)
 			my_mlx_pixel_put(cub, j++, i, 0x666999);
 		++i;
 	}

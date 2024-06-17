@@ -36,21 +36,21 @@ int	draw_walls(t_cub *cub, t_rays *rays)
 	float	line_off;
 
 	fix_fish_eye(cub, rays);
-	wall.lineh = (cub->mapsize * (cub->win_height) / 3) / rays->distt;
+	wall.lineh = (cub->mapsize * (WINH) / 3) / rays->distt;
 	wall.ty_step = 128.0 / (float)wall.lineh;
 	wall.ty_off = 0;
-	if (wall.lineh > cub->win_height)
+	if (wall.lineh > WINH)
 	{
-		wall.ty_off = (wall.lineh - cub->win_height) / 2.0;
-		wall.lineh = cub->win_height;
+		wall.ty_off = (wall.lineh - WINH) / 2.0;
+		wall.lineh = WINH;
 	}	
-	line_off = (cub->win_height / 2) - (wall.lineh / 2); 
+	line_off = (WINH / 2) - (wall.lineh / 2); 
 	i = 0;
-	while (i < (cub->win_width / 120))
+	while (i < (WINW / 120))
 	{
-		wall.x1 = (rays->r * (cub->win_width / 120)) + i;
+		wall.x1 = (rays->r * (WINW / 120)) + i;
 		wall.y1 = line_off;
-		wall.x2 = (rays->r * (cub->win_width / 120)) + i;
+		wall.x2 = (rays->r * (WINW / 120)) + i;
 		wall.y2 = wall.lineh + line_off;
 		draw_line(cub,rays, &wall);
 		// draw_line_walls(cub, rays, &wall);

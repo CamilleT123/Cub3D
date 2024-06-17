@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 10:22:10 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:57:09 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->rx <= cub->xmap && rays->dof < 8)
+	while (rays->rx <= SMINIMAPX && rays->dof < 8)
 	{
 		rays->mx = (int)(rays->rx) / cub->ppc;
 		rays->my = (int)(rays->ry) / cub->ppc;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
-			&& cub->map[rays->mp] == 1)
+			&& cub->map[rays->mp] == '1')
 		{
 			rays->dof = 8;
 			rays->hx = rays->rx;

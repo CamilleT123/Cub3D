@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/17 16:20:20 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:37:01 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	getint(char c)
 
 static int	get_map_int(t_cub *cub)
 {
-	int			i;
-	int			j;
-	size_t		k;
+	int	i;
+	int	j;
+	int	k;
 
 	cub->map = malloc(sizeof(int) * cub->mapsize);
 	if (!cub->map)
@@ -42,7 +42,7 @@ static int	get_map_int(t_cub *cub)
 			cub->map[i++] = getint(cub->scene.map[j][k]);
 			k++;
 		}
-		while (k < ft_strlen(cub->scene.map[j]))
+		while (k < cub->mapx)
 		{
 			cub->map[i++] = 2;
 			k++;

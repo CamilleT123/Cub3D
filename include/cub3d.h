@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 11:00:53 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:48:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ typedef struct s_line
 	int		y2;
 	float	lineh;
 	float	ty_step;
-	float ty_off;
-	float ty;
-	float tx;
+	float 	ty_off;
+	float 	ty;
+	float 	tx;
 }			t_line;
 
 typedef struct s_bres

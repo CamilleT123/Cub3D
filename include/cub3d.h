@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 11:55:01 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:55:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include "init.h"
-//# include <X11/X.h>
-// # include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>

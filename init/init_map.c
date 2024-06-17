@@ -6,12 +6,11 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/17 16:37:01 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:27:05 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	getint(char c)
 {
@@ -102,8 +101,13 @@ int	init_textures(t_cub *cub)
 	while (i < 4)
 	{
 		if (get_texture(cub, i, arrtex[i]))
-			return (1);
+			return (exit_map(cub, 1));
+		free(arrtex[i]);
 		i++;
 	}
+	cub->scene.north = NULL;
+	cub->scene.south = NULL;
+	cub->scene.east = NULL;
+	cub->scene.west = NULL;
 	return (0);
 }

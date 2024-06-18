@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 17:33:36 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:03:32 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	struct_init(t_cub *cub, char **av)
 	cub->win = mlx_new_window(cub->mlx, WINW, WINH, av[0]);
 	if (!cub->win)
 		return (mlx_destroy_display(cub->mlx), exit_map(cub, 1), 1);
-//	if (init_textures(cub))
-//		return (mlx_destroy_display(cub->mlx), exit_map(cub, 1), 1);
+	if (init_textures(cub))
+		return (mlx_destroy_display(cub->mlx), exit_map(cub, 1), 1);
 	return (0);
 }
 
@@ -79,14 +79,15 @@ int	main(int ac, char **av)
 		return (ft_putstr_fd("Error\ninclude only 1 map", 2), 0);
 	if (struct_init(&cub, av))
 		return (exit_map(&cub, 1));
-//	cub.img = mlx_new_image(cub.mlx, cub.win_width, cub.win_height);
-//	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
-//			&cub.line_length, &cub.endian);
+	cub.img = mlx_new_image(cub.mlx, cub.win_width, cub.win_height);
+	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
+			&cub.line_length, &cub.endian);
+	printf("ok\n");
+	display(&cub);
+	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
+	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);
+	mlx_loop(cub.mlx);
 	exit_map(&cub, 1);
 	free(cub.map);
 	close_win(&cub);
-//	display(&cub);
-//	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
-//	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);
-//	mlx_loop(cub.mlx);
 }

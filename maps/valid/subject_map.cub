@@ -1,7 +1,7 @@
-NO textures/wolfenstein/grey_stone.xpm
-SO textures/wolfenstein/purple_stone.xpm
-WE textures/wolfenstein/red_brick.xpm
-EA textures/wolfenstein/wood.xpm
+NO textures/brick1.xpm
+SO textures/brick2.xpm
+WE textures/wood2.xpm
+EA textures/wood1.xpm
 
 F 220,100,0
 C 225,30,0

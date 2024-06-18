@@ -6,7 +6,7 @@
 #    By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/17 16:15:53 by aduvilla         ###   ########.fr        #
+#    Updated: 2024/06/18 14:41:32 by aduvilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,15 @@ INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
 
 GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
-#RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
-#FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c)
-#MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
-#TEXTURES	= $(addprefix ./textures/, draw_textures.c)
+RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
 
-# SRC		= main.c \
+FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c)
+
+MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
+
+TEXTURES	= $(addprefix ./textures/, draw_textures.c)
+
+SRC			= main.c moving.c
 # 			draw.c \
 # 			draw_map_back.c \
 # 			draw_lines.c \
@@ -37,9 +40,8 @@ GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 # 			rays2.c \
 # 			utils.c \
 
-#C_FILES		= $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES) main.c moving.c
-C_FILES		= $(SRC) $(GNL) $(INIT) main.c
-# C_FILES		= $(SRC)
+C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
+#C_FILES		= $(SRC) $(GNL) $(INIT) main.c
 
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g

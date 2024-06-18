@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/17 17:27:05 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:43:41 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ int	init_map(t_cub *cub)
 static int	get_texture(t_cub *cub, int i, char *path)
 {
 	t_texture	tex;
-
+	
 	tex = cub->texture[i];
 	ft_bzero(&tex, sizeof(t_texture));
 	tex.img = mlx_xpm_file_to_image(cub->mlx, path, &tex.width, &tex.height);
 	if (!tex.img)
 		return (map_error("", "cannot create image", 1));
-	tex.addr = mlx_get_data_addr(tex.img, &tex.bits_per_pixel,
+	tex.addr = (int *)mlx_get_data_addr(tex.img, &tex.bits_per_pixel,
 			&tex.line_length, &tex.endian);
 	if (!tex.addr)
 		return (map_error("", "cannot get image address", 1));

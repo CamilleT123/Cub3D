@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 14:50:50 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:04:33 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	display(t_cub *cub)
 
 	display_floor(cub);
 	display_ceiling(cub);
+	rays_init(cub, &rays);
 	calculate_rays(cub, &rays);
 	draw_map(cub);
 	draw_rays(cub, &rays, &line);

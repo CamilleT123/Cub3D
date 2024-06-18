@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:27:29 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:23:09 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_cub
 	void	*mlx;
 	void	*win;
 	t_scene	scene;
-	float 	ppc;
+	int 	ppc;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -90,7 +90,7 @@ typedef struct s_cub
 	int 	txt_width;
 	int 	txt_height;
 	int 	txt_size;
-	// t_texture	*texture;
+	t_texture	texture[4];
 }			t_cub;
 
 // ry et rx sont les coordonnées du point d'intersection
@@ -122,7 +122,7 @@ typedef struct s_rays
 	int		color;
 	float	atan;
 	float	ntan;
-	int 	wall; // utiliser enum ?
+	int 	wall; // utiliser enum?
 	int		nb_rays;
 }			t_rays;
 
@@ -159,6 +159,8 @@ int		init_scene(t_cub *cub, char **ar_scene);
 int		init_map(t_cub *cub);
 int		exit_map(t_cub *cub, int status);
 int		init_textures(t_cub *cub);
+
+int	rays_init(t_cub *cub, t_rays *rays);
 
 // main.c
 int		close_win(t_cub *cub);

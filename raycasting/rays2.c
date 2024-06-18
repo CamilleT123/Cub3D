@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/07 16:16:27 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:51:47 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,12 @@ int	check_vertical_lines(t_cub *cub, t_rays *rays)
 
 int	compare_distances(t_rays *rays)
 {
+	// printf("hx=%f hy=%f\n", rays->hx, rays->hy);
+	// printf("vx=%f vy=%f\n", rays->vx, rays->vy);
+	// printf("disth=%f distv=%f\n", rays->disth, rays->distv);
 	if (rays->disth < rays->distv)
 	{
+		// printf("ray %d is horizontal\n", rays->r);
 		rays->rx = rays->hx;
 		rays->ry = rays->hy;
 		rays->distt = rays->disth;
@@ -83,6 +87,7 @@ int	compare_distances(t_rays *rays)
 	}
 	if (rays->distv < rays->disth)
 	{
+		// printf("ray %d is vertical\n", rays->r);
 		rays->rx = rays->vx;
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;
@@ -92,5 +97,6 @@ int	compare_distances(t_rays *rays)
 		else
 			rays->wall = 3;
 	}
+	// printf("rx=%f ry=%f\n", rays->rx, rays->ry);
 	return (0);
 }

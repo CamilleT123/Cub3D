@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:24:13 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:27:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ typedef struct s_texture
 typedef struct s_cub
 {
 	void	*mlx;
-	int 	win_width;
-	int 	win_height;
 	void	*win;
 	t_scene	scene;
 	float 	ppc;

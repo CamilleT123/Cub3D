@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:23:46 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:25:51 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	draw_walls(t_cub *cub, t_rays *rays)
 		wall.ty_off = (wall.lineh - WINH) / 2.0;
 		wall.lineh = WINH;
 	}	
-	line_off = (cub->win_height / 2) - (wall.lineh / 2);
+	line_off = (WINH / 2) - (wall.lineh / 2);
 	wall.x1 = rays->r;
 	wall.y1 = line_off;
 	wall.x2 = rays->r;

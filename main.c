@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:21:12 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:27:09 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 		return (ft_putstr_fd("Error\ninclude only 1 map", 2), 0);
 	if (struct_init(&cub, av))
 		return (exit_map(&cub, 1));
-	cub.img = mlx_new_image(cub.mlx, cub.win_width, cub.win_height);
+	cub.img = mlx_new_image(cub.mlx, WINW, WINH);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
 	printf("ok\n");

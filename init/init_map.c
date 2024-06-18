@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/18 15:43:37 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:42:29 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,20 @@ int	init_map(t_cub *cub)
 
 static int	get_texture(t_cub *cub, int i, char *path)
 {
-	t_texture	tex;
+	t_texture	*tex;
 
-	tex = cub->texture[i];
-	ft_bzero(&tex, sizeof(t_texture));
-	tex.img = mlx_xpm_file_to_image(cub->mlx, path, &tex.width, &tex.height);
-	if (!tex.img)
+	tex = malloc(sizeof(t_texture));
+	if (!tex)
+		return (map_error("", MALLOC, 1));
+	ft_bzero(tex, sizeof(t_texture));
+	tex->img = mlx_xpm_file_to_image(cub->mlx, path, &tex->width, &tex->height);
+	if (!tex->img)
 		return (map_error("", "cannot create image", 1));
-	tex.addr = (int *)mlx_get_data_addr(tex.img, &tex.bits_per_pixel,
-			&tex.line_length, &tex.endian);
-	if (!tex.addr)
+	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
+			&tex->line_length, &tex->endian);
+	if (!tex->addr)
 		return (map_error("", "cannot get image address", 1));
+	cub->texture[i] = *tex;
 	return (0);
 }
 
@@ -93,6 +96,7 @@ int	init_textures(t_cub *cub)
 	int		i;
 	char	*arrtex[4];
 
+//	cub->texture = malloc(sizeof(t_texture) * 4);
 	arrtex[0] = cub->scene.north;
 	arrtex[1] = cub->scene.south;
 	arrtex[2] = cub->scene.east;

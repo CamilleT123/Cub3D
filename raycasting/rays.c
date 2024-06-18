@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:24:49 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:41:44 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 		rays->my = (int)(rays->ry) / cub->ppc;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
-			&& cub->map[rays->mp] == '1')
+			&& cub->map[rays->mp] == 1)
 		{
 			rays->dof = 8;
 			rays->hx = rays->rx;

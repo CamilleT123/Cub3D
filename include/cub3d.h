@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:41:10 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:51:09 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 /*------------ MACROS -------------*/
 # define PI 3.1415926535
 # define DR 0.0174533 // 1 degree in radian
-					  //
+
 /*------------ SETUP -------------*/
 # define WINW 960
 # define WINH 640
@@ -63,33 +63,33 @@ typedef struct s_texture
 
 typedef struct s_cub
 {
-	void	*mlx;
-	void	*win;
-	t_scene	scene;
-	float 	ppc;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	float	px;// position player en pixel
-	float	py;
-	float	pdx;
-	float	pdy;
-	float	pa;
-	int		mapx;
-	int		mapy;
-	int		*map;
-	int		mapsize;
-	void	*txt;
-	int		*txt_add;
+	void		*mlx;
+	void		*win;
+	t_scene		scene;
+	int			ppc;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	float		px;// position player en pixel
+	float		py;
+	float		pdx;
+	float		pdy;
+	float		pa;
+	int			mapx;
+	int			mapy;
+	int			*map;
+	int			mapsize;
+	void		*txt;
+	int			*txt_add;
 	// char	*addr;
-	int		txt_bpp;
-	int		txt_line_length;
-	int		txt_edn;
-	int 	txt_width;
-	int 	txt_height;
-	int 	txt_size;
+	int			txt_bpp;
+	int			txt_line_length;
+	int			txt_edn;
+	int			txt_width;
+	int			txt_height;
+	int			txt_size;
 	t_texture	texture[4];
 }			t_cub;
 
@@ -122,7 +122,7 @@ typedef struct s_rays
 	int		color;
 	float	atan;
 	float	ntan;
-	int 	wall; // utiliser enum ?
+	int		wall; // utiliser enum ?
 	int		nb_rays;
 }			t_rays;
 
@@ -134,24 +134,22 @@ typedef struct s_line
 	int		y2;
 	float	lineh;
 	float	ty_step;
-	float 	ty_off;
-	float 	ty;
-	float 	tx;
-	int 	color;
+	float	ty_off;
+	float	ty;
+	float	tx;
+	int		color;
 }			t_line;
 
 typedef struct s_bres
 {
-	int		dx;
-	int		dy;
-	int		incx;
-	int		incy;
-	int		x2;
-	int		y2;
+	int			dx;
+	int			dy;
+	int			incx;
+	int			incy;
+	int			x2;
+	int			y2;
 	t_texture	*ptr_texture;
 }			t_bres;
-
-
 
 /*------------ PARSING/INIT -------------*/
 int		init_cub(char *map, t_cub *cub);
@@ -172,38 +170,38 @@ int		display(t_cub *minimap);
 int		draw_player(t_cub *minimap, float x, float y);
 
 // draw_visual.c
-int			display(t_cub *cub);
+int		display(t_cub *cub);
 
 // cub/draw_minimap.c
-int	display_back(t_cub *cub);
-int	draw_map(t_cub *cub);
+int		display_back(t_cub *cub);
+int		draw_map(t_cub *cub);
 
 // cub/draw_player.c
-int			draw_player(t_cub *cub, float x, float y);
-int	draw_square(t_cub *cub, float x, float y);
+int		draw_player(t_cub *cub, float x, float y);
+int		draw_square(t_cub *cub, float x, float y);
 
 // rays.c
-int	calculate_rays(t_cub *cub, t_rays *rays);
-int	draw_rays(t_cub *cub, t_rays *rays, t_line *line);
-int	check_horizontal_lines(t_cub *cub, t_rays *rays);
-int	init_each_ray(t_cub *cub, t_rays *rays);
+int		calculate_rays(t_cub *cub, t_rays *rays);
+int		draw_rays(t_cub *cub, t_rays *rays, t_line *line);
+int		check_horizontal_lines(t_cub *cub, t_rays *rays);
+int		init_each_ray(t_cub *cub, t_rays *rays);
 
 // rays2.c
-int			check_vertical_lines(t_cub *cub, t_rays *rays);
-int			compare_distances(t_rays *rays);
+int		check_vertical_lines(t_cub *cub, t_rays *rays);
+int		compare_distances(t_rays *rays);
 
 // draw_lines
-int			draw_line(t_cub *cub, t_rays *rays, t_line *line);
+int		draw_line(t_cub *cub, t_rays *rays, t_line *line);
 
 // draw_walls.c
-int			draw_walls(t_cub *cub, t_rays *rays);
-int			init_line(t_cub *cub, t_rays *rays, t_line *line);
-int	draw_line_walls(t_cub *cub, t_rays *rays, t_line *line);
+int		draw_walls(t_cub *cub, t_rays *rays);
+int		init_line(t_cub *cub, t_rays *rays, t_line *line);
+int		draw_line_walls(t_cub *cub, t_rays *rays, t_line *line);
 
 // utils.c
-int			ft_abs(int n);
-int			ft_sign(int n);
-float		distance(float x1, float y1, float x2, float y2);
-void		my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
+int		ft_abs(int n);
+int		ft_sign(int n);
+float	distance(float x1, float y1, float x2, float y2);
+void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 10:22:10 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:52:52 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 	{
 		rays->ry = (((int)cub->py / cub->ppc) * cub->ppc) - 0.0001;
 		rays->rx = (cub->py - rays->ry) * rays->atan + cub->px;
-		rays->yo = -cub->ppc; 
+		rays->yo = -cub->ppc;
 		rays->xo = -rays->yo * rays->atan;
 	}
 	if (rays->ra < PI && rays->ra > 0)
@@ -77,7 +77,7 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = cub->pa - (30 * DR);
+	rays->ra = cub->pa - (36 * DR);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)
@@ -92,6 +92,7 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	rays->mx = 0;
 	rays->my = 0;
 	rays->dof = 0;
+	rays->nb_rays = 960;
 	return (0);
 }
 
@@ -110,14 +111,14 @@ int	init_each_ray(t_cub *cub, t_rays *rays)
 int	calculate_rays(t_cub *cub, t_rays *rays)
 {
 	rays_init(cub, rays);
-	while (rays->r < 120)
+	while (rays->r < rays->nb_rays)
 	{
 		init_each_ray(cub, rays);
 		check_horizontal_lines(cub, rays);
 		check_vertical_lines(cub, rays);
 		compare_distances(rays);
 		draw_walls(cub, rays);
-		rays->ra += 0.5 * DR;
+		rays->ra += 0.075 * DR;
 		if (rays->ra < 0)
 			rays->ra += 2 * PI;
 		if (rays->ra > 2 * PI)

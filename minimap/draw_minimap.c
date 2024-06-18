@@ -32,14 +32,13 @@ int	display_back(t_cub *cub)
 
 // soustraire -1 aux 2 while pour quadriller la map
 
-
 int	draw_map_1(t_cub *cub, int x, int y)
 {
 	int	yo;
 	int	xo;
 
 	yo = y * cub->ppc;
-	while (yo < y * cub->ppc + cub->ppc) 
+	while (yo < y * cub->ppc + cub->ppc)
 	{
 		xo = x * cub->ppc;
 		while (xo < x * cub->ppc + cub->ppc)
@@ -84,7 +83,6 @@ int	draw_map(t_cub *cub)
 		}
 		++y;
 	}
-	// draw_player(cub, cub->scene->start_x, cub->scene->start_y);
 	draw_player(cub, cub->px, cub->py);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 11:53:44 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:41:55 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	struct_init(t_cub *cub, char *av)
 	cub->addr = NULL;
 	cub->xmap = 128;
 	cub->ymap = 128;
+	cub->txt_size = 128;
 	cub->mapx = 8; // x map en cases
 	cub->mapy = 8; // y en case
 	cub->mapsize = 64; // taille map en cases
@@ -68,6 +69,21 @@ int	close_win(t_cub *cub)
 	exit(0);
 }
 
+// int get_adresses(t_cub *cub)
+// {
+// 	cub->txt_add = (int *)mlx_get_data_addr(cub->txt, &cub->txt_bpp,
+// 			&cub->txt_line_length, &cub->txt_edn);
+// 	(void)cub;
+// 	return (0);
+// }
+
+// int get_texture(t_cub *cub)
+// {
+// 	cub->txt = mlx_xpm_file_to_image(cub->mlx, "./Brick128.xpm",
+// 			&cub->txt_width, &cub->txt_height);
+// 	return (0);
+// }
+
 int	main(int ac, char **av)
 {
 	t_cub	cub;
@@ -88,6 +104,11 @@ int	main(int ac, char **av)
 	cub.img = mlx_new_image(cub.mlx, cub.win_width, cub.win_height);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
+	cub.txt = mlx_xpm_file_to_image(cub.mlx, "./Brick128.xpm",
+			&cub.txt_width, &cub.txt_height);
+	cub.txt_add = (int *)mlx_get_data_addr(cub.txt, &cub.txt_bpp,
+			&cub.txt_line_length, &cub.txt_edn);
+	// get_adresses(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);

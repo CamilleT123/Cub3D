@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 11:55:58 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:19:48 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 typedef struct s_texture
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
+	// char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -60,6 +61,15 @@ typedef struct s_cub
 	int		mapy;
 	int		map[64];
 	int		mapsize;
+	void	*txt;
+	int		*txt_add;
+	// char	*addr;
+	int		txt_bpp;
+	int		txt_line_length;
+	int		txt_edn;
+	int 	txt_width;
+	int 	txt_height;
+	int 	txt_size;
 	// t_texture	*texture;
 }			t_cub;
 
@@ -93,6 +103,7 @@ typedef struct s_rays
 	float	atan;
 	float	ntan;
 	int 	wall; // utiliser enum ?
+	int		nb_rays;
 }			t_rays;
 
 typedef struct s_line
@@ -106,6 +117,7 @@ typedef struct s_line
 	float 	ty_off;
 	float 	ty;
 	float 	tx;
+	int 	color;
 }			t_line;
 
 typedef struct s_bres

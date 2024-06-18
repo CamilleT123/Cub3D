@@ -1,10 +1,9 @@
-			   NO  	inorth.xpm
-
-SO isouth.xpm
+NO textures/wood1.xpm
+SO textures/wood2.xpm
+WE textures/brick1.xpm
+EA textures/brick2.xpm
 C 38,    89  ,   255
 
-	EA ieast.xpm
-WE 			iwest.xpm
 
 
 

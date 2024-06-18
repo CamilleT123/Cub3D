@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/18 18:42:29 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:31:56 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	get_texture(t_cub *cub, int i, char *path)
 			&tex->line_length, &tex->endian);
 	if (!tex->addr)
 		return (map_error("", "cannot get image address", 1));
-	cub->texture[i] = *tex;
+	cub->texture[i] = tex;
 	return (0);
 }
 
@@ -96,7 +96,9 @@ int	init_textures(t_cub *cub)
 	int		i;
 	char	*arrtex[4];
 
-//	cub->texture = malloc(sizeof(t_texture) * 4);
+	cub->texture = malloc(sizeof(t_texture *) * 4);
+	if (!cub->texture)
+		return (map_error("", MALLOC, 1));
 	arrtex[0] = cub->scene.north;
 	arrtex[1] = cub->scene.south;
 	arrtex[2] = cub->scene.east;

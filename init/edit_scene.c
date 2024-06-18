@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:08:31 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 15:10:03 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:49:39 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	edit_wall(char **path, char *info)
 	*path = get_path(info, 2);
 	if (!*path)
 		return (1);
-	if (check_extension(*path, ".xpm"))
+	if (check_file(*path, ".xpm"))
 		return (1);
 	return (0);
 }

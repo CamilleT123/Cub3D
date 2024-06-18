@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 19:18:07 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:39:34 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,20 @@ static void	destroy_tex(t_cub *cub)
 	i = 0;
 	while (i < 4)
 	{
-		if (cub->texture[i].img)
+		if (cub->texture[i]->img)
 		{
-			mlx_destroy_image(cub->mlx, cub->texture[i].img);
-			free(&cub->texture[i]);
+			mlx_destroy_image(cub->mlx, cub->texture[i]->img);
+			free(cub->texture[i]);
 		}
 		i++;
 	}
+	free(cub->texture);
 }
 
 int	close_win(t_cub *cub)
 {
-	destroy_tex(cub);
+	if (cub->texture)
+		destroy_tex(cub);
 	if (cub->map)
 		free(cub->map);
 	if (cub->img != NULL)
@@ -102,10 +104,10 @@ int	main(int ac, char **av)
 	cub.img = mlx_new_image(cub.mlx, WINW, WINH);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
-	printf("tex : %p et map : %p", cub.texture[0].img, cub.map);
-	printf("tex : %p et map : %p", cub.texture[1].img, cub.map);
-	printf("tex : %p et map : %p", cub.texture[2].img, cub.map);
-	printf("tex : %p et map : %p", cub.texture[3].img, cub.map);
+	printf("tex : %p et map : %p", cub.texture[0]->img, cub.map);
+	printf("tex : %p et map : %p", cub.texture[1]->img, cub.map);
+	printf("tex : %p et map : %p", cub.texture[2]->img, cub.map);
+	printf("tex : %p et map : %p", cub.texture[3]->img, cub.map);
 	//test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);

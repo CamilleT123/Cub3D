@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/12 14:18:13 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:50:26 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		is_startchar(char c);
 int		cub_isspace(char c);
 
 /*------------ UTILS -------------*/
+int		check_file(char *file, char *ext);
 int		check_extension(char *file, char *ext);
 char	**tab_dup(char **tab);
 char	*get_all_lines(char *ber);

@@ -6,13 +6,13 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 20:31:25 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 15:53:41 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:48:06 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_file(char *file, char *ext)
+int	check_file(char *file, char *ext)
 {
 	int	fd;
 

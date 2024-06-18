@@ -115,7 +115,8 @@ if [ $mode -eq 2 ] || [ $mode -eq 3 ]; then
 	echo "\"neither-this-one.cub\"" >>../../maps.sh    # même resultat qu'au dessus mais qvec le backslash
 	echo ")" >>../../maps.sh                           # on ferme la parenthèse de la liste d'argument
 	cd ../..                                           # on revient a la racine
-	source maps.sh                                     # on source le fichier crée plus haut qui contient en ARG tous les noms des maps
+	chmod 000 textures/woodf.xpm
+	source maps.sh # on source le fichier crée plus haut qui contient en ARG tous les noms des maps
 
 	for i in "${ARG[@]}"; do # on parcours la liste d'argument ARG
 		echo -e "${bleu}-----------------------------------------------------------${neutre}"
@@ -151,5 +152,6 @@ if [ $mode -eq 2 ] || [ $mode -eq 3 ]; then
 	done
 	rm maps.sh                           # on efface le fichier maps.sh
 	chmod 777 maps/invalid/forbidden.cub # redonne toutes les permissions des maps et maps/dir
+	chmod 777 textures/woodf.xpm         # redonne toutes les permissions des maps et maps/dir
 	make fclean >/dev/null
 fi

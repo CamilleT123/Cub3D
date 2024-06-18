@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/07 15:21:39 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:48:22 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ int moving_side(int key, t_cub *cub, t_collision *collision)
 	collision->ipx_sub_xo = (cub->px - collision->xo) / cub->ppc;
 	collision->ipy_add_yo = (cub->py + collision->yo) / cub->ppc;
 	collision->ipy_sub_yo = (cub->py - collision->yo) / cub->ppc;
-	printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo]);
-	printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx]);
-	printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo]);
-	printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx]);
-		printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
-		printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
-		printf("px = %f   py = %f\n", cub->px, cub->py);
-		printf("px - xo = %f   py - yo = %f\n", cub->px - collision->xo, cub->py - collision->yo);
+	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo]);
+	// printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx]);
+	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo]);
+	// printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx]);
+	// 	printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
+	// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
+	// 	printf("px = %f   py = %f\n", cub->px, cub->py);
+	// 	printf("px - xo = %f   py - yo = %f\n", cub->px - collision->xo, cub->py - collision->yo);
 	if (key == 97) // vers la gauche
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)

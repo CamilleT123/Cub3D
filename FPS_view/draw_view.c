@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 10:23:07 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:50:50 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	display(t_cub *cub)
 {
 	t_rays	rays;
 	t_line	line;
+
 	display_floor(cub);
 	display_ceiling(cub);
 	calculate_rays(cub, &rays);

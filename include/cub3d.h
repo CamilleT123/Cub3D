@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 16:19:50 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:24:13 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef enum s_tile
 typedef struct s_texture
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
+	// char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		width;
@@ -82,7 +83,16 @@ typedef struct s_cub
 	int		mapy;
 	int		*map;
 	int		mapsize;
-	t_texture	texture[4];
+	void	*txt;
+	int		*txt_add;
+	// char	*addr;
+	int		txt_bpp;
+	int		txt_line_length;
+	int		txt_edn;
+	int 	txt_width;
+	int 	txt_height;
+	int 	txt_size;
+	// t_texture	*texture;
 }			t_cub;
 
 // ry et rx sont les coordonnées du point d'intersection
@@ -115,6 +125,7 @@ typedef struct s_rays
 	float	atan;
 	float	ntan;
 	int 	wall; // utiliser enum ?
+	int		nb_rays;
 }			t_rays;
 
 typedef struct s_line
@@ -128,6 +139,7 @@ typedef struct s_line
 	float 	ty_off;
 	float 	ty;
 	float 	tx;
+	int 	color;
 }			t_line;
 
 typedef struct s_bres

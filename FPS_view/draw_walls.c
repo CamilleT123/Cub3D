@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:25:51 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:42:53 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	draw_walls(t_cub *cub, t_rays *rays)
 	wall.y1 = line_off;
 	wall.x2 = rays->r;
 	wall.y2 = wall.lineh + line_off;
-	// draw_line(cub,rays, &wall);
-	draw_line_walls(cub, rays, &wall);
+	draw_line(cub,rays, &wall);
+//	draw_line_walls(cub, rays, &wall);
 	return (0);
 }

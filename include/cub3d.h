@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:27:29 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:41:10 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_cub
 	int 	txt_width;
 	int 	txt_height;
 	int 	txt_size;
-	// t_texture	*texture;
+	t_texture	texture[4];
 }			t_cub;
 
 // ry et rx sont les coordonnées du point d'intersection

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 15:27:09 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:47:30 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	struct_init(t_cub *cub, char **av)
 	cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
 	cub->px = cub->scene.start_x * cub->ppc + cub->ppc / 2;
 	cub->py = cub->scene.start_y * cub->ppc + cub->ppc / 2;
-	cub->pa = cub->scene.start_angle * DR;
+	cub->pa = cub->scene.start_angle;
 	cub->pdx = cos(cub->pa) * 5;
 	cub->pdy = sin(cub->pa) * 5;
 	cub->mlx = mlx_init();	
@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 	cub.img = mlx_new_image(cub.mlx, WINW, WINH);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
-	printf("ok\n");
+	test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 19:39:34 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:35:48 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int	struct_init(t_cub *cub, char **av)
 	cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
 	cub->px = cub->scene.start_x * cub->ppc + cub->ppc / 2;
 	cub->py = cub->scene.start_y * cub->ppc + cub->ppc / 2;
-	cub->pa = cub->scene.start_angle;
+	cub->pa = cub->scene.start_angle + PI;
+	if (cub->pa > 2 * PI)
+		cub->pa -= 2 * PI;
 	cub->pdx = cos(cub->pa) * 5;
 	cub->pdy = sin(cub->pa) * 5;
 	cub->mlx = mlx_init();	

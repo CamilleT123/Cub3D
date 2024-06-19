@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:33:43 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:49:36 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int	main(int ac, char **av)
 			&cub.line_length, &cub.endian);
 	printf("ok\n");
 	printf("px=%f py=%f\n", cub.player_x, cub.player_y);
+	// printf("color2 = %d\n", cub->f_color);
 	// test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);

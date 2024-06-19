@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:08:31 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/18 19:49:39 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:42:13 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int	edit_back(int *color, char *info)
 	ft_freetab(code);
 	if (*color < 0)
 		return (1);
+	// printf("color1 = %d\n", *color);
 	return (0);
 }

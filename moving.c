@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:34:32 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:37:18 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
 	// 	printf("px = %f   py = %f\n", cub->player_x, cub->player_y);
 	// 	printf("px - xo = %f   py - yo = %f\n", cub->player_x - collision->xo, cub->player_y - collision->yo);
-	if (key == 97) // vers la gauche
+	if (key == LEFTK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
 			cub->player_x += cub->pdy;
@@ -95,8 +95,8 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	// printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx]);
 	// 	printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
 	// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
-	// 	printf("px = %f   py = %f\n", cub->px, cub->py);
-	// 	printf("px - xo = %f   py - yo = %f\n", cub->px - collision->xo, cub->py - collision->yo);
+	// 	printf("px = %f   py = %f\n", cub->player_x, cub->player_y);
+	// 	printf("px - xo = %f   py - yo = %f\n", cub->player_x - collision->xo, cub->player_y - collision->yo);
 
 int	init_collision_straight(t_cub *cub, t_collision *collision)
 {
@@ -108,10 +108,10 @@ int	init_collision_straight(t_cub *cub, t_collision *collision)
 		collision->yo = -SECDIST;
 	else
 		collision->yo = SECDIST;
-	collision->ipx_add_xo = (cub->px + collision->xo) / cub->ppc;
-	collision->ipx_sub_xo = (cub->px - collision->xo) / cub->ppc;
-	collision->ipy_add_yo = (cub->py + collision->yo) / cub->ppc;
-	collision->ipy_sub_yo = (cub->py - collision->yo) / cub->ppc;
+	collision->ipx_add_xo = (cub->player_x + collision->xo) / cub->unitpc;
+	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
+	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
+	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
 	return (0);
 }
 

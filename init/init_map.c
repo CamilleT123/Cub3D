@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 14:21:12 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:48:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ int	init_map(t_cub *cub)
 	}
 	cub->mapy = i;
 	cub->mapsize = cub->mapx * cub->mapy;
+	cub->f_color = cub->scene.f_color;
+	cub->c_color = cub->scene.c_color;
+
 	if (get_map_int(cub))
 		return (exit_map(cub, 1), 1);
 	return (0);

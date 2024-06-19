@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubstruct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 16:45:41 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:47:33 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ typedef struct s_cub
 	void		*win;
 	t_scene		scene;
 	int			ppc;
+	int			unitpc;
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	float		px;
-	float		py;
+	float		player_x;
+	float		player_y;
 	float		pdx;
 	float		pdy;
 	float		pa;
+	int 		f_color;
+	int			c_color;
 	int			mapx;
 	int			mapy;
 	int			mapsize;

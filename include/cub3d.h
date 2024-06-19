@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 14:53:12 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:07:44 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "mlx.h"
 # include "libft.h"
-# include "init.h"
+# include "cubstruct.h"
+# include "cubsetup.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
@@ -25,12 +26,6 @@
 /*------------ MACROS -------------*/
 # define PI 3.1415926535
 # define DR 0.0174533
-
-/*------------ SETUP -------------*/
-# define WINW 960
-# define WINH 640
-# define SMINIMAPX 128
-# define SMINIMAPY 128
 
 /*------------ ENUM -------------*/
 typedef enum s_walls
@@ -47,107 +42,6 @@ typedef enum s_tile
 	WALL,
 	HOLE
 }		t_tile;
-
-/*------------ STRUCT -------------*/
-typedef struct s_texture
-{
-	void	*img;
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		width;
-	int		height;
-	int		endian;
-}			t_texture;
-
-typedef struct s_cub
-{
-	void		*mlx;
-	void		*win;
-	t_scene		scene;
-	int			ppc;
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	float		px;
-	float		py;
-	float		pdx;
-	float		pdy;
-	float		pa;
-	int			mapx;
-	int			mapy;
-	int			*map;
-	int			mapsize;
-	void		*txt;
-	int			*txt_add;
-	int			txt_bpp;
-	int			txt_line_length;
-	int			txt_edn;
-	int			txt_width;
-	int			txt_height;
-	int			txt_size;
-	t_texture	**texture;
-}			t_cub;
-
-// ry et rx sont les coordonnées du point d'intersection
-// yo et xo sont les valeurs d'incrémentation pour les coordonnées x et y
-// mx et my sont les coordonnées de la carte, mp est l'index de la carte
-// dof = depth of field meaning how far the ray can go
-
-typedef struct s_rays
-{
-	int		r;
-	float	rx;
-	float	ry;
-	float	ra;
-	float	xo;
-	float	yo;
-	float	hx;
-	float	hy;
-	float	vx;
-	float	vy;
-	float	disth;
-	float	distv;
-	float	distt;
-	float	xstep;
-	float	ystep;
-	int		mx;
-	int		my;
-	int		mp;
-	int		dof;
-	int		color;
-	float	atan;
-	float	ntan;
-	int		wall;
-	int		nb_rays;
-}			t_rays;
-
-typedef struct s_line
-{
-	int		x1;
-	int		y1;
-	int		x2;
-	int		y2;
-	float	lineh;
-	float	ty_step;
-	float	ty_off;
-	float	ty;
-	float	tx;
-	int		color;
-}			t_line;
-
-typedef struct s_bres
-{
-	int			dx;
-	int			dy;
-	int			incx;
-	int			incy;
-	int			x2;
-	int			y2;
-	t_texture	*ptr_texture;
-}			t_bres;
 
 /*------------ PARSING/INIT -------------*/
 int		init_cub(char *map, t_cub *cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 12:35:48 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:19:43 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,9 @@ int	main(int ac, char **av)
 	cub.img = mlx_new_image(cub.mlx, WINW, WINH);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
-	printf("tex : %p et map : %p", cub.texture[0]->img, cub.map);
-	printf("tex : %p et map : %p", cub.texture[1]->img, cub.map);
-	printf("tex : %p et map : %p", cub.texture[2]->img, cub.map);
-	printf("tex : %p et map : %p", cub.texture[3]->img, cub.map);
-	//test_map(&cub);
+	printf("ok\n");
+	printf("px=%f py=%f\n", cub.px, cub.py);
+	test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);

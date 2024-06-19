@@ -1,0 +1,20 @@
+			   NO  	textures/brick1.xpm
+
+SO textures/wood1.xpm
+C 38,    89  ,   255
+
+	EA textures/brick2.xpm
+WE 			textures/wood2.xpm
+
+
+
+F 	99  ,	255,	0 
+
+11111111
+10100001
+10100001
+10100001
+1E001001
+10010001
+10000101
+11111111

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 17:41:44 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:21:17 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	rays->mx = 0;
 	rays->my = 0;
 	rays->dof = 0;
-	rays->nb_rays = 960;
+	rays->nb_rays = 60;
 	return (0);
 }
 
@@ -111,7 +111,7 @@ int	init_each_ray(t_cub *cub, t_rays *rays)
 int	calculate_rays(t_cub *cub, t_rays *rays)
 {
 	rays_init(cub, rays);
-	while (rays->r < rays->nb_rays)
+	while (rays->r < WINW)
 	{
 		init_each_ray(cub, rays);
 		check_horizontal_lines(cub, rays);

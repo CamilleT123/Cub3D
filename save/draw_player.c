@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 13:38:14 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:47:03 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int draw_rays(t_cub *cub, t_rays *rays, t_line *line)
 {
 	rays->r = 0;
 	rays->ra = cub->pa - (36 * DR);
-	while (rays->r < (rays->nb_rays / 8))
+	while (rays->r < (rays->nb_rays / 16))
 	{
 		init_each_ray(cub, rays);
 		check_horizontal_lines(cub, rays);
@@ -71,7 +71,7 @@ int draw_rays(t_cub *cub, t_rays *rays, t_line *line)
 		compare_distances(rays);
 		init_line(cub, rays, line);
 		draw_line(cub, rays, line);
-		rays->ra += 0.6 * DR;
+		rays->ra += 0.6 * 2 * DR;
 		if (rays->ra < 0)
 			rays->ra += 2 * PI;
 		if (rays->ra > 2 * PI)

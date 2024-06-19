@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 19:27:40 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:20:31 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ int		init_scene(t_cub *cub, char **ar_scene);
 int		init_map(t_cub *cub);
 int		exit_map(t_cub *cub, int status);
 int		init_textures(t_cub *cub);
+
+int	rays_init(t_cub *cub, t_rays *rays);
 
 // main.c
 int		close_win(t_cub *cub);

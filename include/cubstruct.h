@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 16:38:36 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:45:41 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,8 @@ typedef struct s_cub
 	float		pa;
 	int			mapx;
 	int			mapy;
-	int			*map;
 	int			mapsize;
-	void		*txt;
-	int			*txt_add;
-	int			txt_bpp;
-	int			txt_line_length;
-	int			txt_edn;
-	int			txt_width;
-	int			txt_height;
-	int			txt_size;
+	int			*map;
 	t_texture	**texture;
 }			t_cub;
 

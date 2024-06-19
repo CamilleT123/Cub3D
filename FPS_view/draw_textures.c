@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:16 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 17:44:22 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:23:14 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 	int	pixel;
 
 	pixel = 0;
-	printf("texture = %p\n", cub->texture[0].img);
+	printf("texture = %p\n", cub->texture[0]->img);
 	line->ty = line->ty_off * line->ty_step;
 	if (rays->disth < rays->distv)
 	{

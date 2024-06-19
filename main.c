@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 14:51:16 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:02:36 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	struct_init(t_cub *cub, char **av)
 {
 	if (init_cub(av[1], cub))
-		return (1);
+		return (exit_map(cub, 1));
 	if (init_map(cub))
 		return (1);
 	cub->ppc = SMINIMAPX / cub->mapx;

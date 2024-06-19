@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 21:24:10 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/18 19:50:26 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:27:04 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define WALLS "map is not surrounded by walls"
 # define TOO_SMALL "the map is too small"
 # define TM_START "too many starting position"
-# define VALID_COORD ": is not a valid coordinate (NO,SO,EA,WE)"
+# define VALID_COORD ": is not a valid scene element (NO,SO,EA,WE,C,F)"
 
 # define NB_ELEMENT 6
 

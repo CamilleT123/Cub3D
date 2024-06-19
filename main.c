@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 14:26:26 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:47:50 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,10 @@ int	main(int ac, char **av)
 	if (ac > 2)
 		return (ft_putstr_fd("Error\ninclude only 1 map", 2), 0);
 	if (struct_init(&cub, av))
-		return (exit_map(&cub, 1));
+		return (1);
 	cub.img = mlx_new_image(cub.mlx, WINW, WINH);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
-	printf("ok\n");
 	printf("px=%f py=%f\n", cub.px, cub.py);
 //	test_map(&cub);
 	display(&cub);

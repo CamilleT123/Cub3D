@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 17:51:03 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:30:55 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	draw_player(t_cub *cub, float x, float y)
 
 int	init_line(t_cub *cub, t_rays *rays, t_line *line)
 {
-	line->x1 = cub->px;
-	line->y1 = cub->py;
+	line->x1 = cub->player_x;
+	line->y1 = cub->player_y;
 	line->x2 = rays->rx;
 	line->y2 = rays->ry;
 	return (0);
@@ -66,6 +66,8 @@ int	draw_rays(t_cub *cub, t_rays *rays, t_line *line)
 	while (rays->r < (rays->nb_rays))
 	{
 		init_each_ray(cub, rays);
+		// if (rays->r == 0)
+		// 	printf("here\n\n");
 		check_horizontal_lines(cub, rays);
 		check_vertical_lines(cub, rays);
 		compare_distances(rays);

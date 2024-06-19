@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:08:43 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 16:56:50 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:23:45 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 // 	// line->y1 = line->wall_offset;
 // 	// line->ty = line->y_offset * line->step_y;
 // 	// line->texture_x = cub->wall->index_texture_x;
-//     line->ty = line->ty_off * line->ty_step; // ty = texture y / ty_step = 32/lineh / on ajoute le step a chaque loop
+//     line->ty = line->ty_off * line->ty_step; // ty = texture y / ty_step = 32/line_height / on ajoute le step a chaque loop
 // 	// ty_off = offset = libeh - 320 / 2
 // 	if (rays->disth < rays->distv) // si mur horizontal
 // 	{
@@ -88,7 +88,7 @@
 // 	// if (rays->wall == 1 || rays->wall == 3)
 // 		// line->ty +=32;
 // 	y = line->y1; // y = y du point 1
-// 	while (y < line->lineh)
+// 	while (y < line->line_height)
 // 	{
 // 		line->color = get_color_texture(bres->ptr_texture, line->ty,
 // 				line->tx);

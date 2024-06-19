@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 16:47:03 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:34:27 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	draw_player(t_cub *cub, float x, float y)
 
 int	init_line(t_cub *cub, t_rays *rays, t_line *line)
 {
-	line->x1 = cub->px;
-	line->y1 = cub->py;
+	line->x1 = cub->player_x;
+	line->y1 = cub->player_y;
 	line->x2 = rays->rx;
 	line->y2 = rays->ry;
 	return (0);

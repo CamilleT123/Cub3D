@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/17 14:48:22 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:35:57 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,31 +73,31 @@ int init_collision_side(t_cub *cub, t_collision *collision)
 int moving_side(int key, t_cub *cub, t_collision *collision)
 {
 	init_collision_side(cub, collision);
-	collision->ipx_add_xo = (cub->px + collision->xo) / cub->ppc;
-	collision->ipx_sub_xo = (cub->px - collision->xo) / cub->ppc;
-	collision->ipy_add_yo = (cub->py + collision->yo) / cub->ppc;
-	collision->ipy_sub_yo = (cub->py - collision->yo) / cub->ppc;
+	collision->ipx_add_xo = (cub->player_x + collision->xo) / cub->unitpc;
+	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
+	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
+	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
 	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo]);
 	// printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx]);
 	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo]);
 	// printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx]);
 	// 	printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
 	// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
-	// 	printf("px = %f   py = %f\n", cub->px, cub->py);
-	// 	printf("px - xo = %f   py - yo = %f\n", cub->px - collision->xo, cub->py - collision->yo);
+	// 	printf("px = %f   py = %f\n", cub->player_x, cub->player_y);
+	// 	printf("px - xo = %f   py - yo = %f\n", cub->player_x - collision->xo, cub->player_y - collision->yo);
 	if (key == 97) // vers la gauche
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
-			cub->px += cub->pdy;
+			cub->player_x += cub->pdy;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
-			cub->py -= cub->pdx;
+			cub->player_y -= cub->pdx;
 	}
 	if (key == 100) // droite
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
-			cub->px -= cub->pdy;
+			cub->player_x -= cub->pdy;
 		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
-			cub->py += cub->pdx;
+			cub->player_y += cub->pdx;
 	}
 	return (0);
 }
@@ -113,10 +113,10 @@ int init_collision_straight(t_cub *cub, t_collision *collision)
 	else
 		collision->yo = 10;
 
-	collision->ipx_add_xo = (cub->px + collision->xo) / cub->ppc;
-	collision->ipx_sub_xo = (cub->px - collision->xo) / cub->ppc;
-	collision->ipy_add_yo = (cub->py + collision->yo) / cub->ppc;
-	collision->ipy_sub_yo = (cub->py - collision->yo) / cub->ppc;
+	collision->ipx_add_xo = (cub->player_x + collision->xo) / cub->unitpc;
+	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
+	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
+	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
 	return (0);
 }
 
@@ -126,16 +126,16 @@ int moving_straight(int key, t_cub *cub, t_collision *collision)
 	if (key == 119) // avance
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
-			cub->px += cub->pdx;
+			cub->player_x += cub->pdx;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
-			cub->py += cub->pdy;
+			cub->player_y += cub->pdy;
 	}
 	if (key == 115) // recule
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
-			cub->px -= cub->pdx;
+			cub->player_x -= cub->pdx;
 		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
-			cub->py -= cub->pdy;
+			cub->player_y -= cub->pdy;
 	}
 	return (0);
 	// printf("pdx = %f   pdy = %f\n", cub->pdx, cub->pdy);
@@ -147,8 +147,8 @@ int	keymapping(int key, t_cub *cub)
 {
 	t_collision collision;
 
-	collision.ipx = cub->px / cub->ppc;
-	collision.ipy = cub->py / cub->ppc;
+	collision.ipx = cub->player_x / cub->unitpc;
+	collision.ipy = cub->player_y / cub->unitpc;
 	if (key == 65307)
 		close_win(cub);
 	if (key == 65363 || key == 65361)

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 14:20:31 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:34:18 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,15 @@ typedef struct s_cub
 	void		*mlx;
 	void		*win;
 	t_scene		scene;
+	int 		unitpc;
 	int			ppc;
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	float		px;// position player en pixel
-	float		py;
+	float		player_x;// position player en pixel
+	float		player_y;
 	float		pdx;
 	float		pdy;
 	float		pa;
@@ -81,15 +82,15 @@ typedef struct s_cub
 	int			mapy;
 	int			*map;
 	int			mapsize;
-	void		*txt;
-	int			*txt_add;
+	// void		*txt;
+	// int			*txt_add;
 	// char	*addr;
-	int			txt_bpp;
-	int			txt_line_length;
-	int			txt_edn;
-	int			txt_width;
-	int			txt_height;
-	int			txt_size;
+	// int			txt_bpp;
+	// int			txt_line_length;
+	// int			txt_edn;
+	// int			txt_width;
+	// int			txt_height;
+	// int			txt_size;
 	t_texture	**texture;
 }			t_cub;
 

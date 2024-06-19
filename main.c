@@ -6,12 +6,11 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 14:47:50 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:51:16 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	struct_init(t_cub *cub, char **av)
 {
@@ -19,7 +18,7 @@ static int	struct_init(t_cub *cub, char **av)
 		return (1);
 	if (init_map(cub))
 		return (1);
-	cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
+	cub->ppc = SMINIMAPX / cub->mapx;
 	cub->px = cub->scene.start_x * cub->ppc + cub->ppc / 2;
 	cub->py = cub->scene.start_y * cub->ppc + cub->ppc / 2;
 	cub->pa = cub->scene.start_angle + PI;
@@ -27,7 +26,7 @@ static int	struct_init(t_cub *cub, char **av)
 		cub->pa -= 2 * PI;
 	cub->pdx = cos(cub->pa) * 5;
 	cub->pdy = sin(cub->pa) * 5;
-	cub->mlx = mlx_init();	
+	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (free(cub->map), exit_map(cub, 1), 1);
 	cub->win = mlx_new_window(cub->mlx, WINW, WINH, av[0]);
@@ -76,11 +75,11 @@ int	close_win(t_cub *cub)
 
 int	test_map(t_cub *cub)
 {
-	ft_putar(cub->scene.map);
-	printf("long: %d larg: %d total: %d\n", cub->mapx, cub->mapy, cub->mapsize);
 	int	i;
 
 	i = 0;
+	ft_putar(cub->scene.map);
+	printf("long: %d larg: %d total: %d\n", cub->mapx, cub->mapy, cub->mapsize);
 	while (i < cub->mapsize)
 	{
 		printf("%d", cub->map[i]);
@@ -96,7 +95,7 @@ int	test_map(t_cub *cub)
 int	main(int ac, char **av)
 {
 	t_cub	cub;
-	
+
 	if (ac < 2)
 		return (ft_putstr_fd("Error\nNo map", 2), 0);
 	if (ac > 2)
@@ -107,10 +106,10 @@ int	main(int ac, char **av)
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
 	printf("px=%f py=%f\n", cub.px, cub.py);
-//	test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);
 	mlx_loop(cub.mlx);
 	close_win(&cub);
 }
+//	test_map(&cub);

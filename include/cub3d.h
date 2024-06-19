@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 14:20:31 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:53:12 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 /*------------ MACROS -------------*/
 # define PI 3.1415926535
-# define DR 0.0174533 // 1 degree in radian
+# define DR 0.0174533
 
 /*------------ SETUP -------------*/
 # define WINW 960
@@ -53,7 +53,6 @@ typedef struct s_texture
 {
 	void	*img;
 	int		*addr;
-	// char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		width;
@@ -72,7 +71,7 @@ typedef struct s_cub
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	float		px;// position player en pixel
+	float		px;
 	float		py;
 	float		pdx;
 	float		pdy;
@@ -83,7 +82,6 @@ typedef struct s_cub
 	int			mapsize;
 	void		*txt;
 	int			*txt_add;
-	// char	*addr;
 	int			txt_bpp;
 	int			txt_line_length;
 	int			txt_edn;
@@ -122,7 +120,7 @@ typedef struct s_rays
 	int		color;
 	float	atan;
 	float	ntan;
-	int		wall; // utiliser enum ?
+	int		wall;
 	int		nb_rays;
 }			t_rays;
 
@@ -158,8 +156,6 @@ int		init_map(t_cub *cub);
 int		exit_map(t_cub *cub, int status);
 int		init_textures(t_cub *cub);
 
-int	rays_init(t_cub *cub, t_rays *rays);
-
 // main.c
 int		close_win(t_cub *cub);
 
@@ -183,6 +179,7 @@ int		draw_player(t_cub *cub, float x, float y);
 int		draw_square(t_cub *cub, float x, float y);
 
 // rays.c
+int		rays_init(t_cub *cub, t_rays *rays);
 int		calculate_rays(t_cub *cub, t_rays *rays);
 int		draw_rays(t_cub *cub, t_rays *rays, t_line *line);
 int		check_horizontal_lines(t_cub *cub, t_rays *rays);

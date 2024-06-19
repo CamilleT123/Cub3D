@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 16:32:58 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:35:00 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,22 @@ int	init_collision_side(t_cub *cub, t_collision *collision)
 	{
 		if (cub->pdy < -0.000005)
 		{
-			collision->xo = -10;
-			collision->yo = 10;
+			collision->xo = -SECDIST;
+			collision->yo = SECDIST;
 		}
 		else
 		{
-			collision->xo = +10;
-			collision->yo = +10;
+			collision->xo = SECDIST;
+			collision->yo = SECDIST;
 		}
 	}
 	else
 	{
-		collision->yo = -10;
+		collision->yo = -SECDIST;
 		if (cub->pdy < -0.000005)
-			collision->xo = -10;
+			collision->xo = -SECDIST;
 		else
-			collision->xo = 10;
+			collision->xo = SECDIST;
 	}
 	return (0);
 }
@@ -93,13 +93,13 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 int	init_collision_straight(t_cub *cub, t_collision *collision)
 {
 	if (cub->pdx < 0)
-		collision->xo = -10;
+		collision->xo = -SECDIST;
 	else
-		collision->xo = 10;
+		collision->xo = SECDIST;
 	if (cub->pdy < 0)
-		collision->yo = -10;
+		collision->yo = -SECDIST;
 	else
-		collision->yo = 10;
+		collision->yo = SECDIST;
 	collision->ipx_add_xo = (cub->px + collision->xo) / cub->ppc;
 	collision->ipx_sub_xo = (cub->px - collision->xo) / cub->ppc;
 	collision->ipy_add_yo = (cub->py + collision->yo) / cub->ppc;
@@ -154,22 +154,22 @@ int init_collision_side(t_cub *cub, t_collision *collision)
 	{
 		if (cub->pdy < -0.000005) // si sin negatif donc angle entre 180 et 270
 		{
-			collision->xo = -10;
-			collision->yo = 10;
+			collision->xo = -SECDIST;
+			collision->yo = SECDIST;
 		}
 		else // donc si positif ou proche de null donc angle entre 90 et 180
 		{
-			collision->xo = +10; // pour 100
-			collision->yo = +10;
+			collision->xo = +SECDIST; // pour 100
+			collision->yo = +SECDIST;
 		}
 	}
 	else // donc si cos positif ou proche de null donc angle entre 0 et 90 ou 270 et 360
 	{
-		collision->yo = -10;// pour 300
+		collision->yo = -SECDIST;// pour 300
 		if (cub->pdy < -0.000005) // donc angle entre 270 et 360
-			collision->xo = -10; // ici 270
+			collision->xo = -SECDIST; // ici 270
 		else
-			collision->xo = 10; // ici 90
+			collision->xo = SECDIST; // ici 90
 	}
 	return (0);
 }

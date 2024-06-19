@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 16:08:37 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:38:36 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,14 @@ ipx_add_xo player's position - the offset
 */
 typedef struct s_collision
 {
-	int xo;
-	int yo;
-	int ipx;
-	int ipx_add_xo;
-	int ipx_sub_xo;
-	int ipy;
-	int ipy_add_yo;
-	int ipy_sub_yo;
+	int	xo;
+	int	yo;
+	int	ipx;
+	int	ipx_add_xo;
+	int	ipx_sub_xo;
+	int	ipy;
+	int	ipy_add_yo;
+	int	ipy_sub_yo;
 }		t_collision;
 
 #endif

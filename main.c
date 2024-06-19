@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 15:02:36 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:33:43 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,23 @@ static int	struct_init(t_cub *cub, char **av)
 		return (exit_map(cub, 1));
 	if (init_map(cub))
 		return (1);
-	cub->ppc = SMINIMAPX / cub->mapx;
-	cub->px = cub->scene.start_x * cub->ppc + cub->ppc / 2;
-	cub->py = cub->scene.start_y * cub->ppc + cub->ppc / 2;
+	// cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
+	cub->ppc = 16;
+	// if (cub->ppc < 4)
+	// {
+	// 	cub->ppc = SMINIMAPX / cub->mapy; // voir si case pas carree
+	// 	if (cub->ppc < 4)
+	// 		cub->ppc = 4;
+	// 	// cub->cropped = 1;
+	// }
+	cub->unitpc = 16;
+
+	cub->player_x = cub->scene.start_x * cub->unitpc + cub->unitpc / 2;
+	cub->player_y = cub->scene.start_y * cub->unitpc + cub->unitpc / 2;
 	cub->pa = cub->scene.start_angle + PI;
 	if (cub->pa > 2 * PI)
 		cub->pa -= 2 * PI;
+	// printf("pa=%f\n", cub->pa / DR);
 	cub->pdx = cos(cub->pa) * 5;
 	cub->pdy = sin(cub->pa) * 5;
 	cub->mlx = mlx_init();
@@ -105,7 +116,9 @@ int	main(int ac, char **av)
 	cub.img = mlx_new_image(cub.mlx, WINW, WINH);
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
-	printf("px=%f py=%f\n", cub.px, cub.py);
+	printf("ok\n");
+	printf("px=%f py=%f\n", cub.player_x, cub.player_y);
+	// test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);

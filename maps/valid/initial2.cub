@@ -1,10 +1,11 @@
-			   NO  	textures/Brick128.xpm
+			   NO  	textures/Brick32.xpm
 
-SO textures/Brick128.xpm
+SO textures/Brick32.xpm
 C 38,    89  ,   255
 
 	EA textures/Brick32.xpm
 WE 			textures/Brick32.xpm
+
 
 
 
@@ -14,7 +15,7 @@ F 	99  ,	255,	0
 10100001
 10100001
 10100001
-1E001001
+1N001001
 10010001
 10000101
 11111111

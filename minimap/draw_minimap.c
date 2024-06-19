@@ -68,7 +68,9 @@ int	draw_map(t_cub *cub)
 {
 	int	y;
 	int	x;
-
+	// printf("mapx = %d mapy = %d\n", cub->mapx, cub->mapy);
+	// printf("mapsize = %d\n", cub->mapsize);
+	// printf("ppc = %d\n", cub->ppc);
 	y = 0;
 	while (y < cub->mapy)
 	{
@@ -77,12 +79,12 @@ int	draw_map(t_cub *cub)
 		{
 			if (cub->map[y * cub->mapx + x] == 1)
 				draw_map_1(cub, x, y);
-			if (cub->map[y * cub->mapx + x] == 0)
+			if (cub->map[y * cub->mapx + x] == 0 || cub->map[y * cub->mapx + x] == 2)
 				draw_map_0(cub, x, y);
 			++x;
 		}
 		++y;
 	}
-	draw_player(cub, cub->px, cub->py);
+	draw_player(cub, cub->player_x, cub->player_y);
 	return (0);
 }

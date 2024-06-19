@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:35:07 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:04:52 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <stdlib.h>
 
 /*------------ MACROS -------------*/
-# define PI 3.1415926535
-# define DR 0.0174533
+# define PI 3.14159265358979323846
+# define DegtoRad 0.0174533
 
 /*------------ ENUM -------------*/
 typedef enum s_walls

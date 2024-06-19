@@ -64,13 +64,27 @@ int	draw_map_0(t_cub *cub, int x, int y)
 	return (0);
 }
 
+int	draw_map_2(t_cub *cub, int x, int y)
+{
+	int	yo;
+	int	xo;
+
+	yo = y * cub->ppc;
+	while (yo < y * cub->ppc + cub->ppc)
+	{
+		xo = x * cub->ppc;
+		while (xo < x * cub->ppc + cub->ppc)
+			my_mlx_pixel_put(cub, xo++, yo, 0);
+		++yo;
+	}
+	return (0);
+}
+
 int	draw_map(t_cub *cub)
 {
 	int	y;
 	int	x;
-	// printf("mapx = %d mapy = %d\n", cub->mapx, cub->mapy);
-	// printf("mapsize = %d\n", cub->mapsize);
-	// printf("ppc = %d\n", cub->ppc);
+	
 	y = 0;
 	while (y < cub->mapy)
 	{
@@ -81,10 +95,14 @@ int	draw_map(t_cub *cub)
 				draw_map_1(cub, x, y);
 			if (cub->map[y * cub->mapx + x] == 0 || cub->map[y * cub->mapx + x] == 2)
 				draw_map_0(cub, x, y);
+			// if (cub->map[y * cub->mapx + x] == 2) // a discuter @c0rvax
+			// 	draw_map_2(cub, x, y);
 			++x;
 		}
 		++y;
 	}
-	draw_player(cub, cub->player_x, cub->player_y);
+	cub->player_xmini = (cub->player_x / (cub->unitpc / cub->ppc));
+	cub->player_ymini = (cub->player_y /  (cub->unitpc / cub->ppc));
+	draw_player(cub, cub->player_xmini, cub->player_ymini);
 	return (0);
 }

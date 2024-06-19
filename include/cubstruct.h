@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 17:47:33 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:32:52 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_cub
 	int			endian;
 	float		player_x;
 	float		player_y;
+	float		player_xmini;
+	float		player_ymini;
 	float		pdx;
 	float		pdy;
 	float		pa;
@@ -49,6 +51,8 @@ typedef struct s_cub
 	int			mapy;
 	int			mapsize;
 	int			*map;
+	int 		minimapx;
+	int 		minimapy;
 	t_texture	**texture;
 }			t_cub;
 
@@ -91,7 +95,7 @@ typedef struct s_line
 	int		y1;
 	int		x2;
 	int		y2;
-	float	lineh;
+	float	line_height;
 	float	ty_step;
 	float	ty_off;
 	float	ty;

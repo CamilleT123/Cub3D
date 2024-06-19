@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:49:36 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:47:55 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,33 @@ static int	struct_init(t_cub *cub, char **av)
 		return (exit_map(cub, 1));
 	if (init_map(cub))
 		return (1);
-	// cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
-	cub->ppc = 16;
-	// if (cub->ppc < 4)
-	// {
-	// 	cub->ppc = SMINIMAPX / cub->mapy; // voir si case pas carree
-	// 	if (cub->ppc < 4)
-	// 		cub->ppc = 4;
-	// 	// cub->cropped = 1;
-	// }
+	cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
+	// cub->ppc = 16;
+	if (cub->ppc < 4)
+	{
+		cub->ppc = SMINIMAPX / cub->mapy; // voir si case pas carree
+		if (cub->ppc < 4)
+			cub->ppc = 4;
+		cub->minimapx = cub->ppc * cub->mapx;
+		cub->minimapy = cub->ppc * cub->mapy;
+	}
+	else
+	{
+		cub->minimapx = SMINIMAPX;
+		cub->minimapy = SMINIMAPY;
+	}
+	printf("ppc = %d\n", cub->ppc);
+	printf("minimapx = %d\n", cub->minimapx);
+	printf("minimapy = %d\n", cub->minimapy);
 	cub->unitpc = 16;
-
+	// cub->player_xmini = cub->scene.start_x;
+	// cub->player_ymini = cub->scene.start_y;
+	// printf("player_xmini = %d\n", cub->player_xmini);
+	// printf("player_ymini = %d\n", cub->player_ymini);
 	cub->player_x = cub->scene.start_x * cub->unitpc + cub->unitpc / 2;
 	cub->player_y = cub->scene.start_y * cub->unitpc + cub->unitpc / 2;
+	cub->player_xmini = (cub->player_x / (cub->unitpc / cub->ppc));
+	cub->player_ymini = (cub->player_y /  (cub->unitpc / cub->ppc));
 	cub->pa = cub->scene.start_angle + PI;
 	if (cub->pa > 2 * PI)
 		cub->pa -= 2 * PI;
@@ -117,8 +131,6 @@ int	main(int ac, char **av)
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
 	printf("ok\n");
-	printf("px=%f py=%f\n", cub.player_x, cub.player_y);
-	// printf("color2 = %d\n", cub->f_color);
 	// test_map(&cub);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);

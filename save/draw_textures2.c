@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:50:52 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 15:27:38 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:59:55 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 	int	y;
 	
     line->ty = line->ty_off * line->ty_step; 
-	// ty = texture y / ty_step = 32/lineh / on ajoute le step a chaque loop
+	// ty = texture y / ty_step = 32/line_height / on ajoute le step a chaque loop
 	// ty_off = offset = libeh - 320 / 2
 	if (rays->disth < rays->distv) // si mur horizontal
 	{
@@ -35,7 +35,7 @@ int	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 			line->tx = 127 - line->tx;	// remplacer par bres->ptr_texture->width; 
 	}
 	y = line->y1; // y = y du point 1
-	// while (y < line->lineh)
+	// while (y < line->line_height)
 	// {
 	// 	line->color = get_color_texture(bres->ptr_texture, line->ty,
 	// 			line->tx);
@@ -50,7 +50,7 @@ int	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 		int	color = 0;
 		int	pixel;
 
-		pixel = (line->ty * line->lineh) + (line->tx * (cub->txt_bpp / 8));
+		pixel = (line->ty * line->line_height) + (line->tx * (cub->txt_bpp / 8));
 		// pixel = line->ty * cub->txt_line_length / 4 + line->tx;
 		// pixel =  (line->tx * 4) + (4 * cub->txt_line_length * line->ty);
 		printf("pixel = %d\n", pixel);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
+#    By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/18 15:22:07 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/06/20 16:40:39 by aduvilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= cub3d
 CC 			= cc
 
 #------------ SOURCE -------------#
-# SRC			= $(addprefix ./src/, )
+SRC			= $(addprefix ./src/, main.c moving.c fps.c)
 
 INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
 			  edit_scene.c char_condition.c check_map.c init_map.c)
@@ -27,17 +27,7 @@ RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
 FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c draw_textures.c)
 MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c)
 
-SRC			= main.c moving.c
-# 			draw.c \
-# 			draw_map_back.c \
-# 			draw_lines.c \
-# 			draw_walls.c \
-# 			rays.c \
-# 			rays2.c \
-# 			utils.c \
-
 C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
-#C_FILES		= $(SRC) $(GNL) $(INIT) main.c
 
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g

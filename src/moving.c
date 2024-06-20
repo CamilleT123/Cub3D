@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:37:18 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:41:14 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "cub3d.h"
 
 void	changing_direction(int key, t_cub *cub)
 {
-	if (key == 65361)
+	if (key == ARIGHTK)
 	{
-		cub->pa -= 0.1;
+		cub->pa -= 0.1 * FPS;
 		if (cub->pa < 0)
 			cub->pa += 2 * PI;
 		cub->pdx = cos(cub->pa) * 1;
 		cub->pdy = sin(cub->pa) * 1;
 	}
-	if (key == 65363)
+	if (key == ALEFTK)
 	{
-		cub->pa += 0.1;
+		cub->pa += 0.1 * FPS;
 		if (cub->pa > 2 * PI)
 			cub->pa -= 2 * PI;
 		cub->pdx = cos(cub->pa) * 1;
@@ -76,16 +76,16 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	if (key == LEFTK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
-			cub->player_x += cub->pdy;
+			cub->player_x += cub->pdy * FPS;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y -= cub->pdx;
+			cub->player_y -= cub->pdx * FPS;
 	}
 	if (key == RIGHTK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
-			cub->player_x -= cub->pdy;
+			cub->player_x -= cub->pdy *	FPS;
 		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y += cub->pdx;
+			cub->player_y += cub->pdx * FPS;
 	}
 	return (0);
 }
@@ -121,16 +121,16 @@ int	moving_straight(int key, t_cub *cub, t_collision *collision)
 	if (key == FORWARDK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
-			cub->player_x += cub->pdx;
+			cub->player_x += cub->pdx * FPS;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y += cub->pdy;
+			cub->player_y += cub->pdy * FPS;
 	}
 	if (key == BACKK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
-			cub->player_x -= cub->pdx;
+			cub->player_x -= cub->pdx * FPS;
 		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y -= cub->pdy;
+			cub->player_y -= cub->pdy *FPS;
 	}
 	return (0);
 }
@@ -144,9 +144,9 @@ int	keymapping(int key, t_cub *cub)
 
 	collision.ipx = cub->player_x / cub->unitpc;
 	collision.ipy = cub->player_y / cub->unitpc;
-	if (key == 65307)
+	if (key == ESCK)
 		close_win(cub);
-	if (key == 65363 || key == 65361)
+	if (key == ALEFTK || key == ARIGHTK)
 		changing_direction(key, cub);
 	if (key == FORWARDK || key == BACKK)
 		moving_straight(key, cub, &collision);

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 18:59:04 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:03:43 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->rx <= (cub->mapx * cub->unitpc) && rays->dof < cub->mapx)
+	while (rays->rx <= (cub->mapx * cub->unitpc) && rays->dof < cub->mapmax)
 	{
 		rays->mx = (int)(rays->rx) / cub->unitpc;
 		rays->my = (int)(rays->ry) / cub->unitpc;
@@ -24,37 +24,19 @@ int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
 			&& cub->map[rays->mp] == 1)
 		{
-			rays->dof = cub->mapx;
+			rays->dof = cub->mapmax;
 			rays->hx = rays->rx;
 			rays->hy = rays->ry;
 			rays->disth = distance(cub->player_x, cub->player_y, rays->hx,
 					rays->hy);
-			// if (rays->r == 0)
-			// {
-			// 	printf("yo");
-			// 	printf("hx = %f\n", rays->hx);
-			// 	printf("hy = %f\n", rays->hy);
-			// }
 		}
 		else
 		{
 			rays->rx += rays->xo;
 			rays->ry += rays->yo;
 			rays->dof += 1;
-			// if (rays->r == 0)
-			// {
-			// 	printf("rx = %f\n", rays->rx);
-			// 	printf("ry = %f\n", rays->ry);
-			// 	printf("dof = %d\n", rays->dof);
-			// }
 		}
 	}
-	// if (rays->r == 0)
-	// {
-	// 	printf("1.rx = %f\n", rays->rx);
-	// 	printf("1.ry = %f\n", rays->ry);
-	// 	printf("rx = %f, MNI= %d, dof = %d, mapx = %d", rays->rx, (cub->mapx * cub->unitpc), rays->dof, cub->mapx);
-	// }
 	return (0);
 }
 
@@ -75,30 +57,19 @@ int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 	}
 	if (rays->ra < PI && rays->ra > 0)
 	{
-		rays->ry = (((int)cub->player_y / cub->unitpc) * cub->unitpc) + cub->unitpc;
+		rays->ry = (((int)cub->player_y / cub->unitpc)
+				* cub->unitpc) + cub->unitpc;
 		rays->rx = (cub->player_y - rays->ry) * rays->atan + cub->player_x;
 		rays->yo = cub->unitpc;
 		rays->xo = -rays->yo * rays->atan;
-		// if (rays->r == WINW - 1)
-		// {
-		// 	printf("if ra < %f et ra > 0 , ra = %f\n", PI, rays->ra / DR);
-		// 	printf("rx = %f\n", rays->rx);
-		// 	printf("ry = %f\n", rays->ry);
-		// }
 	}
 	if (rays->ra == 0 || rays->ra == PI)
 	{
-		// printf("if ra = 0 ou ra = %f, ra = %f\n", PI, rays->ra);
 		rays->rx = cub->player_x;
 		rays->ry = cub->player_y;
-		rays->dof = cub->mapx;
+		rays->dof = cub->mapmax;
 	}
 	check_if_horizontal_wall(cub, rays);
-	// if (rays->r == 0)
-	// {
-	// 	printf("hx = %f\n", rays->hx);
-	// 	printf("hy = %f\n", rays->hy);
-	// }
 	return (0);
 }
 
@@ -107,7 +78,7 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = cub->pa - (36 * DegtoRad);
+	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DegtoRad);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)
@@ -147,7 +118,7 @@ int	calculate_rays(t_cub *cub, t_rays *rays)
 		check_vertical_lines(cub, rays);
 		compare_distances(rays);
 		draw_walls(cub, rays);
-		rays->ra += 0.075 * DegtoRad;
+		rays->ra += (FIELDOFVIEW / WINW) * DegtoRad;
 		if (rays->ra < 0)
 			rays->ra += 2 * PI;
 		if (rays->ra > 2 * PI)
@@ -156,3 +127,16 @@ int	calculate_rays(t_cub *cub, t_rays *rays)
 	}
 	return (0);
 }
+// if (rays->r == WINW / 2)
+			// {
+			// 	printf("mapx = %d\n", cub->mapx);
+			// 	printf("1.rx = %f\n", rays->rx);
+			// 	printf("1.ry = %f\n", rays->ry);
+			// 	printf("dof = %d\n", rays->dof);
+			// }
+// 	if (rays->r == WINW / 2)
+		// 	{
+		// 		printf("yo");
+		// 		printf("hx = %f\n", rays->hx);
+		// 		printf("hy = %f\n", rays->hy);
+		// 	}

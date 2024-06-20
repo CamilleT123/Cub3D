@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 19:02:15 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:38:15 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	display_floor(t_cub *cub) // garder le return et la protection ?
+void	display_floor(t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -51,7 +51,8 @@ int	display(t_cub *cub)
 	display_ceiling(cub);
 	rays_init(cub, &rays);
 	calculate_rays(cub, &rays);
-	draw_map(cub);
+	// draw_minimap(cub);
+	// draw_map(cub);
 	// draw_rays(cub, &rays, &line); //separer les calculs
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);

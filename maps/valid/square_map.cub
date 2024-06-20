@@ -1,13 +1,13 @@
-   WE                            textures/wood3.xpm
-NO      textures/brick3.xpm
+   WE                            textures/Brick128.xpm
+NO      textures/Brick128.xpm
 
 
 
-SO textures/brick2.xpm
+SO textures/Brick128.xpm
 
 F   69, 222, 199
 
-EA textures/wood1.xpm
+EA textures/Brick128.xpm
 
 
 

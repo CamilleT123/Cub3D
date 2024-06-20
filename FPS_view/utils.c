@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:12:53 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 18:55:36 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:56:48 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,4 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 	dst = cub->addr + (y * cub->line_length + x
 			* (cub->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-float degToRad(float a)
-{ 
-	return (a*PI/180.0);
-}
-float FixAng(float a)
-{ 
-	if(a>359)
-		a-=360; 
-	if(a<0)
-		a+=360;
-	return (a);
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 19:32:52 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:24:13 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ typedef struct s_cub
 	float		pdx;
 	float		pdy;
 	float		pa;
-	int 		f_color;
+	int			f_color;
 	int			c_color;
 	int			mapx;
 	int			mapy;
 	int			mapsize;
+	int			mapmax;
 	int			*map;
-	int 		minimapx;
-	int 		minimapy;
+	int			minimapx;
+	int			minimapy;
 	t_texture	**texture;
 }			t_cub;
 

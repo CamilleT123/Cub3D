@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:37:18 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:07:43 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,6 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
 	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
 	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
-	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo]);
-	// printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx]);
-	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo]);
-	// printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx]);
-	// 	printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
-	// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
-	// 	printf("px = %f   py = %f\n", cub->player_x, cub->player_y);
-	// 	printf("px - xo = %f   py - yo = %f\n", cub->player_x - collision->xo, cub->player_y - collision->yo);
 	if (key == LEFTK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
@@ -89,14 +81,24 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	}
 	return (0);
 }
-	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo]);
-	// printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx]);
-	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo]);
-	// printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx]);
-	// 	printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
-	// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
-	// 	printf("px = %f   py = %f\n", cub->player_x, cub->player_y);
-	// 	printf("px - xo = %f   py - yo = %f\n", cub->player_x - collision->xo, cub->player_y - collision->yo);
+
+// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx
+	// + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx
+	// + collision->ipx_sub_xo]);
+// printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx
+	// + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx
+	// + collision->ipx]);
+// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx
+	// + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx
+	// + collision->ipx_add_xo]);
+// printf("2.cub->map[%d] = %d\n", collision->ipy_add_yo * cub->mapx
+	// + collision->ipx, cub->map[collision->ipy_add_yo * cub->mapx
+	// + collision->ipx]);
+// 	printf("ipx = %d   ipy = %d\n", collision->ipx, collision->ipy);
+// 	printf("case du player %d\n", collision->ipy * cub->mapx + collision->ipx);
+// 	printf("px = %f   py = %f\n", cub->player_x, cub->player_y);
+// 	printf("px - xo = %f   py - yo = %f\n", cub->player_x - collision->xo,
+		// cub->player_y - collision->yo);
 
 int	init_collision_straight(t_cub *cub, t_collision *collision)
 {
@@ -112,8 +114,16 @@ int	init_collision_straight(t_cub *cub, t_collision *collision)
 	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
 	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
 	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
+	cub->player_xmini = (cub->player_x / ((float)cub->unitpc
+				/ (float)cub->ppc));
+	cub->player_ymini = (cub->player_y / ((float)cub->unitpc
+				/ (float)cub->ppc));
 	return (0);
 }
+// printf("\nplayer_x = %f\n", cub->player_x);
+// printf("player_y = %f\n", cub->player_y);
+// printf("player_xmini = %f\n", cub->player_xmini);
+// printf("player_ymini = %f\n", cub->player_ymini);
 
 int	moving_straight(int key, t_cub *cub, t_collision *collision)
 {
@@ -134,29 +144,14 @@ int	moving_straight(int key, t_cub *cub, t_collision *collision)
 	}
 	return (0);
 }
-	// printf("pdx = %f   pdy = %f\n", cub->pdx, cub->pdy);
-		// printf("xo = %d    yo = %d\n", xo, yo);
-	// 	printf("ipx_sub_xo = %d    ipy_sub_yo = %d\n", ipx_sub_xo, ipy_sub_yo);
+// printf("cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] = %d\n",
+	// collision->ipy * cub->mapx + collision->ipx_add_xo);
+// printf("pdx = %f   pdy = %f\n", cub->pdx, cub->pdy);
+// printf("xo = %d    yo = %d\n", xo, yo);
+// 	printf("ipx_sub_xo = %d    ipy_sub_yo = %d\n", ipx_sub_xo, ipy_sub_yo);
 
-int	keymapping(int key, t_cub *cub)
-{
-	t_collision	collision;
-
-	collision.ipx = cub->player_x / cub->unitpc;
-	collision.ipy = cub->player_y / cub->unitpc;
-	if (key == 65307)
-		close_win(cub);
-	if (key == 65363 || key == 65361)
-		changing_direction(key, cub);
-	if (key == FORWARDK || key == BACKK)
-		moving_straight(key, cub, &collision);
-	if (key == LEFTK || key == RIGHTK)
-		moving_side(key, cub, &collision);
-	display(cub);
-	return (0);
-}
 /*
-int init_collision_side(t_cub *cub, t_collision *collision)
+int	init_collision_side(t_cub *cub, t_collision *collision)
 {
 	if (cub->pdx < -0.000005) // cos negatif donc angle entre 90 et 270
 	{
@@ -171,7 +166,8 @@ int init_collision_side(t_cub *cub, t_collision *collision)
 			collision->yo = +SECDIST;
 		}
 	}
-	else // donc si cos positif ou proche de null donc angle entre 0 et 90 ou 270 et 360
+	else
+		// donc si cos positif ou proche de null donc angle entre 0 et 90 ou 270 et 360
 	{
 		collision->yo = -SECDIST;// pour 300
 		if (cub->pdy < -0.000005) // donc angle entre 270 et 360

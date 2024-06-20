@@ -61,10 +61,10 @@ int	init_collision_side(t_cub *cub, t_collision *collision)
 int	moving_side(int key, t_cub *cub, t_collision *collision)
 {
 	init_collision_side(cub, collision);
-	collision->ipx_add_xo = (cub->player_x + collision->xo) / cub->unitpc;
-	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
-	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
-	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
+	collision->ipx_add_xo = (cub->player_x + collision->xo) / UNITPC;
+	collision->ipx_sub_xo = (cub->player_x - collision->xo) / UNITPC;
+	collision->ipy_add_yo = (cub->player_y + collision->yo) / UNITPC;
+	collision->ipy_sub_yo = (cub->player_y - collision->yo) / UNITPC;
 	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_sub_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo]);
 	// printf("2.cub->map[%d] = %d\n", collision->ipy_sub_yo * cub->mapx + collision->ipx, cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx]);
 	// printf("1.cub->map[%d] = %d\n", collision->ipy * cub->mapx + collision->ipx_add_xo, cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo]);
@@ -108,10 +108,10 @@ int	init_collision_straight(t_cub *cub, t_collision *collision)
 		collision->yo = -SECDIST;
 	else
 		collision->yo = SECDIST;
-	collision->ipx_add_xo = (cub->player_x + collision->xo) / cub->unitpc;
-	collision->ipx_sub_xo = (cub->player_x - collision->xo) / cub->unitpc;
-	collision->ipy_add_yo = (cub->player_y + collision->yo) / cub->unitpc;
-	collision->ipy_sub_yo = (cub->player_y - collision->yo) / cub->unitpc;
+	collision->ipx_add_xo = (cub->player_x + collision->xo) / UNITPC;
+	collision->ipx_sub_xo = (cub->player_x - collision->xo) / UNITPC;
+	collision->ipy_add_yo = (cub->player_y + collision->yo) / UNITPC;
+	collision->ipy_sub_yo = (cub->player_y - collision->yo) / UNITPC;
 	return (0);
 }
 
@@ -142,8 +142,8 @@ int	keymapping(int key, t_cub *cub)
 {
 	t_collision	collision;
 
-	collision.ipx = cub->player_x / cub->unitpc;
-	collision.ipy = cub->player_y / cub->unitpc;
+	collision.ipx = cub->player_x / UNITPC;
+	collision.ipy = cub->player_y / UNITPC;
 	if (key == ESCK)
 		close_win(cub);
 	if (key == ALEFTK || key == ARIGHTK)

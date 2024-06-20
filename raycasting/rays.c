@@ -16,10 +16,10 @@
 
 int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->rx <= (cub->mapx * cub->unitpc) && rays->dof < cub->mapx)
+	while (rays->rx <= (cub->mapx * UNITPC) && rays->dof < cub->mapx)
 	{
-		rays->mx = (int)(rays->rx) / cub->unitpc;
-		rays->my = (int)(rays->ry) / cub->unitpc;
+		rays->mx = (int)(rays->rx) / UNITPC;
+		rays->my = (int)(rays->ry) / UNITPC;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
 			&& cub->map[rays->mp] == 1)
@@ -53,7 +53,7 @@ int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 	{
 		printf("1.rx = %f\n", rays->rx);
 		printf("1.ry = %f\n", rays->ry);
-		printf("rx = %f, MNI= %d, dof = %d, mapx = %d", rays->rx, (cub->mapx * cub->unitpc), rays->dof, cub->mapx);
+		printf("rx = %f, MNI= %d, dof = %d, mapx = %d", rays->rx, (cub->mapx * UNITPC), rays->dof, cub->mapx);
 	}
 	return (0);
 }
@@ -70,16 +70,16 @@ int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 	{
 		
 		// printf("if ra > %f, ra = %f\n", PI, rays->ra);
-		rays->ry = (((int)cub->player_y / cub->unitpc) * cub->unitpc) - 0.0001;
+		rays->ry = (((int)cub->player_y / UNITPC) * UNITPC) - 0.0001;
 		rays->rx = (cub->player_y - rays->ry) * rays->atan + cub->player_x;
-		rays->yo = -cub->unitpc;
+		rays->yo = -UNITPC;
 		rays->xo = -rays->yo * rays->atan;
 	}
 	if (rays->ra < PI && rays->ra > 0)
 	{
-		rays->ry = (((int)cub->player_y / cub->unitpc) * cub->unitpc) + cub->unitpc;
+		rays->ry = (((int)cub->player_y / UNITPC) * UNITPC) + UNITPC;
 		rays->rx = (cub->player_y - rays->ry) * rays->atan + cub->player_x;
-		rays->yo = cub->unitpc;
+		rays->yo = UNITPC;
 		rays->xo = -rays->yo * rays->atan;
 		// if (rays->r == WINW - 1)
 		// {

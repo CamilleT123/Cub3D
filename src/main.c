@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/19 17:49:36 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:31:14 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,17 @@ static int	struct_init(t_cub *cub, char **av)
 		return (exit_map(cub, 1));
 	if (init_map(cub))
 		return (1);
-	// cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
-	cub->ppc = 16;
-	// if (cub->ppc < 4)
+	// PPC = SMINIMAPX / cub->mapx; // voir si case pas carree
+	// if (PPC < 4)
 	// {
-	// 	cub->ppc = SMINIMAPX / cub->mapy; // voir si case pas carree
-	// 	if (cub->ppc < 4)
-	// 		cub->ppc = 4;
+	// 	PPC = SMINIMAPX / cub->mapy; // voir si case pas carree
+	// 	if (PPC < 4)
+	// 		PPC = 4;
 	// 	// cub->cropped = 1;
 	// }
-	cub->unitpc = 16;
-
-	cub->player_x = cub->scene.start_x * cub->unitpc + cub->unitpc / 2;
-	cub->player_y = cub->scene.start_y * cub->unitpc + cub->unitpc / 2;
+	cub->t_update = get_time();
+	cub->player_x = cub->scene.start_x * UNITPC + UNITPC / 2;
+	cub->player_y = cub->scene.start_y * UNITPC + UNITPC / 2;
 	cub->pa = cub->scene.start_angle + PI;
 	if (cub->pa > 2 * PI)
 		cub->pa -= 2 * PI;

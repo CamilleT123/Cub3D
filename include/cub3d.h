@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 16:44:49 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:27:11 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef enum s_tile
 {
 	FLOOR,
 	WALL,
-	HOLE
+	HOLE,
+	DOOR
 }		t_tile;
 
 /*------------ PARSING/INIT -------------*/
@@ -93,6 +94,7 @@ int		init_line(t_cub *cub, t_rays *rays, t_line *line);
 int		draw_line_walls(t_cub *cub, t_rays *rays, t_line *line);
 
 // utils.c
+time_t	get_time(void);
 int		ft_abs(int n);
 int		ft_sign(int n);
 float	distance(float x1, float y1, float x2, float y2);

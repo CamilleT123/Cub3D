@@ -14,10 +14,10 @@
 
 int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->ry <= (cub->mapy * cub->unitpc) && rays->dof < cub->mapx)
+	while (rays->ry <= (cub->mapy * UNITPC) && rays->dof < cub->mapx)
 	{
-		rays->mx = (int)(rays->rx) / cub->unitpc;
-		rays->my = (int)(rays->ry) / cub->unitpc;
+		rays->mx = (int)(rays->rx) / UNITPC;
+		rays->my = (int)(rays->ry) / UNITPC;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
 			&& cub->map[rays->mp] == 1)
@@ -46,16 +46,16 @@ int	check_vertical_lines(t_cub *cub, t_rays *rays)
 	rays->ntan = -tan(rays->ra);
 	if (rays->ra > (PI / 2) && rays->ra < (3 * PI / 2))
 	{
-		rays->rx = (((int)cub->player_x / cub->unitpc) * cub->unitpc) - 0.0001;
+		rays->rx = (((int)cub->player_x / UNITPC) * UNITPC) - 0.0001;
 		rays->ry = (cub->player_x - rays->rx) * rays->ntan + cub->player_y;
-		rays->xo = -cub->unitpc;
+		rays->xo = -UNITPC;
 		rays->yo = -rays->xo * rays->ntan;
 	}
 	if (rays->ra < (PI / 2) || rays->ra > (3 * PI / 2))
 	{
-		rays->rx = (((int)cub->player_x / cub->unitpc) * cub->unitpc) + cub->unitpc;
+		rays->rx = (((int)cub->player_x / UNITPC) * UNITPC) + UNITPC;
 		rays->ry = (cub->player_x - rays->rx) * rays->ntan + cub->player_y;
-		rays->xo = cub->unitpc;
+		rays->xo = UNITPC;
 		rays->yo = -rays->xo * rays->ntan;
 	}
 	if (rays->ra == (PI / 2) || rays->ra == (3 * PI / 2))

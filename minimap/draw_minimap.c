@@ -37,11 +37,11 @@ int	draw_map_1(t_cub *cub, int x, int y)
 	int	yo;
 	int	xo;
 
-	yo = y * cub->ppc;
-	while (yo < y * cub->ppc + cub->ppc)
+	yo = y * PPC;
+	while (yo < y * PPC + PPC)
 	{
-		xo = x * cub->ppc;
-		while (xo < x * cub->ppc + cub->ppc)
+		xo = x * PPC;
+		while (xo < x * PPC + PPC)
 			my_mlx_pixel_put(cub, xo++, yo, 0x7f388b);
 		++yo;
 	}
@@ -53,11 +53,11 @@ int	draw_map_0(t_cub *cub, int x, int y)
 	int	yo;
 	int	xo;
 
-	yo = y * cub->ppc;
-	while (yo < y * cub->ppc + cub->ppc)
+	yo = y * PPC;
+	while (yo < y * PPC + PPC)
 	{
-		xo = x * cub->ppc;
-		while (xo < x * cub->ppc + cub->ppc)
+		xo = x * PPC;
+		while (xo < x * PPC + PPC)
 			my_mlx_pixel_put(cub, xo++, yo, 0xbdabc4);
 		++yo;
 	}
@@ -70,7 +70,7 @@ int	draw_map(t_cub *cub)
 	int	x;
 	// printf("mapx = %d mapy = %d\n", cub->mapx, cub->mapy);
 	// printf("mapsize = %d\n", cub->mapsize);
-	// printf("ppc = %d\n", cub->ppc);
+	// printf("ppc = %d\n", PPC);
 	y = 0;
 	while (y < cub->mapy)
 	{

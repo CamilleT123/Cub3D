@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/20 16:27:58 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:29:15 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@
 # define ALEFTK 65363
 # define ARIGHTK 65361
 # define FPS 60
+# define UNITPC 16
+# define PPC 16
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 17:48:29 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:47:23 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,26 +97,27 @@ static int	get_texture(t_cub *cub, int i, char *path)
 int	init_textures(t_cub *cub)
 {
 	int		i;
-	char	*arrtex[4];
+	char	*arrtex[5];
 
-	cub->texture = malloc(sizeof(t_texture *) * 4);
+	cub->texture = malloc(sizeof(t_texture *) * 5);
 	if (!cub->texture)
 		return (map_error("", MALLOC, 1));
 	arrtex[0] = cub->scene.north;
 	arrtex[1] = cub->scene.south;
 	arrtex[2] = cub->scene.east;
 	arrtex[3] = cub->scene.west;
+	arrtex[4] = DOORPATH;
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (get_texture(cub, i, arrtex[i]))
 			return (exit_map(cub, 1));
-		free(arrtex[i]);
+//		free(arrtex[i]);
 		i++;
 	}
-	cub->scene.north = NULL;
-	cub->scene.south = NULL;
-	cub->scene.east = NULL;
-	cub->scene.west = NULL;
+//	cub->scene.north = NULL;
+//	cub->scene.south = NULL;
+//	cub->scene.east = NULL;
+//	cub->scene.west = NULL;
 	return (0);
 }

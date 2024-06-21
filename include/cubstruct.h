@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubstruct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/20 17:32:08 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:41:57 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,21 @@ typedef struct s_cub
 	int			endian;
 	float		player_x;
 	float		player_y;
+	float		player_xmini;
+	float		player_ymini;
 	float		pdx;
 	float		pdy;
 	float		pa;
-	int 		f_color;
+	int			f_color;
 	int			c_color;
 	int			mapx;
 	int			mapy;
 	int			mapsize;
+	int			mapmax;
 	int			*map;
 	time_t		t_update;
+	int			minimapx;
+	int			minimapy;
 	t_texture	**texture;
 }			t_cub;
 
@@ -90,7 +95,7 @@ typedef struct s_line
 	int		y1;
 	int		x2;
 	int		y2;
-	float	lineh;
+	float	line_height;
 	float	ty_step;
 	float	ty_off;
 	float	ty;

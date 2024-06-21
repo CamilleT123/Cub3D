@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 17:31:14 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:44:51 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,46 @@ static int	struct_init(t_cub *cub, char **av)
 		return (exit_map(cub, 1));
 	if (init_map(cub))
 		return (1);
-	// PPC = SMINIMAPX / cub->mapx; // voir si case pas carree
-	// if (PPC < 4)
+	cub->ppc = SMINIMAPX / cub->mapx; // voir si case pas carree
+	// cub->ppc = 16;
+	if (cub->ppc < PPCMIN)
+	{
+		cub->ppc = SMINIMAPX / cub->mapy; // voir si case pas carree
+		if (cub->ppc < PPCMIN)
+			cub->ppc = PPCMIN;
+	}
+	cub->minimapx = cub->ppc * cub->mapx;
+	cub->minimapy = cub->ppc * cub->mapy;
+	// else
 	// {
-	// 	PPC = SMINIMAPX / cub->mapy; // voir si case pas carree
-	// 	if (PPC < 4)
-	// 		PPC = 4;
-	// 	// cub->cropped = 1;
+	// 	cub->minimapx = SMINIMAPX;
+	// 	cub->minimapy = SMINIMAPY;
 	// }
-	cub->t_update = get_time();
-	cub->player_x = cub->scene.start_x * UNITPC + UNITPC / 2;
-	cub->player_y = cub->scene.start_y * UNITPC + UNITPC / 2;
+	// printf("mapx = %d\n", cub->mapx);
+	// printf("mapy = %d\n", cub->mapy);
+	printf("ppc = %d\n", cub->ppc);
+	// printf("minimapx = %d\n", cub->minimapx);
+	// printf("minimapy = %d\n", cub->minimapy);
+	cub->unitpc = 16;
+	if (cub->mapx >= cub->mapy)
+		cub->mapmax = cub->mapx;
+	else
+		cub->mapmax = cub->mapy;
+	// printf("unitpc = %d\n", cub->unitpc);
+	// cub->player_xmini = cub->scene.start_x;
+	// cub->player_ymini = cub->scene.start_y;
+	// printf("player_xmini = %d\n", cub->player_xmini);
+	// printf("player_ymini = %d\n", cub->player_ymini);
+	// printf("start_x = %f\n", cub->scene.start_x);
+	// printf("start_y = %f\n", cub->scene.start_y);
+	cub->player_x = cub->scene.start_x * cub->unitpc + cub->unitpc / 2;
+	cub->player_y = cub->scene.start_y * cub->unitpc + cub->unitpc / 2;
+	cub->player_xmini = (cub->player_x / ((float)cub->unitpc / (float)cub->ppc));
+	cub->player_ymini = (cub->player_y /  ((float)cub->unitpc / (float)cub->ppc));
+	// printf("unitpc = %d\n", cub->unitpc);
+	// printf("ppc = %d\n", cub->ppc);
+	// printf("player_xmini = %f\n", cub->player_xmini);
+	// printf("player_ymini = %f\n", cub->player_ymini);
 	cub->pa = cub->scene.start_angle + PI;
 	if (cub->pa > 2 * PI)
 		cub->pa -= 2 * PI;
@@ -100,6 +129,23 @@ int	test_map(t_cub *cub)
 	}
 	return (0);
 }
+int	keymapping(int key, t_cub *cub)
+{
+	t_collision	collision;
+
+	collision.ipx = cub->player_x / cub->unitpc;
+	collision.ipy = cub->player_y / cub->unitpc;
+	if (key == 65307)
+		close_win(cub);
+	if (key == 65363 || key == 65361)
+		changing_direction(key, cub);
+	if (key == FORWARDK || key == BACKK)
+		moving_straight(key, cub, &collision);
+	if (key == LEFTK || key == RIGHTK)
+		moving_side(key, cub, &collision);
+	display(cub);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -115,9 +161,11 @@ int	main(int ac, char **av)
 	cub.addr = mlx_get_data_addr(cub.img, &cub.bits_per_pixel,
 			&cub.line_length, &cub.endian);
 	printf("ok\n");
-	printf("px=%f py=%f\n", cub.player_x, cub.player_y);
-	// printf("color2 = %d\n", cub->f_color);
-	// test_map(&cub);
+	test_map(&cub);
+	printf("player_x = %f\n", cub.player_x);
+	printf("player_y = %f\n", cub.player_y);
+	// printf("player_xmini = %f\n", cub.player_xmini);
+	// printf("player_ymini = %f\n", cub.player_ymini);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);

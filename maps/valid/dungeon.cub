@@ -1,10 +1,10 @@
 F 76,76,76
 C 99,99,99
 
-NO textures/brick1.xpm
-SO textures/brick2.xpm
-WE textures/wood2.xpm
-EA textures/wood1.xpm
+NO textures/Brick128.xpm
+SO textures/Brick128.xpm
+WE textures/Brick128.xpm
+EA textures/Brick128.xpm
 
 1111111111111111111
 10W1001001001000001

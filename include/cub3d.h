@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 17:27:11 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:40:23 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-/*------------ MACROS -------------*/
-# define PI 3.1415926535
-# define DR 0.0174533
-
 /*------------ ENUM -------------*/
 typedef enum s_walls
 {
@@ -43,6 +39,8 @@ typedef enum s_tile
 	WALL,
 	HOLE,
 	DOOR
+	HOLE,
+	DOOR
 }		t_tile;
 
 /*------------ PARSING/INIT -------------*/
@@ -52,48 +50,49 @@ int		init_map(t_cub *cub);
 int		exit_map(t_cub *cub, int status);
 int		init_textures(t_cub *cub);
 
-// main.c
+/*------------ CLOSING -------------*/
 int		close_win(t_cub *cub);
 
-// moving.c
+/*------------ MOVING -------------*/
 void	changing_direction(int key, t_cub *cub);
 int		keymapping(int key, t_cub *cub);
+int		moving_straight(int key, t_cub *cub, t_collision *collision);
+int		moving_side(int key, t_cub *cub, t_collision *collision);
 
-// draw.c
-int		display(t_cub *minimap);
-int		draw_player(t_cub *minimap, float x, float y);
-
-// draw_visual.c
+/*------------ DRAWING FPS VIEW -------------*/
 int		display(t_cub *cub);
+int		draw_line(t_cub *cub, t_rays *rays, t_line *line);
+int		draw_walls(t_cub *cub, t_rays *rays);
+int		init_line(t_cub *cub, t_rays *rays, t_line *line);
+int		bresenham_walls(t_cub *cub, t_rays *rays, t_line *line);
 
-// cub/draw_minimap.c
-int		display_back(t_cub *cub);
-int		draw_map(t_cub *cub);
-
-// cub/draw_player.c
-int		draw_player(t_cub *cub, float x, float y);
-int		draw_square(t_cub *cub, float x, float y);
-
-// rays.c
+/*------------ RAYCASTING -------------*/
 int		rays_init(t_cub *cub, t_rays *rays);
 int		calculate_rays(t_cub *cub, t_rays *rays);
 int		draw_rays(t_cub *cub, t_rays *rays, t_line *line);
 int		check_horizontal_lines(t_cub *cub, t_rays *rays);
 int		init_each_ray(t_cub *cub, t_rays *rays);
-
-// rays2.c
 int		check_vertical_lines(t_cub *cub, t_rays *rays);
 int		compare_distances(t_rays *rays);
 
-// draw_lines
-int		draw_line(t_cub *cub, t_rays *rays, t_line *line);
+/*------------ DRAWING MINIMAP -------------*/
+int		display_back(t_cub *cub);
+int		draw_map(t_cub *cub);
+int		draw_minimap(t_cub *cub);
+int		draw_player(t_cub *cub, float x, float y);
+int		draw_square(t_cub *cub, float x, float y);
 
-// draw_walls.c
-int		draw_walls(t_cub *cub, t_rays *rays);
-int		init_line(t_cub *cub, t_rays *rays, t_line *line);
-int		draw_line_walls(t_cub *cub, t_rays *rays, t_line *line);
+int		rays_init_mini(t_cub *cub, t_rays *rays);
+int		calculate_rays_mini(t_cub *cub, t_rays *rays);
+int		draw_rays_mini(t_cub *cub, t_rays *rays, t_line *line);
+int		check_horizontal_lines_mini(t_cub *cub, t_rays *rays);
+int		init_each_ray_mini(t_cub *cub, t_rays *rays);
 
-// utils.c
+int		check_vertical_lines_mini(t_cub *cub, t_rays *rays);
+int		compare_distances_mini(t_rays *rays);
+
+/*------------ UTILS -------------*/
+
 time_t	get_time(void);
 int		ft_abs(int n);
 int		ft_sign(int n);

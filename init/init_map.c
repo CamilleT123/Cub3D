@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/21 13:47:23 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:21:50 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	getint(char c)
 		return (0);
 	else if (c == '1')
 		return (1);
+	else if (c == '3')
+		return (3);
 	else
 		return (2);
 }

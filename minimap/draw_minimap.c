@@ -80,7 +80,6 @@ int	draw_map_2(t_cub *cub, int x, int y)
 	return (0);
 }
 
-
 int	draw_map(t_cub *cub)
 {
 	int	y;
@@ -187,7 +186,6 @@ int	draw_minimap(t_cub *cub)
 		}
 		++y;
 	}
-
 
 	int case_x_player;
 	int case_y_player;

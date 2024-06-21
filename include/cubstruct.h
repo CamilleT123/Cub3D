@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/21 11:41:57 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:48:02 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_cub
 	time_t		t_update;
 	int			minimapx;
 	int			minimapy;
+	int			unitpc;
+	int			ppc;
 	t_texture	**texture;
 }			t_cub;
 

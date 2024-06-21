@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:15:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 13:59:17 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:04:47 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_startchar(char c)
 
 int	is_mapchar(char c)
 {
-	if (c == '0' || c == '1')
+	if (c == '0' || c == '1' || c == '3')
 		return (1);
 	else
 		return (0);

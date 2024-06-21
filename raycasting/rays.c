@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 14:15:15 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:33:10 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DEGTORAD);
+	rays->ra = cub->player_angle - ((FIELDOFVIEW / 2) * DEGTORAD);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 13:11:40 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:59:31 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	draw_direction(t_cub *cub, float x, float y)
 	int	d;
 
 	d = 0;
-	while (d < 10) // reduire
+	while (d < DIRECTIONSIZE)
 	{
-		xbis = x + cos(cub->pa) * d;
-		ybis = y + sin(cub->pa) * d;
+		xbis = x + cos(cub->player_angle) * d;
+		ybis = y + sin(cub->player_angle) * d;
 		my_mlx_pixel_put(cub, xbis, ybis, 0x00FF0000);
 		d++;
 	}
@@ -48,68 +48,21 @@ int	draw_player(t_cub *cub, float x, float y)
 	return (0);
 }
 
-int	init_line(t_cub *cub, t_rays *rays, t_line *line)
+int	draw_player_mini(t_cub *cub, float x, float y)
 {
-	line->x1 = (cub->player_x / ((float)UNITPC / (float)cub->ppc));
-	line->y1 = (cub->player_y /  ((float)UNITPC / (float)cub->ppc));
-	// if (rays->r == 59)
-	// 	printf("rx=%f, ry=%f\n", rays->rx, rays->ry);
-	line->x2 = rays->rx;
-	line->y2 = rays->ry;
-	// if (rays->r == 30)
-	// {
-	// 	printf("x1=%d, y1=%d, x2=%d, y2=%d\n", line->x1, line->y1, line->x2, line->y2);
-	// 	printf("player_xmini=%f, player_ymini=%f\n", cub->player_xmini, cub->player_ymini);
-	// }
-	return (0);
-}
+	int	i;
+	int	j;
 
-int	init_line_mini(t_cub *cub, t_rays *rays, t_line *line)
-{
-	line->x1 = cub->player_xmini;
-	line->y1 = cub->player_ymini;
-	// if (rays->r == 59)
-	// 	printf("rx=%f, ry=%f\n", rays->rx, rays->ry);
-	line->x2 = rays->rx;
-	line->y2 = rays->ry;
-	if (rays->r == 30)
+	if (x < 0 || x > cub->minimapx || y < 0 || y > cub->minimapy)
+		return (1);
+	i = y - PLAYERSIZE;
+	while (i < y + PLAYERSIZE)
 	{
-		printf("x1=%d, y1=%d, x2=%d, y2=%d\n", line->x1, line->y1, line->x2, line->y2);
-		// printf("player_xmini=%f, player_ymini=%f\n", cub->player_xmini, cub->player_ymini);
+		j = x - PLAYERSIZE;
+		while (j < x + PLAYERSIZE)
+			my_mlx_pixel_put(cub, j++, i, 0x00FF0000);
+		++i;
 	}
-	return (0);
-}
-
-int	draw_rays(t_cub *cub, t_rays *rays, t_line *line)
-{
-	rays->r = 0;
-	// rays->ra = cub->pa;
-	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DEGTORAD);
-	if (rays->ra < 0)
-		rays->ra += 2 * PI;
-	if (rays->ra > 2 * PI)
-		rays->ra -= 2 * PI;
-	// rays_init(cub, rays);
-	while (rays->r < rays->nb_rays)
-	{
-		// printf("rayon %d\n", rays->r);
-		init_each_ray_mini(cub, rays);
-		check_horizontal_lines_mini(cub, rays);
-		check_vertical_lines_mini(cub, rays);
-		compare_distances_mini(rays);
-			// init_line(cub, rays, line);
-		printf("ra=%f\n", rays->ra / DEGTORAD);
-		printf("rx=%f\n", rays->rx);
-		printf("ry=%f\n", rays->ry);
-		init_line_mini(cub, rays, line);
-		draw_line(cub, rays, line);
-		rays->ra += (FIELDOFVIEW / rays->nb_rays) * DEGTORAD;
-		// printf("(FIELDOFVIEW / rays->nb_rays)=%d\n", (FIELDOFVIEW / rays->nb_rays));
-		if (rays->ra < 0)
-			rays->ra += 2 * PI;
-		if (rays->ra > 2 * PI)
-			rays->ra -= 2 * PI;
-		rays->r++;
-	}
+	draw_direction(cub, x, y);
 	return (0);
 }

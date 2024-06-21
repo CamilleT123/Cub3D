@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 13:32:11 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:53:08 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ void	display_ceiling(t_cub *cub)
 int	display(t_cub *cub)
 {
 	t_rays	rays;
-	time_t t;
-
+	time_t	t;
+	
 	t = get_time();
-	// t_line	line;
 	while (t < cub->t_update + DELAY)
 	{
-		t= get_time();
+		t = get_time();
 	}
 	cub->t_update = t;
 	display_floor(cub);
@@ -59,7 +58,6 @@ int	display(t_cub *cub)
 	rays_init(cub, &rays);
 	calculate_rays(cub, &rays);
 	draw_minimap(cub);
-		// draw_rays(cub, &rays, &line); //separer les calculs
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }

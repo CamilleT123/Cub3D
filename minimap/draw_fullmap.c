@@ -48,9 +48,8 @@ int	draw_full_map(t_cub *cub)
 {
 	int	y;
 	int	x;
-	
-	y = 0;
 
+	y = 0;
 	while (y < cub->mapy)
 	{
 		x = 0;
@@ -58,14 +57,15 @@ int	draw_full_map(t_cub *cub)
 		{
 			if (cub->map[y * cub->mapx + x] == 1)
 				draw_map_1(cub, x, y);
-			if (cub->map[y * cub->mapx + x] == 0 || cub->map[y * cub->mapx + x] == 2)
+			if (cub->map[y * cub->mapx + x] == 0
+				|| cub->map[y * cub->mapx + x] == 2)
 				draw_map_0(cub, x, y);
 			++x;
 		}
 		++y;
 	}
 	cub->player_xmini = (cub->player_x / ((float)UNITPC / (float)cub->ppc));
-	cub->player_ymini = (cub->player_y /  ((float)UNITPC / (float)cub->ppc));
+	cub->player_ymini = (cub->player_y / ((float)UNITPC / (float)cub->ppc));
 	draw_player(cub, cub->player_xmini, cub->player_ymini);
 	return (0);
 }
@@ -86,7 +86,6 @@ int	draw_full_map(t_cub *cub)
 // 	return (0);
 // }
 
-
 // int	display_back(t_cub *cub)
 // {
 // 	int	i;
@@ -106,5 +105,3 @@ int	draw_full_map(t_cub *cub)
 // }
 
 // soustraire -1 aux 2 while pour quadriller la map
-
-

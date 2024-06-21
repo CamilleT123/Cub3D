@@ -17,11 +17,11 @@ int	draw_minimap_1(t_cub *cub, int x, int y)
 	int	yo;
 	int	xo;
 
-	yo = y * 16;
-	while (yo < y * 16 + 16 -1)
+	yo = y * MINIMAPPPC;
+	while (yo < y * MINIMAPPPC + MINIMAPPPC -1)
 	{
-		xo = x * 16;
-		while (xo < x * 16 + 16 -1)
+		xo = x * MINIMAPPPC;
+		while (xo < x * MINIMAPPPC + MINIMAPPPC -1)
 			my_mlx_pixel_put(cub, xo++, yo, 0x7f388b);
 		++yo;
 	}
@@ -76,8 +76,7 @@ int	draw_miniplayer(t_cub *cub, float x, float y)
 	return (0);
 }
 
-
-int	draw_cropped_map(t_cub *cub)
+void	draw_background(t_cub *cub)
 {
 	int	y;
 	int	x;
@@ -92,88 +91,191 @@ int	draw_cropped_map(t_cub *cub)
 		}
 		++y;
 	}
+}
 
-	int case_x_player;
-	int case_y_player;
-	
-	case_x_player = cub->player_x / UNITPC;
-	case_y_player = cub->player_y / UNITPC;
+void	draw_cropped_map(t_cub *cub, t_minimap *mini)
+{
+	int y;
+	int x;
+
+	y = 0;
+	while (mini->case_y < mini->y_max)
+	{
+		mini->case_x = mini->x_min;
+		x = 0;
+		while (mini->case_x < mini->x_max)
+		{
+			if (mini->case_x >= 0 && mini->case_y >= 0)
+			{
+				if (cub->map[mini->case_y * cub->mapx + mini->case_x] == 1)
+					draw_minimap_1(cub, x, y);
+				if (cub->map[mini->case_y * cub->mapx + mini->case_x] == 0)
+					draw_minimap_0(cub, x, y);
+			}
+			++mini->case_x;
+			++x;
+		}
+		++mini->case_y;
+		++y;
+	}
+}
+
+int	crop_map(t_cub *cub)
+{
+	int xmin;
+	int ymin;
+	int xmax;
+	int ymax;
+	int y;
+	int x;
+
+	cub->player_xmini = (SMINIMAPX / 2);
+	cub->player_ymini = (SMINIMAPY / 2);
+	xmin = (cub->player_x / 2) - cub->player_xmini;
+	ymin = (cub->player_y / 2) - cub->player_ymini;
+	xmax = (cub->player_x / 2) + cub->player_xmini;
+	ymax = (cub->player_y / 2) + cub->player_ymini;
+	// printf("xmin = %d\n", xmin);
+	// printf("ymin = %d\n", ymin);
+	// printf("xmax = %d\n", xmax);
+	// printf("ymax = %d\n", ymax);
+	// printf("player_x = %f\n", cub->player_x);
+	// printf("player_y = %f\n", cub->player_y);
+	y = 0;
+	while (y < SMINIMAPY && ymin < ymax)
+	{
+		x = 0;
+		xmin = cub->player_x - cub->player_xmini;
+		while (x < SMINIMAPX && xmin < xmax)
+		{
+			if (xmin >= 0 && ymin >= 0)
+			{
+				if (cub->map[(ymin / 8) * cub->mapx + (xmin / 8)] == 1)
+					my_mlx_pixel_put(cub, x, y, 0x7f388b);
+				if (cub->map[(ymin / 8) * cub->mapx + (xmin / 8)] == 0)
+					my_mlx_pixel_put(cub, x, y, 0xbdabc4);
+			}
+			++xmin;
+			++x;
+		}
+		++ymin;
+		++y;
+	}
+	// printf("player_xmini = %f\n", cub->player_xmini);
+	// printf("player_ymini = %f\n", cub->player_ymini);
+	draw_player(cub, (SMINIMAPX / 2), (SMINIMAPY / 2));
+	return (0);
+}
+
+// int	crop_map(t_cub *cub)
+// {
+// 	// t_minimap	mini;
+
+// 	// draw_background(cub);
+// 	// mini.case_x_player = cub->player_x / UNITPC;
+// 	// mini.case_y_player = cub->player_y / UNITPC;
+// 	// mini.index_player = mini.case_y_player * cub->mapx + mini.case_x_player;
+// 	// mini.x_min = mini.case_x_player - 4;
+// 	// mini.x_max = mini.case_x_player + 4;
+// 	// mini.y_min = mini.case_y_player - 4;
+// 	// mini.y_max = mini.case_y_player + 4;
+// 	// mini.case_y = mini.y_min;
+// 	// draw_cropped_map(cub, &mini);
+
+// 	// cub->player_xmini = (cub->player_x / ((float)UNITPC / (float)cub->ppc)) - (mini.x_min * cub->ppc);
+// 	// cub->player_ymini = (cub->player_y / ((float)UNITPC / (float)cub->ppc)) - (mini.y_min * cub->ppc);
+// 	cub->player_xmini = (SMINIMAPX / 2);
+// 	cub->player_ymini = (SMINIMAPY / 2);
+
+// 	int xmin = (cub->player_x / 2) - cub->player_xmini;
+// 	int ymin = (cub->player_y / 2) - cub->player_ymini;
+// 	int xmax = (cub->player_x / 2) + cub->player_xmini;
+// 	int ymax = (cub->player_y / 2) + cub->player_ymini;
+// 	printf("xmin = %d\n", xmin);
+// 	printf("ymin = %d\n", ymin);
+// 	printf("xmax = %d\n", xmax);
+// 	printf("ymax = %d\n", ymax);
+// 	printf("player_xmini = %f\n", cub->player_xmini);
+// 	printf("player_ymini = %f\n", cub->player_ymini);
+// 	printf("player_x = %f\n", cub->player_x);
+// 	printf("player_y = %f\n", cub->player_y);
+// 	int y;
+// 	int x;
+
+// 	y = 0;
+// 	while (y < SMINIMAPY && ymin < ymax)
+// 	{
+// 		x = 0;
+// 		xmin = cub->player_x - cub->player_xmini;
+// 		while (x < SMINIMAPX && xmin < xmax)
+// 		{
+// 			if (xmin >= 0 && ymin >= 0)
+// 			{
+// 				if (cub->map[(ymin / 8) * cub->mapx + (xmin / 8)] == 1)
+// 					my_mlx_pixel_put(cub, x, y, 0x7f388b);
+// 				if (cub->map[(ymin / 8) * cub->mapx + (xmin / 8)] == 0)
+// 					my_mlx_pixel_put(cub, x, y, 0xbdabc4);
+// 			}
+// 			++xmin;
+// 			++x;
+// 		}
+// 		++ymin;
+// 		++y;
+// 	}
+// 	// printf("player_xmini = %f\n", cub->player_xmini);
+// 	// printf("player_ymini = %f\n", cub->player_ymini);
+// 	draw_player(cub, (SMINIMAPX / 2), (SMINIMAPY / 2));
+// 	return (0);
+// }
+
+	//
 	// printf("case_x_player = %d\n", case_x_player);
 	// printf("case_y_player = %d\n", case_y_player);
-	int case_x_min = case_x_player - 4;
-	int case_x_max = case_x_player + 4;
-	int case_y_min = case_y_player - 4;
-	int case_y_max = case_y_player + 4;
 	// printf("case_x_min = %d\n", case_x_min);
 	// printf("case_x_max = %d\n", case_x_max);
 	// printf("case_y_min = %d\n", case_y_min);
 	// printf("case_y_max = %d\n", case_y_max);
-	int case_x;
-	int case_y;
 	// printf("ppc=%d\n", cub->ppc);
 	// case_player = (cub->player_y / UNITPC) * cub->mapx + (cub->player_x / UNITPC);
-	int case_player = case_y_player * cub->mapx + (case_x_player);
-	printf("case_player = %d\n", case_player);
-	case_y = case_y_min;
-	y = 0;
-	while (case_y < case_y_max)
-	{
-		case_x = case_x_min;
-		x = 0;
-		while (case_x < case_x_max)
-		{
-			if (case_x >= 0)
-			{
-				// printf("case_y = %d\n", case_y);
-				// printf("case_x = %d\n", case_x);
-				// printf("case_y * cub->mapx + case_x = %d\n", case_y * cub->mapx + case_x);
-				if (cub->map[case_y * cub->mapx + case_x] == 1)
-					draw_minimap_1(cub, x, y);
-				if (cub->map[case_y * cub->mapx + case_x] == 0)
-				{
-					// printf("x = %d\n", x);
-					// printf("y = %d\n", y);
-					draw_minimap_0(cub, x, y);
-				}
-				if (case_y * cub->mapx + case_x == case_player)
-				{
-					// printf("PLAYER\nx = %d\n", x);
-					// printf("y = %d\n", y);
-					draw_miniplayer(cub, (float)((x * 16) + 8), (float)((y * 16) + 8));
-				}
+	// int case_player = case_y_player * cub->mapx + (case_x_player);
+	// printf("case_player = %d\n", case_player);
+				// if (case_y * cub->mapx + case_x == case_player)
+				// {
+				// 	// printf("PLAYER\nx = %d\n", x);
+				// 	// printf("y = %d\n", y);
+				// 	draw_miniplayer(cub, (float)((x * 16) + 8), (float)((y * 16) + 8));
+				// }
 				// if (((case_y * cub->mapx + case_x) >= 0) && (cub->map[case_y * cub->mapx + case_x] == 0 || cub->map[case_y * cub->mapx + case_x] == 2))
 				// 	draw_map_0(cub, x, y);
-			}
-			++case_x;
-			++x;
-		}
-		++case_y;
-		++y;
-	}
 	// cub->player_xmini = (cub->player_x / ((float)UNITPC / (float)cub->ppc));
 	// cub->player_ymini = (cub->player_y /  ((float)UNITPC / (float)cub->ppc));
 	// int player_x_map = 
-	// draw_player(cub, cub->player_xmini, cub->player_ymini);
-	return (0);
-}
 
 int	draw_minimap(t_cub *cub)
 {
-	cub->ppc = SMINIMAPX / cub->mapx;
-	if (cub->ppc < PPCMIN)
+	cub->ppc = PPCMIN;
+	while (cub->ppc < PPCMAX && ((cub->mapx * cub->ppc) < MINIMAPMIN
+			|| (cub->mapy * cub->ppc) < MINIMAPMIN)
+		&& ((cub->mapx * cub->ppc) < MINIMAPMAX
+			&& (cub->mapy * cub->ppc) < MINIMAPMAX))
+		cub->ppc++;
+	if (cub->mapx * cub->ppc > 480 || cub->mapy * cub->ppc > 480
+		|| cub->mapsize * cub->ppc > 65536)
 	{
-		cub->ppc = SMINIMAPX / cub->mapy; // voir si case pas carree
-		if (cub->ppc < PPCMIN)
-			cub->ppc = cub->ppc;
+		cub->ppc = MINIMAPPPC;
+		cub->minimapx = cub->ppc * 8;
+		cub->minimapy = cub->ppc * 8;
+		crop_map(cub);
 	}
-	cub->minimapx = cub->ppc * cub->mapx;
-	cub->minimapy = cub->ppc * cub->mapy;
-	// printf("ppc = %d\n", cub->ppc);
-	// printf("minimapx = %d\n", cub->minimapx);
-	// printf("minimapy = %d\n", cub->minimapy);
-	if (cub->mapsize > 3600 || cub->mapx > 80 || cub->mapy > 80)
-		draw_cropped_map(cub);
 	else
-		draw_full_map(cub);
+	{
+	cub->minimapx = cub->ppc * cub->mapx;
+	cub->minimapy = cub->ppc * cub->mapy;	
+	draw_full_map(cub);
+	}
 	return (0);
 }
+
+	// printf("ppc = %d\n", cub->ppc);
+	// // // printf("minimapx = %d\n", cub->minimapx);
+	// // // printf("minimapy = %d\n", cub->minimapy);

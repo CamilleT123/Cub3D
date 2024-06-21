@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 13:36:59 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:36:23 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,20 @@ static int	struct_init(t_cub *cub, char **av)
 		cub->mapmax = cub->mapx;
 	else
 		cub->mapmax = cub->mapy;
-	// printf("unitpc = %d\n", UNITPC);
-	// cub->player_xmini = cub->scene.start_x;
-	// cub->player_ymini = cub->scene.start_y;
-	// printf("player_xmini = %d\n", cub->player_xmini);
-	// printf("player_ymini = %d\n", cub->player_ymini);
-	// printf("start_x = %f\n", cub->scene.start_x);
-	// printf("start_y = %f\n", cub->scene.start_y);
-	// printf("unitpc = %d\n", UNITPC);
-	// printf("ppc = %d\n", cub->ppc);
-	// printf("player_xmini = %f\n", cub->player_xmini);
-	// printf("player_ymini = %f\n", cub->player_ymini);
+	cub->oldx = WINW / 2;
 	cub->player_x = cub->scene.start_x * UNITPC + UNITPC / 2;
 	cub->player_y = cub->scene.start_y * UNITPC + UNITPC / 2;
+	printf("player_x = %f\n", cub->player_x);
+	printf("player_y = %f\n", cub->player_y);
+	printf("start_x = %f\n", cub->scene.start_x);
+	printf("start_y = %f\n", cub->scene.start_y);
 	cub->player_xmini = (cub->player_x / ((float)UNITPC / (float)cub->ppc));
-	cub->player_ymini = (cub->player_y /  ((float)UNITPC / (float)cub->ppc));
-	cub->pa = cub->scene.start_angle + PI;
-	if (cub->pa > 2 * PI)
-		cub->pa -= 2 * PI;
-	cub->pdx = cos(cub->pa) * 5;
-	cub->pdy = sin(cub->pa) * 5;
+	cub->player_ymini = (cub->player_y / ((float)UNITPC / (float)cub->ppc));
+	cub->player_angle = cub->scene.start_angle + PI;
+	if (cub->player_angle > 2 * PI)
+		cub->player_angle -= 2 * PI;
+	cub->pdx = cos(cub->player_angle) * 5;
+	cub->pdy = sin(cub->player_angle) * 5;
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return (free(cub->map), exit_map(cub, 1), 1);
@@ -53,6 +47,17 @@ static int	struct_init(t_cub *cub, char **av)
 	exit_map(cub, 0);
 	return (0);
 }
+	// printf("unitpc = %d\n", UNITPC);
+	// cub->player_xmini = cub->scene.start_x;
+	// cub->player_ymini = cub->scene.start_y;
+	// printf("player_xmini = %d\n", cub->player_xmini);
+	// printf("player_ymini = %d\n", cub->player_ymini);
+	// printf("start_x = %f\n", cub->scene.start_x);
+	// printf("start_y = %f\n", cub->scene.start_y);
+	// printf("unitpc = %d\n", UNITPC);
+	// printf("ppc = %d\n", cub->ppc);
+	// printf("player_xmini = %f\n", cub->player_xmini);
+	// printf("player_ymini = %f\n", cub->player_ymini);
 
 int	test_map(t_cub *cub)
 {
@@ -91,6 +96,14 @@ int	keymapping(int key, t_cub *cub)
 	return (0);
 }
 
+int	mouse_moving(int x, int y, t_cub *cub)
+{
+	(void)y;
+	changing_direction_mouse(x, cub);
+	display(cub);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_cub	cub;
@@ -106,14 +119,12 @@ int	main(int ac, char **av)
 			&cub.line_length, &cub.endian);
 	printf("ok\n");
 	test_map(&cub);
-	// printf("player_x = %f\n", cub.player_x);
-	// printf("player_y = %f\n", cub.player_y);
-	// printf("player_xmini = %f\n", cub.player_xmini);
-	// printf("player_ymini = %f\n", cub.player_ymini);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
+	mlx_hook(cub.win, MotionNotify, PointerMotionMask, &mouse_moving, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);
 	mlx_loop(cub.mlx);
 	close_win(&cub);
 }
+
 //	test_map(&cub);

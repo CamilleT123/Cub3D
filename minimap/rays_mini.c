@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 13:48:25 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:33:10 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_horizontal_lines_mini(t_cub *cub, t_rays *rays)
 {
 	rays->dof = 0;
 	rays->atan = (-1) / (tan(rays->ra));
-	// printf("pa = %f\n", cub->pa / DEGTORAD);
+	// printf("pa = %f\n", cub->player_angle / DEGTORAD);
 	if (rays->ra > PI)
 	{
 		// if (rays->r == 59 || rays->r == 0)
@@ -115,7 +115,7 @@ int	rays_init_mini(t_cub *cub, t_rays *rays)
 	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DEGTORAD);
+	rays->ra = cub->player_angle - ((FIELDOFVIEW / 2) * DEGTORAD);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 16:41:14 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:33:49 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	changing_direction(int key, t_cub *cub)
 {
 	if (key == ARIGHTK)
 	{
-		cub->pa -= 0.1 * FPS;
+		cub->pa -= 0.1;
 		if (cub->pa < 0)
 			cub->pa += 2 * PI;
 		cub->pdx = cos(cub->pa) * 1;
@@ -24,7 +24,7 @@ void	changing_direction(int key, t_cub *cub)
 	}
 	if (key == ALEFTK)
 	{
-		cub->pa += 0.1 * FPS;
+		cub->pa += 0.1;
 		if (cub->pa > 2 * PI)
 			cub->pa -= 2 * PI;
 		cub->pdx = cos(cub->pa) * 1;
@@ -76,16 +76,16 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	if (key == LEFTK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
-			cub->player_x += cub->pdy * FPS;
+			cub->player_x += cub->pdy;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y -= cub->pdx * FPS;
+			cub->player_y -= cub->pdx;
 	}
 	if (key == RIGHTK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
-			cub->player_x -= cub->pdy *	FPS;
+			cub->player_x -= cub->pdy;
 		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y += cub->pdx * FPS;
+			cub->player_y += cub->pdx;
 	}
 	return (0);
 }
@@ -121,16 +121,16 @@ int	moving_straight(int key, t_cub *cub, t_collision *collision)
 	if (key == FORWARDK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
-			cub->player_x += cub->pdx * FPS;
+			cub->player_x += cub->pdx;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y += cub->pdy * FPS;
+			cub->player_y += cub->pdy;
 	}
 	if (key == BACKK)
 	{
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
-			cub->player_x -= cub->pdx * FPS;
+			cub->player_x -= cub->pdx;
 		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
-			cub->player_y -= cub->pdy *FPS;
+			cub->player_y -= cub->pdy;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 12:08:03 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:11:40 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	draw_player(t_cub *cub, float x, float y)
 
 int	init_line(t_cub *cub, t_rays *rays, t_line *line)
 {
-	line->x1 = (cub->player_x / ((float)cub->unitpc / (float)cub->ppc));
-	line->y1 = (cub->player_y /  ((float)cub->unitpc / (float)cub->ppc));
+	line->x1 = (cub->player_x / ((float)UNITPC / (float)cub->ppc));
+	line->y1 = (cub->player_y /  ((float)UNITPC / (float)cub->ppc));
 	// if (rays->r == 59)
 	// 	printf("rx=%f, ry=%f\n", rays->rx, rays->ry);
 	line->x2 = rays->rx;

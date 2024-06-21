@@ -1,10 +1,10 @@
-			   NO  	textures/Brick32.xpm
+			   NO  	textures/Door1.xpm
 
-SO textures/Brick32.xpm
+SO textures/Brick256.xpm
 C 38,    89  ,   255
 
 	EA textures/Brick32.xpm
-WE 			textures/Brick32.xpm
+WE 			textures/Brick512.xpm
 
 
 

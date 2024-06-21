@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/21 11:40:40 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:44:40 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@
 # define ARIGHTK 65361
 # define DELAY 15.625 
 # define UNITPC 16
-# define PPC 16
+# define PPCMIN 5
 # define PLAYERSIZE 2
 # define FIELDOFVIEW 72.0
-# define PPCMIN 8
 # define PI 3.14159265358979323846
 # define DEGTORAD 0.0174533
 

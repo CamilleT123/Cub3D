@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "./include/cub3d.h"
 
 void	changing_direction(int key, t_cub *cub)
 {
-	if (key == ARIGHTK)
+	if (key == 65361)
 	{
 		cub->pa -= 0.1;
 		if (cub->pa < 0)
@@ -22,7 +22,7 @@ void	changing_direction(int key, t_cub *cub)
 		cub->pdx = cos(cub->pa) * 1;
 		cub->pdy = sin(cub->pa) * 1;
 	}
-	if (key == ALEFTK)
+	if (key == 65363)
 	{
 		cub->pa += 0.1;
 		if (cub->pa > 2 * PI)

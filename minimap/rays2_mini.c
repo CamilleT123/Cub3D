@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 18:46:47 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_vertical_lines_mini(t_cub *cub, t_rays *rays)
 	if (rays->ra > (PI / 2) && rays->ra < (3 * PI / 2))
 	{
 		// if (rays->r == 59)
-		// 	printf("\n0ra = %f\n", rays->ra / DegtoRad);
+		// 	printf("\n0ra = %f\n", rays->ra / DEGTORAD);
 		rays->rx = (((int)cub->player_xmini / cub->ppc) * cub->ppc) - 0.0001;
 		rays->ry = (cub->player_xmini - rays->rx) * rays->ntan + cub->player_ymini;
 		rays->xo = -cub->ppc;
@@ -68,7 +68,7 @@ int	check_vertical_lines_mini(t_cub *cub, t_rays *rays)
 	if (rays->ra < (PI / 2) || rays->ra > (3 * PI / 2))
 	{
 		// if (rays->r == 59)
-		// 	printf("\n1ra = %f\n", rays->ra / DegtoRad);
+		// 	printf("\n1ra = %f\n", rays->ra / DEGTORAD);
 		rays->rx = (((int)cub->player_xmini / cub->ppc) * cub->ppc) + cub->ppc;
 		rays->ry = (cub->player_xmini - rays->rx) * rays->ntan + cub->player_ymini;
 		rays->xo = cub->ppc;
@@ -77,7 +77,7 @@ int	check_vertical_lines_mini(t_cub *cub, t_rays *rays)
 	if (rays->ra == (PI / 2) || rays->ra == (3 * PI / 2))
 	{
 		// if (rays->r == 59)
-		// 	printf("\n3ra = %f\n", rays->ra / DegtoRad);
+		// 	printf("\n3ra = %f\n", rays->ra / DEGTORAD);
 		rays->rx = cub->player_xmini;
 		rays->ry = cub->player_ymini;
 		rays->dof = cub->mapmax;

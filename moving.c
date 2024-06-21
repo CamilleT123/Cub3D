@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 20:07:43 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:35 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,16 +130,20 @@ int	moving_straight(int key, t_cub *cub, t_collision *collision)
 	init_collision_straight(cub, collision);
 	if (key == FORWARDK)
 	{
-		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
+		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == DOOR)
+			cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] = FLOOR;
+		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == DOOR)
+			cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] = FLOOR;
+		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == FLOOR)
 			cub->player_x += cub->pdx;
-		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
+		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == FLOOR)
 			cub->player_y += cub->pdy;
 	}
 	if (key == BACKK)
 	{
-		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == 0)
+		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == FLOOR)
 			cub->player_x -= cub->pdx;
-		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == 0)
+		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == FLOOR)
 			cub->player_y -= cub->pdy;
 	}
 	return (0);

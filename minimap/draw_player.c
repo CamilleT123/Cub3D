@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 18:48:17 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	draw_rays(t_cub *cub, t_rays *rays, t_line *line)
 {
 	rays->r = 0;
 	// rays->ra = cub->pa;
-	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DegtoRad);
+	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DEGTORAD);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)
@@ -98,12 +98,12 @@ int	draw_rays(t_cub *cub, t_rays *rays, t_line *line)
 		check_vertical_lines_mini(cub, rays);
 		compare_distances_mini(rays);
 			// init_line(cub, rays, line);
-		printf("ra=%f\n", rays->ra / DegtoRad);
+		printf("ra=%f\n", rays->ra / DEGTORAD);
 		printf("rx=%f\n", rays->rx);
 		printf("ry=%f\n", rays->ry);
 		init_line_mini(cub, rays, line);
 		draw_line(cub, rays, line);
-		rays->ra += (FIELDOFVIEW / rays->nb_rays) * DegtoRad;
+		rays->ra += (FIELDOFVIEW / rays->nb_rays) * DEGTORAD;
 		// printf("(FIELDOFVIEW / rays->nb_rays)=%d\n", (FIELDOFVIEW / rays->nb_rays));
 		if (rays->ra < 0)
 			rays->ra += 2 * PI;

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 18:46:10 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int	check_horizontal_lines_mini(t_cub *cub, t_rays *rays)
 {
 	rays->dof = 0;
 	rays->atan = (-1) / (tan(rays->ra));
-	// printf("pa = %f\n", cub->pa / DegtoRad);
+	// printf("pa = %f\n", cub->pa / DEGTORAD);
 	if (rays->ra > PI)
 	{
 		// if (rays->r == 59 || rays->r == 0)
-		// 	printf("\n4ra = %f\n", rays->ra / DegtoRad);
+		// 	printf("\n4ra = %f\n", rays->ra / DEGTORAD);
 		rays->ry = (((int)cub->player_ymini / cub->ppc) * cub->ppc) - 0.0001;
 		rays->rx = (cub->player_ymini - rays->ry) * rays->atan + cub->player_xmini;
 		rays->yo = -cub->ppc;
@@ -80,14 +80,14 @@ int	check_horizontal_lines_mini(t_cub *cub, t_rays *rays)
 	if (rays->ra < PI && rays->ra > 0)
 	{
 		// if (rays->r == 59 || rays->r == 0)
-		// 	printf("\n5ra = %f\n", rays->ra / DegtoRad);
+		// 	printf("\n5ra = %f\n", rays->ra / DEGTORAD);
 		rays->ry = (((int)cub->player_ymini / cub->ppc) * cub->ppc) + cub->ppc;
 		rays->rx = (cub->player_ymini - rays->ry) * rays->atan + cub->player_xmini;
 		rays->yo = cub->ppc;
 		rays->xo = -rays->yo * rays->atan;
 		// if (rays->r == 59)
 		// {
-		// 	printf("if ra < %f et ra > 0 , ra = %f\n", PI, rays->ra / DegtoRad);
+		// 	printf("if ra < %f et ra > 0 , ra = %f\n", PI, rays->ra / DEGTORAD);
 		// 	printf("rx = %f\n", rays->rx);
 		// 	printf("ry = %f\n", rays->ry);
 		// }
@@ -96,7 +96,7 @@ int	check_horizontal_lines_mini(t_cub *cub, t_rays *rays)
 	{
 		// printf("if ra = 0 ou ra = %f, ra = %f\n", PI, rays->ra);
 		// if (rays->r == 59 || rays->r == 0)
-		// 	printf("\n6ra = %f\n", rays->ra / DegtoRad);
+		// 	printf("\n6ra = %f\n", rays->ra / DEGTORAD);
 		rays->rx = cub->player_xmini;
 		rays->ry = cub->player_ymini;
 		rays->dof = cub->mapmax;
@@ -115,7 +115,7 @@ int	rays_init_mini(t_cub *cub, t_rays *rays)
 	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DegtoRad);
+	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DEGTORAD);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)
@@ -155,7 +155,7 @@ int	calculate_rays_mini(t_cub *cub, t_rays *rays)
 		check_vertical_lines(cub, rays);
 		compare_distances(rays);
 		draw_walls(cub, rays);
-		rays->ra += 0.075 * DegtoRad;
+		rays->ra += 0.075 * DEGTORAD;
 		if (rays->ra < 0)
 			rays->ra += 2 * PI;
 		if (rays->ra > 2 * PI)

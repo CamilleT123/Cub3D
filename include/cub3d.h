@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 20:22:19 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:34:11 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef enum s_tile
 {
 	FLOOR,
 	WALL,
-	HOLE
+	HOLE,
+	DOOR
 }		t_tile;
 
 /*------------ PARSING/INIT -------------*/

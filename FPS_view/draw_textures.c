@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:16 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 20:15:57 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 	{
 		line->tx = (int)(rays->rx * (cub->texture[rays->wall]->width / 16.0))
 			% cub->texture[rays->wall]->width;
-		if (rays->ra < 180 * DegtoRad)
+		if (rays->ra < 180 * DEGTORAD)
 			line->tx = (cub->texture[rays->wall]->width - 1) - line->tx;
 	}
 	else
 	{
 		line->tx = (int)(rays->ry * (cub->texture[rays->wall]->width / 16.0))
 			% cub->texture[rays->wall]->width;
-		if (rays->ra > (90 * DegtoRad) && rays->ra < (270 * DegtoRad))
+		if (rays->ra > (90 * DEGTORAD) && rays->ra < (270 * DEGTORAD))
 			line->tx = (cub->texture[rays->wall]->width - 1) - line->tx;
 	}
 	draw_vertical_wall(line, bres, cub, rays);

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 20:03:43 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:58 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	rays->r = 0;
 	rays->rx = 0;
 	rays->ry = 0;
-	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DegtoRad);
+	rays->ra = cub->pa - ((FIELDOFVIEW / 2) * DEGTORAD);
 	if (rays->ra < 0)
 		rays->ra += 2 * PI;
 	if (rays->ra > 2 * PI)
@@ -118,7 +118,7 @@ int	calculate_rays(t_cub *cub, t_rays *rays)
 		check_vertical_lines(cub, rays);
 		compare_distances(rays);
 		draw_walls(cub, rays);
-		rays->ra += (FIELDOFVIEW / WINW) * DegtoRad;
+		rays->ra += (FIELDOFVIEW / WINW) * DEGTORAD;
 		if (rays->ra < 0)
 			rays->ra += 2 * PI;
 		if (rays->ra > 2 * PI)

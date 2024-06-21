@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/20 20:14:51 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:07:54 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	draw_walls(t_cub *cub, t_rays *rays)
 	float	line_off;
 
 	fix_fish_eye(cub, rays);
-	wall.line_height = (cub->mapy * (WINH)) / rays->distt;
+	wall.line_height = (16 * (WINH)) / rays->distt;
 	wall.ty_step = cub->texture[rays->wall]->width / (float)wall.line_height;
 	wall.ty_off = 0;
 	if (wall.line_height > WINH)

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 11:44:09 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:15:15 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,21 @@
 
 int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->rx <= (cub->mapx * cub->unitpc) && rays->dof < cub->mapmax)
+	while (rays->rx <= (cub->mapx * UNITPC) && rays->dof < cub->mapmax)
 	{
 		rays->mx = (int)(rays->rx) / UNITPC;
 		rays->my = (int)(rays->ry) / UNITPC;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
-			&& cub->map[rays->mp] == 1)
+			&& (cub->map[rays->mp] == WALL || cub->map[rays->mp] == DOOR))
 		{
 			rays->dof = cub->mapmax;
 			rays->hx = rays->rx;
 			rays->hy = rays->ry;
 			rays->disth = distance(cub->player_x, cub->player_y, rays->hx,
 					rays->hy);
+			if (cub->map[rays->mp] == DOOR)
+				rays->wall = WDOOR;
 		}
 		else
 		{
@@ -50,15 +52,15 @@ int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 	rays->atan = (-1) / (tan(rays->ra));
 	if (rays->ra > PI)
 	{
-		rays->ry = (((int)cub->player_y / cub->unitpc) * cub->unitpc) - 0.0001;
+		rays->ry = (((int)cub->player_y / UNITPC) * UNITPC) - 0.0001;
 		rays->rx = (cub->player_y - rays->ry) * rays->atan + cub->player_x;
 		rays->yo = -UNITPC;
 		rays->xo = -rays->yo * rays->atan;
 	}
 	if (rays->ra < PI && rays->ra > 0)
 	{
-		rays->ry = (((int)cub->player_y / cub->unitpc)
-				* cub->unitpc) + cub->unitpc;
+		rays->ry = (((int)cub->player_y / UNITPC)
+				* UNITPC) + UNITPC;
 		rays->rx = (cub->player_y - rays->ry) * rays->atan + cub->player_x;
 		rays->yo = UNITPC;
 		rays->xo = -rays->yo * rays->atan;

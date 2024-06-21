@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/21 11:47:06 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/06/21 13:34:40 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= cub3d
 CC 			= cc
 
 #------------ SOURCE -------------#
-SRC			= $(addprefix ./src/, main.c moving.c fps.c)
+SRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c)
 
 INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
 			  edit_scene.c char_condition.c check_map.c init_map.c)
@@ -25,7 +25,7 @@ GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
 RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
 FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c draw_textures.c)
-MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_player.c rays_mini.c rays2_mini.c)
+MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_fullmap.c draw_player.c rays_mini.c rays2_mini.c)
 
 C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
 

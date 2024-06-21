@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 11:44:23 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:15:06 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 {
-	while (rays->ry <= (cub->mapy * cub->unitpc) && rays->dof < cub->mapmax)
+	while (rays->ry <= (cub->mapy * UNITPC) && rays->dof < cub->mapmax)
 	{
 		rays->mx = (int)(rays->rx) / UNITPC;
 		rays->my = (int)(rays->ry) / UNITPC;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
-			&& cub->map[rays->mp] == 1)
+			&& (cub->map[rays->mp] == WALL || cub->map[rays->mp] == DOOR))
 		{
 			rays->vx = rays->rx;
 			rays->vy = rays->ry;
 			rays->distv = distance(cub->player_x, cub->player_y, rays->vx,
 					rays->vy);
 			rays->dof = cub->mapmax;
+			if (cub->map[rays->mp] == DOOR)
+				rays->wall = WDOOR;
 		}
 		else
 		{
@@ -53,8 +55,8 @@ int	check_vertical_lines(t_cub *cub, t_rays *rays)
 	}
 	if (rays->ra < (PI / 2) || rays->ra > (3 * PI / 2))
 	{
-		rays->rx = (((int)cub->player_x / cub->unitpc)
-				* cub->unitpc) + cub->unitpc;
+		rays->rx = (((int)cub->player_x / UNITPC)
+				* UNITPC) + UNITPC;
 		rays->ry = (cub->player_x - rays->rx) * rays->ntan + cub->player_y;
 		rays->xo = UNITPC;
 		rays->yo = -rays->xo * rays->ntan;

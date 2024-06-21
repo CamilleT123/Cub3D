@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 11:47:23 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:14:52 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum s_walls
 	NORTH,
 	SOUTH,
 	EAST,
-	WEST
+	WEST,
+	WDOOR
 }			t_walls;
 
 typedef enum s_tile
@@ -74,9 +75,10 @@ int		check_vertical_lines(t_cub *cub, t_rays *rays);
 int		compare_distances(t_rays *rays);
 
 /*------------ DRAWING MINIMAP -------------*/
-int		display_back(t_cub *cub);
-int		draw_map(t_cub *cub);
+// int		display_back(t_cub *cub);
+// int		draw_map(t_cub *cub);
 int		draw_minimap(t_cub *cub);
+int		draw_full_map(t_cub *cub);
 int		draw_player(t_cub *cub, float x, float y);
 int		draw_square(t_cub *cub, float x, float y);
 

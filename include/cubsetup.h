@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/20 17:29:15 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:36:30 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define ESCK 65307
 # define ALEFTK 65363
 # define ARIGHTK 65361
-# define FPS 60
+# define DELAY 15.625 
 # define UNITPC 16
 # define PPC 16
 

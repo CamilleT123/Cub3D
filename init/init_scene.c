@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/19 17:44:11 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:06:37 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,23 @@ static int	is_valid_info(t_cub *cub, char **map)
 
 static int	check_map(t_cub *cub)
 {
+	int		i;
+	int		j;
+	char	c;
+
+	i = 0;
+	while (cub->scene.map && cub->scene.map[i])
+	{
+		j = 0;
+		while (cub->scene.map[i][j])
+		{
+			c = cub->scene.map[i][j];
+			if (!is_mapchar(c) && !is_startchar(c) && c != ' ')
+				return (map_error("", FORBIDDEN_CHAR, 1));
+			j++;
+		}
+		i++;
+	}
 	if (only_goodchar(&cub->scene))
 		return (1);
 	if (check_walls(cub->scene.map))

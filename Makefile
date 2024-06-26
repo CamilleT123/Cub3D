@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/21 16:34:50 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/06/26 13:23:02 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
 RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
 FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c draw_textures.c)
-MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_fullmap.c draw_player.c rays_mini.c rays2_mini.c)
+MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_fullmap.c draw_player.c)
 
 C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
 

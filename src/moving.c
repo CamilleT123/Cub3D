@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 18:52:22 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:23:50 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,23 @@ int	init_collision_side(t_cub *cub, t_collision *collision)
 	return (0);
 }
 
+ int	test_map(t_cub *cub)
+ {
+ 	int	i;
+
+ 	i = 0;
+ 	while (i < cub->mapsize)
+ 	{
+ 		printf("%d", cub->map[i]);
+ 		if (i == cub->mapx - 1)
+ 			printf("\n");
+ 		if (i > cub->mapx && (i + 1) % cub->mapx == 0)
+ 			printf("\n");
+ 		i++;
+ 	}
+ 	return (0);
+ }
+
 int	moving_side(int key, t_cub *cub, t_collision *collision)
 {
 	init_collision_side(cub, collision);
@@ -47,6 +64,7 @@ int	moving_side(int key, t_cub *cub, t_collision *collision)
 	collision->ipy_sub_yo = (cub->player_y - collision->yo) / UNITPC;
 	if (key == LEFTK)
 	{
+//		test_map(cub);
 		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == 0)
 			cub->player_x += cub->pdy;
 		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == 0)
@@ -110,10 +128,11 @@ int	moving_straight(int key, t_cub *cub, t_collision *coll)
 	init_collision_straight(cub, coll);
 	if (key == FORWARDK)
 	{
+//		printf("%d\n", coll->ipy * cub->mapx + coll->ipx_add_xo);
 		if (cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == DOOR)
-			cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] = FLOOR;
+			cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] = ODOOR;
 		if (cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == DOOR)
-			cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] = FLOOR;
+			cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] = ODOOR;
 		if (cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == FLOOR)
 			cub->player_x += cub->pdx;
 		if (cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == FLOOR)

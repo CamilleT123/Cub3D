@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 16:37:38 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:49:18 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,30 +67,15 @@ int		init_line(t_cub *cub, t_rays *rays, t_line *line);
 int		bresenham_walls(t_cub *cub, t_rays *rays, t_line *line);
 
 /*------------ RAYCASTING -------------*/
-int		rays_init(t_cub *cub, t_rays *rays);
 int		calculate_rays(t_cub *cub, t_rays *rays);
 int		draw_rays(t_cub *cub, t_rays *rays, t_line *line);
-int		check_horizontal_lines(t_cub *cub, t_rays *rays);
-int		init_each_ray(t_cub *cub, t_rays *rays);
 int		check_vertical_lines(t_cub *cub, t_rays *rays);
 int		compare_distances(t_rays *rays);
 
 /*------------ DRAWING MINIMAP -------------*/
-// int		display_back(t_cub *cub);
-// int		draw_map(t_cub *cub);
 int		draw_minimap(t_cub *cub);
 int		draw_full_map(t_cub *cub);
 int		draw_player(t_cub *cub, float x, float y);
-int		draw_square(t_cub *cub, float x, float y);
-
-int		rays_init_mini(t_cub *cub, t_rays *rays);
-int		calculate_rays_mini(t_cub *cub, t_rays *rays);
-int		draw_rays_mini(t_cub *cub, t_rays *rays, t_line *line);
-int		check_horizontal_lines_mini(t_cub *cub, t_rays *rays);
-int		init_each_ray_mini(t_cub *cub, t_rays *rays);
-
-int		check_vertical_lines_mini(t_cub *cub, t_rays *rays);
-int		compare_distances_mini(t_rays *rays);
 
 /*------------ UTILS -------------*/
 time_t	get_time(void);

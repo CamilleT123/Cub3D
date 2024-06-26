@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	draw_cropped_map(t_cub *cub, t_minimap *mini)
+static void	draw_cropped_map(t_cub *cub, t_minimap *mini)
 {
 	int	x;
 
@@ -32,7 +32,7 @@ void	draw_cropped_map(t_cub *cub, t_minimap *mini)
 	}
 }
 
-int	crop_map(t_cub *cub)
+static int	crop_map(t_cub *cub)
 {
 	t_minimap	mini;
 

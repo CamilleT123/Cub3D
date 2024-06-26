@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:16:59 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:47:08 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	display_floor(t_cub *cub)
+static void	display_floor(t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -27,7 +27,7 @@ void	display_floor(t_cub *cub)
 	}
 }
 
-void	display_ceiling(t_cub *cub)
+static void	display_ceiling(t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -55,7 +55,6 @@ int	display(t_cub *cub)
 	cub->t_update = t;
 	display_floor(cub);
 	display_ceiling(cub);
-	rays_init(cub, &rays);
 	calculate_rays(cub, &rays);
 	draw_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);

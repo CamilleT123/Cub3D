@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:16 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 11:36:58 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:40:37 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
+static void	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 {
 	int	y;
 	int	pixel;
@@ -29,7 +29,7 @@ void	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 	}
 }
 
-void	vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
+static void	vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 {
 	line->ty = line->ty_off * line->ty_step;
 	if (rays->disth < rays->distv)

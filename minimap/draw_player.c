@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 16:59:31 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:43:48 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	draw_direction(t_cub *cub, float x, float y)
+static int	draw_direction(t_cub *cub, float x, float y)
 {
 	int	xbis;
 	int	ybis;
@@ -48,21 +48,21 @@ int	draw_player(t_cub *cub, float x, float y)
 	return (0);
 }
 
-int	draw_player_mini(t_cub *cub, float x, float y)
-{
-	int	i;
-	int	j;
+// int	draw_player_mini(t_cub *cub, float x, float y)
+// {
+// 	int	i;
+// 	int	j;
 
-	if (x < 0 || x > cub->minimapx || y < 0 || y > cub->minimapy)
-		return (1);
-	i = y - PLAYERSIZE;
-	while (i < y + PLAYERSIZE)
-	{
-		j = x - PLAYERSIZE;
-		while (j < x + PLAYERSIZE)
-			my_mlx_pixel_put(cub, j++, i, 0x00FF0000);
-		++i;
-	}
-	draw_direction(cub, x, y);
-	return (0);
-}
+// 	if (x < 0 || x > cub->minimapx || y < 0 || y > cub->minimapy)
+// 		return (1);
+// 	i = y - PLAYERSIZE;
+// 	while (i < y + PLAYERSIZE)
+// 	{
+// 		j = x - PLAYERSIZE;
+// 		while (j < x + PLAYERSIZE)
+// 			my_mlx_pixel_put(cub, j++, i, 0x00FF0000);
+// 		++i;
+// 	}
+// 	draw_direction(cub, x, y);
+// 	return (0);
+// }

@@ -1,7 +1,7 @@
-NO textures/wood1.xpm
-SO textures/wood2.xpm
-WE textures/brick1.xpm
-EA textures/brick2.xpm
+NO textures/Brick64.xpm
+SO textures/Brick64.xpm
+WE textures/Brick64.xpm
+EA textures/Brick64.xpm
 
 C 200,200,200
 

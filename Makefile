@@ -18,14 +18,16 @@ CC 			= cc
 #------------ SOURCE -------------#
 SRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c changing_direction.c)
 
-INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
+INIT		= $(addprefix ./src/init/, init_cub.c exit.c utils.c init_scene.c	\
 			  edit_scene.c char_condition.c check_map.c init_map.c)
 
 GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
-RAYT		= $(addprefix ./raycasting/, rays.c rays2.c)
-FPS			= $(addprefix ./FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c draw_textures.c)
-MINIMAP		= $(addprefix ./minimap/, draw_minimap.c draw_fullmap.c draw_player.c)
+RAYT		= $(addprefix ./src/raycasting/, rays.c rays2.c)
+
+FPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c draw_view.c utils.c draw_textures.c)
+
+MINIMAP		= $(addprefix ./src/minimap/, draw_minimap.c draw_fullmap.c draw_player.c)
 
 C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
 

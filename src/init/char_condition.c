@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 13:15:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/26 16:33:58 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:03:26 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	init_start(t_scene *scene, char c, int i, int j)
 	if (c == 'N')
 		scene->start_angle = PI / 2;
 	if (c == 'W')
-		scene->start_angle = PI;
-	if (c == 'S')
 		scene->start_angle = 3 * PI / 2;
+	if (c == 'S')
+		scene->start_angle = PI;
 	if (c == 'E')
 		scene->start_angle = 0;
 }

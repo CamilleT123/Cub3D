@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ending.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 13:09:13 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:56:18 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	destroy_tex(t_cub *cub)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (cub->texture[i]->img)
 		{
@@ -27,6 +27,7 @@ static void	destroy_tex(t_cub *cub)
 		i++;
 	}
 	free(cub->texture);
+	cub->texture = NULL;
 }
 
 int	close_win(t_cub *cub)

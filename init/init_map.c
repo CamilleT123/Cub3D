@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/26 13:27:13 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:51:14 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,13 @@ int	init_textures(t_cub *cub)
 	{
 		if (get_texture(cub, i, arrtex[i]))
 			return (exit_map(cub, 1));
+		if (i < 4)
+			free(arrtex[i]);
 		i++;
 	}
+	cub->scene.north = NULL;
+	cub->scene.south = NULL;
+	cub->scene.east = NULL;
+	cub->scene.west = NULL;
 	return (0);
 }
-//	cub->scene.north = NULL;
-//	cub->scene.south = NULL;
-//	cub->scene.east = NULL;
-//	cub->scene.west = NULL;

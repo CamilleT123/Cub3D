@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/21 14:21:50 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:27:13 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	init_map(t_cub *cub)
 	cub->mapsize = cub->mapx * cub->mapy;
 	cub->f_color = cub->scene.f_color;
 	cub->c_color = cub->scene.c_color;
-
 	if (get_map_int(cub))
 		return (exit_map(cub, 1), 1);
 	return (0);
@@ -114,12 +113,11 @@ int	init_textures(t_cub *cub)
 	{
 		if (get_texture(cub, i, arrtex[i]))
 			return (exit_map(cub, 1));
-//		free(arrtex[i]);
 		i++;
 	}
+	return (0);
+}
 //	cub->scene.north = NULL;
 //	cub->scene.south = NULL;
 //	cub->scene.east = NULL;
 //	cub->scene.west = NULL;
-	return (0);
-}

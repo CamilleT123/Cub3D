@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 14:15:06 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:48:51 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
+static int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 {
 	while (rays->ry <= (cub->mapy * UNITPC) && rays->dof < cub->mapmax)
 	{

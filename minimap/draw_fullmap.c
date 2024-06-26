@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	draw_map_1(t_cub *cub, int x, int y)
+static int	draw_map_1(t_cub *cub, int x, int y)
 {
 	int	yo;
 	int	xo;
@@ -28,7 +28,7 @@ int	draw_map_1(t_cub *cub, int x, int y)
 	return (0);
 }
 
-int	draw_map_0(t_cub *cub, int x, int y)
+static int	draw_map_0(t_cub *cub, int x, int y)
 {
 	int	yo;
 	int	xo;

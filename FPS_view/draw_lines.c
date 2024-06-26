@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:08:43 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/18 17:52:01 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:41:20 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	draw_more_horizontal(t_cub *cub, t_rays *rays, t_bres *bres,
+static int	draw_more_horizontal(t_cub *cub, t_rays *rays, t_bres *bres,
 		t_line *line)
 {
 	int	slope;
@@ -40,7 +40,7 @@ int	draw_more_horizontal(t_cub *cub, t_rays *rays, t_bres *bres,
 	return (0);
 }
 
-int	draw_more_vertical(t_cub *cub, t_rays *rays, t_bres *bres,
+static int	draw_more_vertical(t_cub *cub, t_rays *rays, t_bres *bres,
 		t_line *line)
 {
 	int	slope;
@@ -68,7 +68,7 @@ int	draw_more_vertical(t_cub *cub, t_rays *rays, t_bres *bres,
 	return (0);
 }
 
-int	draw_horizontal(t_line *line, t_bres *bres, t_cub *cub,
+static int	draw_horizontal(t_line *line, t_bres *bres, t_cub *cub,
 		t_rays *rays)
 {
 	int	x;
@@ -82,7 +82,7 @@ int	draw_horizontal(t_line *line, t_bres *bres, t_cub *cub,
 	return (0);
 }
 
-int	draw_vertical(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
+static int	draw_vertical(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 {
 	int	y;
 

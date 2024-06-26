@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 16:33:10 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:48:20 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // check where the ray hit the horizontal lines
 
-int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
+static int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 {
 	while (rays->rx <= (cub->mapx * UNITPC) && rays->dof < cub->mapmax)
 	{
@@ -75,7 +75,19 @@ int	check_horizontal_lines(t_cub *cub, t_rays *rays)
 	return (0);
 }
 
-int	rays_init(t_cub *cub, t_rays *rays)
+static int	init_each_ray(t_cub *cub, t_rays *rays)
+{
+	rays->hx = cub->player_x;
+	rays->hy = cub->player_y;
+	rays->vx = cub->player_x;
+	rays->vy = cub->player_y;
+	rays->disth = 1000000;
+	rays->distv = 1000000;
+	rays->wall = 0;
+	return (0);
+}
+
+static int	rays_init(t_cub *cub, t_rays *rays)
 {
 	rays->r = 0;
 	rays->rx = 0;
@@ -99,20 +111,9 @@ int	rays_init(t_cub *cub, t_rays *rays)
 	return (0);
 }
 
-int	init_each_ray(t_cub *cub, t_rays *rays)
-{
-	rays->hx = cub->player_x;
-	rays->hy = cub->player_y;
-	rays->vx = cub->player_x;
-	rays->vy = cub->player_y;
-	rays->disth = 1000000;
-	rays->distv = 1000000;
-	rays->wall = 0;
-	return (0);
-}
-
 int	calculate_rays(t_cub *cub, t_rays *rays)
 {
+	rays_init(cub, rays);
 	while (rays->r < WINW)
 	{
 		init_each_ray(cub, rays);

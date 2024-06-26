@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 16:34:57 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:29:43 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	changing_direction_mouse(int x, t_cub *cub)
 			cub->player_angle += 2 * PI;
 		cub->pdx = cos(cub->player_angle) * 1;
 		cub->pdy = sin(cub->player_angle) * 1;
-		cub->oldx = x;
 	}
 	if (x > (cub->oldx + 10))
 	{
@@ -50,6 +49,6 @@ void	changing_direction_mouse(int x, t_cub *cub)
 			cub->player_angle -= 2 * PI;
 		cub->pdx = cos(cub->player_angle) * 1;
 		cub->pdy = sin(cub->player_angle) * 1;
-		cub->oldx = x;
 	}
+	cub->oldx = x;
 }

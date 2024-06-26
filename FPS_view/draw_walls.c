@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 17:21:08 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:39:49 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	fix_fish_eye(t_cub *cub, t_rays *rays)
+static void	fix_fish_eye(t_cub *cub, t_rays *rays)
 {
 	float	ca;
 

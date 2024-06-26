@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 18:53:08 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:16:59 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	display(t_cub *cub)
 {
 	t_rays	rays;
 	time_t	t;
-	
+
 	t = get_time();
 	while (t < cub->t_update + DELAY)
 	{

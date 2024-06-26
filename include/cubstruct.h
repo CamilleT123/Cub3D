@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/21 17:13:59 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:07:41 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ typedef struct s_texture
 
 typedef struct s_minimap
 {
-	int		case_x_player;
-	int		case_y_player;
-	int		index_player;
-	int		x_min;
-	int		x_max;
-	int		y_min;
-	int		y_max;
-	int		case_x;
-	int		case_y;
+	int xmin;
+	int ymin;
+	int xmax;
+	int ymax;
+	int y;
+	int x;
+	// int		case_x;
+	// int		case_y;
 }			t_minimap;
 
 typedef struct s_cub

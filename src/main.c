@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 17:36:23 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:17:37 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ static int	struct_init(t_cub *cub, char **av)
 	cub->oldx = WINW / 2;
 	cub->player_x = cub->scene.start_x * UNITPC + UNITPC / 2;
 	cub->player_y = cub->scene.start_y * UNITPC + UNITPC / 2;
-	printf("player_x = %f\n", cub->player_x);
-	printf("player_y = %f\n", cub->player_y);
-	printf("start_x = %f\n", cub->scene.start_x);
-	printf("start_y = %f\n", cub->scene.start_y);
 	cub->player_xmini = (cub->player_x / ((float)UNITPC / (float)cub->ppc));
 	cub->player_ymini = (cub->player_y / ((float)UNITPC / (float)cub->ppc));
 	cub->player_angle = cub->scene.start_angle + PI;

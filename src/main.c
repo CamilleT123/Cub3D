@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:33:43 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:56:38 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	mouse_moving(int x, int y, t_cub *cub)
 {
 	(void)y;
 	changing_direction_mouse(x, cub);
-	display(cub);
+	(void)cub;
+	// display(cub);
 	return (0);
 }
 

@@ -6,13 +6,13 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 21:53:41 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:02:14 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_coll(t_cub *cub, t_collision *coll)
+static void	init_coll(t_cub *cub, t_collision *coll)
 {
 	coll->ax = coll->ipy * cub->mapx + ((cub->player_x + coll->xo) / UNITPC);
 	coll->sx = coll->ipy * cub->mapx + ((cub->player_x - coll->xo) / UNITPC);
@@ -175,7 +175,8 @@ int	init_collision_side(t_cub *cub, t_collision *collision)
 		}
 	}
 	else
-		// donc si cos positif ou proche de null donc angle entre 0 et 90 ou 270 et 360
+		// donc si cos positif ou proche de null donc angle entre 0 et 
+		// 90 ou 270 et 360
 	{
 		collision->yo = -SECDIST;// pour 300
 		if (cub->pdy < -0.000005) // donc angle entre 270 et 360

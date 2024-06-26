@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 20:57:31 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:00:26 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	update_doors(t_cub *cub)
 	i = 0;
 	while (i < cub->mapsize)
 	{
-		if (i != index && i != index -1 && i != index + 1 && i != index 
+		if (i != index && i != index -1 && i != index + 1 && i != index
 			- cub->mapx && i != index + cub->mapx && cub->map[i] == ODOOR)
 			cub->map[i] = DOOR;
 		i++;

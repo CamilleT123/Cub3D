@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:02:14 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:26:15 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 static void	init_coll(t_cub *cub, t_collision *coll)
 {
-	coll->ax = coll->ipy * cub->mapx + ((cub->player_x + coll->xo) / UNITPC);
-	coll->sx = coll->ipy * cub->mapx + ((cub->player_x - coll->xo) / UNITPC);
-	coll->ay = ((cub->player_y + coll->yo) / UNITPC) * cub->mapx + coll->ipx;
-	coll->sy = ((cub->player_y - coll->yo) / UNITPC) * cub->mapx + coll->ipx;
+	coll->ax = coll->ipy * cub->mapx +
+		(int)((cub->player_x + coll->xo) / UNITPC);
+	coll->sx = coll->ipy * cub->mapx +
+		(int)((cub->player_x - coll->xo) / UNITPC);
+	coll->ay = (int)((cub->player_y + coll->yo) / UNITPC) *
+		cub->mapx + coll->ipx;
+	coll->sy = (int)((cub->player_y - coll->yo) / UNITPC) *
+		cub->mapx + coll->ipx;
 }
 
 int	init_collision_side(t_cub *cub, t_collision *collision)

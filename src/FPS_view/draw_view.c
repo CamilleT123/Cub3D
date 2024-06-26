@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 19:34:28 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 20:57:31 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,19 @@ static void	display_ceiling(t_cub *cub)
 void	update_doors(t_cub *cub)
 {
 	int	index;
+	int	x;
+	int	y;
 	int	i;
 
-	index = (cub->player_y / UNITPC) * cub->mapx + (cub->player_x / UNITPC);
-	printf("%d\n", index);
+	x = cub->player_x / UNITPC;
+	y = cub->player_y / UNITPC;
+	index = y * cub->mapx + x;
 	i = 0;
 	while (i < cub->mapsize)
 	{
 		if (i != index && i != index -1 && i != index + 1 && i != index 
 			- cub->mapx && i != index + cub->mapx && cub->map[i] == ODOOR)
-		{
-			printf("%d %d %d\n", index, index + cub->mapx, i - cub->mapx);
-			printf("iici\n");
 			cub->map[i] = DOOR;
-		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 16:56:38 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:28:05 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	keymapping(int key, t_cub *cub)
 
 	collision.ipx = cub->player_x / UNITPC;
 	collision.ipy = cub->player_y / UNITPC;
-	if (key == 65307)
+	if (key == ESCK)
 		close_win(cub);
-	if (key == 65363 || key == 65361)
+	if (key == ALEFTK || key == ARIGHTK)
 		changing_direction(key, cub);
 	if (key == FORWARDK || key == BACKK)
 		moving_straight(key, cub, &collision);

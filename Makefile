@@ -6,7 +6,7 @@
 #    By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/21 13:34:40 by ctruchot         ###   ########.fr        #
+#    Updated: 2024/06/21 16:34:50 by ctruchot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		= cub3d
 CC 			= cc
 
 #------------ SOURCE -------------#
-SRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c)
+SRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c changing_direction.c)
 
 INIT		= $(addprefix ./init/, init_cub.c exit.c utils.c init_scene.c	\
 			  edit_scene.c char_condition.c check_map.c init_map.c)

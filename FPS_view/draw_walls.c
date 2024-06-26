@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 14:07:54 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:21:08 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	fix_fish_eye(t_cub *cub, t_rays *rays)
 {
 	float	ca;
 
-	ca = cub->pa - rays->ra;
+	ca = cub->player_angle - rays->ra;
 	if (ca < 0)
 		ca += 2 * PI;
 	if (ca > 2 * PI)

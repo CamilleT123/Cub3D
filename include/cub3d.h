@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 14:14:52 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:37:38 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		close_win(t_cub *cub);
 
 /*------------ MOVING -------------*/
 void	changing_direction(int key, t_cub *cub);
+void	changing_direction_mouse(int x, t_cub *cub);
 int		keymapping(int key, t_cub *cub);
 int		moving_straight(int key, t_cub *cub, t_collision *collision);
 int		moving_side(int key, t_cub *cub, t_collision *collision);
@@ -92,7 +93,6 @@ int		check_vertical_lines_mini(t_cub *cub, t_rays *rays);
 int		compare_distances_mini(t_rays *rays);
 
 /*------------ UTILS -------------*/
-
 time_t	get_time(void);
 int		ft_abs(int n);
 int		ft_sign(int n);

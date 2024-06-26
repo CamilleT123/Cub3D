@@ -6,31 +6,11 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/21 13:11:40 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:52:22 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	changing_direction(int key, t_cub *cub)
-{
-	if (key == ARIGHTK)
-	{
-		cub->pa -= 0.1;
-		if (cub->pa < 0)
-			cub->pa += 2 * PI;
-		cub->pdx = cos(cub->pa) * 1;
-		cub->pdy = sin(cub->pa) * 1;
-	}
-	if (key == ALEFTK)
-	{
-		cub->pa += 0.1;
-		if (cub->pa > 2 * PI)
-			cub->pa -= 2 * PI;
-		cub->pdx = cos(cub->pa) * 1;
-		cub->pdy = sin(cub->pa) * 1;
-	}
-}
 
 int	init_collision_side(t_cub *cub, t_collision *collision)
 {
@@ -125,29 +105,30 @@ int	init_collision_straight(t_cub *cub, t_collision *collision)
 // printf("player_xmini = %f\n", cub->player_xmini);
 // printf("player_ymini = %f\n", cub->player_ymini);
 
-int	moving_straight(int key, t_cub *cub, t_collision *collision)
+int	moving_straight(int key, t_cub *cub, t_collision *coll)
 {
-	init_collision_straight(cub, collision);
+	init_collision_straight(cub, coll);
 	if (key == FORWARDK)
 	{
-		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == DOOR)
-			cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] = FLOOR;
-		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == DOOR)
-			cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] = FLOOR;
-		if (cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] == FLOOR)
+		if (cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == DOOR)
+			cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] = FLOOR;
+		if (cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == DOOR)
+			cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] = FLOOR;
+		if (cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == FLOOR)
 			cub->player_x += cub->pdx;
-		if (cub->map[collision->ipy_add_yo * cub->mapx + collision->ipx] == FLOOR)
+		if (cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == FLOOR)
 			cub->player_y += cub->pdy;
 	}
 	if (key == BACKK)
 	{
-		if (cub->map[collision->ipy * cub->mapx + collision->ipx_sub_xo] == FLOOR)
+		if (cub->map[coll->ipy * cub->mapx + coll->ipx_sub_xo] == FLOOR)
 			cub->player_x -= cub->pdx;
-		if (cub->map[collision->ipy_sub_yo * cub->mapx + collision->ipx] == FLOOR)
+		if (cub->map[coll->ipy_sub_yo * cub->mapx + coll->ipx] == FLOOR)
 			cub->player_y -= cub->pdy;
 	}
 	return (0);
 }
+
 // printf("cub->map[collision->ipy * cub->mapx + collision->ipx_add_xo] = %d\n",
 	// collision->ipy * cub->mapx + collision->ipx_add_xo);
 // printf("pdx = %f   pdy = %f\n", cub->pdx, cub->pdy);

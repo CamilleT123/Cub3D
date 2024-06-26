@@ -1,11 +1,10 @@
-NO textures/Brick128.xpm
-SO textures/Brick128.xpm
-WE textures/Brick128.xpm
+NO textures/Brick32.xpm
+SO textures/Brick64.xpm
 EA textures/Brick128.xpm
+WE textures/wood3.xpm
 
-C 88,66,12
-
-F 	99  ,	255,	0 
+C 103,102,99
+F 115,100,64
 
 1 111 111 111 111 111 111 111
 1 101 101 101 101 101 101 101

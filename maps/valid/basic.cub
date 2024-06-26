@@ -4,7 +4,7 @@ SO textures/Brick256.xpm
 C 38,    89  ,   255
 
 	EA textures/Brick32.xpm
-WE 			textures/Brick512.xpm
+WE 			textures/Brick128.xpm
 
 
 

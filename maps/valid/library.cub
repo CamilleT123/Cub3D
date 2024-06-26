@@ -1,10 +1,10 @@
-F 139,99,58
-C 171,154,137
+NO textures/Brick32.xpm
+SO textures/Brick64.xpm
+EA textures/Brick128.xpm
+WE textures/wood3.xpm
 
-NO textures/Brick512.xpm
-SO textures/Brick512.xpm
-WE textures/Brick512.xpm
-EA textures/Brick512.xpm
+C 103,102,99
+F 115,100,64
 
 1111111111111111111
 1001001001001001001

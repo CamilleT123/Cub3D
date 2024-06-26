@@ -63,7 +63,7 @@ if [ $mode -eq 1 ] || [ $mode -eq 3 ]; then
 		echo -e "${bleu}-----------------------------------------------------------${neutre}"
 		echo -e "        ${vert}$i${neutre}" # nom de l'argument (map)
 
-		valgrind --track-fds=yes --leak-check=full ./cub3d ./maps/valid/$i 2>tmp >/dev/null # on copie stderr (2) vers un fichier temporaire (tmp) et stdout vers null
+		valgrind --track-fds=yes --leak-check=full ./cub3D ./maps/valid/$i 2>tmp >/dev/null # on copie stderr (2) vers un fichier temporaire (tmp) et stdout vers null
 		error=$(cat tmp | grep "Error" | wc -l)                                             # on recupère le resultat de grep error sur tmp dans une variable : error
 		errorseg=$(cat tmp | grep "segmentation fault" | wc -l)                             # on recupère le resultat de grep error sur tmp dans une variable : error
 		errjump=$(cat tmp | grep "Conditional jump" | wc -l)                                # on recupère le resultat de grep error sur tmp dans une variable : error
@@ -122,7 +122,7 @@ if [ $mode -eq 2 ] || [ $mode -eq 3 ]; then
 		echo -e "${bleu}-----------------------------------------------------------${neutre}"
 		echo -e "        ${vert}$i${neutre}" # nom de l'argument (map)
 
-		valgrind --track-fds=yes --leak-check=full ./cub3d ./maps/invalid/$i 2>tmp >/dev/null # on copie stderr (2) vers un fichier temporaire (tmp) et stdout vers null
+		valgrind --track-fds=yes --leak-check=full ./cub3D ./maps/invalid/$i 2>tmp >/dev/null # on copie stderr (2) vers un fichier temporaire (tmp) et stdout vers null
 		error=$(cat tmp | grep "Error" | wc -l)                                               # on recupère le resultat de grep error sur tmp dans une variable : error
 		leaks=$(cat tmp | grep "no leaks are possible" | wc -l)                               # on recupere la chaine entre "" dans leaks
 		fdclose=$(cat tmp | grep "FILE DESCRIPTOR" | awk '{gsub(/\(/, "", $6); print $6}')    # gsub (global substitution) remplace tous ce qu'il y a entre les 2 / ; cad '(' ; par "" dans la colonne 6
@@ -134,7 +134,7 @@ if [ $mode -eq 2 ] || [ $mode -eq 3 ]; then
 			success=${vert}
 		fi
 
-		./cub3d ./maps/invalid/$i 2>&1 >/dev/null | head -2 | tail -1 # 2>&1 redirige stderr (2) vers stdout (1) puis envoie stdout dans null mais garde la redirection pour le pipe de head
+		./cub3D ./maps/invalid/$i 2>&1 >/dev/null | head -2 | tail -1 # 2>&1 redirige stderr (2) vers stdout (1) puis envoie stdout dans null mais garde la redirection pour le pipe de head
 
 		if [ $error -eq 1 ] && [ $leaks -eq 1 ]; then # si grep égale 1 alors ok
 			echo -e "${bleu}   Error : ${vert}[OK]${bleu}    Leaks : ${vert}[OK]${bleu}   FDs : ${success}$fdclose/$fdopen${neutre}"

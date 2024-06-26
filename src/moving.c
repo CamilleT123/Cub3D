@@ -6,11 +6,19 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 21:39:47 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:53:41 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	init_coll(t_cub *cub, t_collision *coll)
+{
+	coll->ax = coll->ipy * cub->mapx + ((cub->player_x + coll->xo) / UNITPC);
+	coll->sx = coll->ipy * cub->mapx + ((cub->player_x - coll->xo) / UNITPC);
+	coll->ay = ((cub->player_y + coll->yo) / UNITPC) * cub->mapx + coll->ipx;
+	coll->sy = ((cub->player_y - coll->yo) / UNITPC) * cub->mapx + coll->ipx;
+}
 
 int	init_collision_side(t_cub *cub, t_collision *collision)
 {
@@ -35,33 +43,25 @@ int	init_collision_side(t_cub *cub, t_collision *collision)
 		else
 			collision->xo = SECDIST;
 	}
+	init_coll(cub, collision);
 	return (0);
 }
 
 int	moving_side(int key, t_cub *cub, t_collision *coll)
 {
-	int	ax;
-	int	sx;
-	int	ay;
-	int	sy;
-
 	init_collision_side(cub, coll);
-	ax = coll->ipy * cub->mapx + ((cub->player_x + coll->xo) / UNITPC);
-	sx = coll->ipy * cub->mapx + ((cub->player_x - coll->xo) / UNITPC);
-	ay = ((cub->player_y + coll->yo) / UNITPC) * cub->mapx + coll->ipx;
-	sy = ((cub->player_y - coll->yo) / UNITPC) * cub->mapx + coll->ipx;
 	if (key == LEFTK)
 	{
-		if (cub->map[ax] == FLOOR || cub->map[ax] == ODOOR)
+		if (cub->map[coll->ax] == FLOOR || cub->map[coll->ax] == ODOOR)
 			cub->player_x += cub->pdy;
-		if (cub->map[ay] == FLOOR || cub->map[ay] == ODOOR)
+		if (cub->map[coll->ay] == FLOOR || cub->map[coll->ay] == ODOOR)
 			cub->player_y -= cub->pdx;
 	}
 	if (key == RIGHTK)
 	{
-		if (cub->map[sx] == FLOOR || cub->map[sx] == ODOOR)
+		if (cub->map[coll->sx] == FLOOR || cub->map[coll->sx] == ODOOR)
 			cub->player_x -= cub->pdy;
-		if (cub->map[sy] == FLOOR || cub->map[sy] == ODOOR)
+		if (cub->map[coll->sy] == FLOOR || cub->map[coll->sy] == ODOOR)
 			cub->player_y += cub->pdx;
 	}
 	return (0);
@@ -120,45 +120,33 @@ int	init_collision_straight(t_cub *cub, t_collision *coll)
 		coll->yo = -SECDIST;
 	else
 		coll->yo = SECDIST;
-	coll->ax = coll->ipy * cub->mapx + ((cub->player_x + coll->xo) / UNITPC);
-	coll->sx = coll->ipy * cub->mapx + ((cub->player_x - coll->xo) / UNITPC);
-	coll->ay = ((cub->player_y + coll->yo) / UNITPC) * cub->mapx + coll->ipx;
-	coll->sy = ((cub->player_y - coll->yo) / UNITPC) * cub->mapx + coll->ipx;
-	coll->ipx_add_xo = (cub->player_x + coll->xo) / UNITPC;
-	coll->ipx_sub_xo = (cub->player_x - coll->xo) / UNITPC;
-	coll->ipy_add_yo = (cub->player_y + coll->yo) / UNITPC;
-	coll->ipy_sub_yo = (cub->player_y - coll->yo) / UNITPC;
 	cub->player_xmini = (cub->player_x / ((float)UNITPC
 				/ (float)cub->ppc));
 	cub->player_ymini = (cub->player_y / ((float)UNITPC
 				/ (float)cub->ppc));
+	init_coll(cub, coll);
 	return (0);
 }
-// printf("\nplayer_x = %f\n", cub->player_x);
-// printf("player_y = %f\n", cub->player_y);
-// printf("player_xmini = %f\n", cub->player_xmini);
-// printf("player_ymini = %f\n", cub->player_ymini);
 
 int	moving_straight(int key, t_cub *cub, t_collision *coll)
 {
 	init_collision_straight(cub, coll);
 	if (key == FORWARDK)
 	{
-//		printf("%d\n", coll->ipy * cub->mapx + coll->ipx_add_xo);
-		if (cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == DOOR)
-			cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] = ODOOR;
-		if (cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == DOOR)
-			cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] = ODOOR;
-		if (cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == FLOOR || cub->map[coll->ipy * cub->mapx + coll->ipx_add_xo] == ODOOR)
+		if (cub->map[coll->ax] == DOOR)
+			cub->map[coll->ax] = ODOOR;
+		if (cub->map[coll->ay] == DOOR)
+			cub->map[coll->ay] = ODOOR;
+		if (cub->map[coll->ax] == FLOOR || cub->map[coll->ax] == ODOOR)
 			cub->player_x += cub->pdx;
-		if (cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == FLOOR || cub->map[coll->ipy_add_yo * cub->mapx + coll->ipx] == ODOOR)
+		if (cub->map[coll->ay] == FLOOR || cub->map[coll->ay] == ODOOR)
 			cub->player_y += cub->pdy;
 	}
 	if (key == BACKK)
 	{
-		if (cub->map[coll->ipy * cub->mapx + coll->ipx_sub_xo] == FLOOR || cub->map[coll->ipy * cub->mapx + coll->ipx_sub_xo] == ODOOR)
+		if (cub->map[coll->sx] == FLOOR || cub->map[coll->sx] == ODOOR)
 			cub->player_x -= cub->pdx;
-		if (cub->map[coll->ipy_sub_yo * cub->mapx + coll->ipx] == FLOOR || cub->map[coll->ipy_sub_yo * cub->mapx + coll->ipx] == ODOOR)
+		if (cub->map[coll->sy] == FLOOR || cub->map[coll->sy] == ODOOR)
 			cub->player_y -= cub->pdy;
 	}
 	return (0);

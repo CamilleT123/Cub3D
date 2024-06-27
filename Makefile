@@ -6,7 +6,7 @@
 #    By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/27 14:55:28 by aduvilla         ###   ########.fr        #
+#    Updated: 2024/06/27 15:19:05 by aduvilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ RAYT		= $(addprefix ./src/raycasting/, rays.c rays2.c)
 FPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c		\
 			  draw_view.c utils.c draw_textures.c)
 
-C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
+C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(TEXTURES)
 
 #------------ SOURCE BONUS -------------#
 BSRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c			\

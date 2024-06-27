@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 10:29:28 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:16:47 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ static int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 		rays->my = (int)(rays->ry) / UNITPC;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
-			&& (cub->map[rays->mp] == WALL || cub->map[rays->mp] == DOOR))
+			&& (cub->map[rays->mp] == WALL))
 		{
 			rays->vx = rays->rx;
 			rays->vy = rays->ry;
 			rays->distv = distance(cub->player_x, cub->player_y, rays->vx,
 					rays->vy);
 			rays->dof = cub->mapmax;
-			if (cub->map[rays->mp] == DOOR)
-				rays->wall = WDOOR;
 		}
 		else
 		{
@@ -81,7 +79,7 @@ int	compare_distances(t_rays *rays)
 		rays->ry = rays->hy;
 		rays->distt = rays->disth;
 		rays->color = 0xB40000;
-		if (rays->ra > PI && rays->wall != WDOOR)
+		if (rays->ra > PI)
 			rays->wall = SOUTH;
 	}
 	if (rays->distv < rays->disth)
@@ -90,9 +88,9 @@ int	compare_distances(t_rays *rays)
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;
 		rays->color = 0xE60000;
-		if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2) && rays->wall != WDOOR)
+		if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2))
 			rays->wall = WEST;
-		else if (rays->wall != WDOOR)
+		else
 			rays->wall = EAST;
 	}
 	return (0);

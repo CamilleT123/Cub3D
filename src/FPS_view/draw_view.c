@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:00:26 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:19:31 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,11 @@ static void	display_ceiling(t_cub *cub)
 	}
 }
 
-void	update_doors(t_cub *cub)
-{
-	int	index;
-	int	x;
-	int	y;
-	int	i;
-
-	x = cub->player_x / UNITPC;
-	y = cub->player_y / UNITPC;
-	index = y * cub->mapx + x;
-	i = 0;
-	while (i < cub->mapsize)
-	{
-		if (i != index && i != index -1 && i != index + 1 && i != index
-			- cub->mapx && i != index + cub->mapx && cub->map[i] == ODOOR)
-			cub->map[i] = DOOR;
-		i++;
-	}
-}
-
 int	display(t_cub *cub)
 {
 	t_rays	rays;
 	time_t	t;
 
-	update_doors(cub);
 	t = get_time();
 	while (t < cub->t_update + DELAY)
 	{
@@ -77,7 +56,6 @@ int	display(t_cub *cub)
 	display_floor(cub);
 	display_ceiling(cub);
 	calculate_rays(cub, &rays);
-	draw_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }

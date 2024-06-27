@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubsetup.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/21 18:51:25 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:01:22 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@
 # define MINIMAPPPC 8
 
 # define DIRECTIONSIZE 10
-# define DOORPATH "textures/Door1.xpm"
 
 #endif

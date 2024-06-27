@@ -6,7 +6,7 @@
 #    By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/26 18:10:07 by aduvilla         ###   ########.fr        #
+#    Updated: 2024/06/27 14:55:28 by aduvilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ BFPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c		\
 BMINIMAP		= $(addprefix ./src/minimap/, draw_minimap.c draw_fullmap.c		\
 			  draw_player.c)
 
-C_FILES		= $(BSRC) $(GNL) $(BINIT) $(BRAYT) $(BFPS) $(MINIMAP) $(TEXTURES)
+B_FILES		= $(BSRC) $(GNL) $(BINIT) $(BRAYT) $(BFPS) $(MINIMAP) $(TEXTURES)
 
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g
@@ -62,6 +62,8 @@ LIBRARIES	= -Lmlx -lmlx -L./libft -lft -lXext -lX11 -lm -lz
 #------------ COMPILING -------------#
 OBJ			:= $(C_FILES:.c=.o)
 
+OBJ_BONUS	:= $(B_FILES:.c=.o)
+
 all			: $(NAME)
 
 $(NAME)		: $(OBJ)
@@ -71,6 +73,11 @@ $(NAME)		: $(OBJ)
 
 %.o			: %.c
 	$(CC) $(CFLAGS) $(HEADERS) -O3 -c $< -o $@
+
+bonus		: $(OBJ_BONUS)
+	make -C mlx
+	make -C libft
+	$(CC) $(BFLAGS) $^ $(LIBRARIES) -o cub3D
 
 clean		:
 	rm -f $(OBJ) $(GNL_OBJ)

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:00:55 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:48:40 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static void	fix_fish_eye(t_cub *cub, t_rays *rays)
 
 // ca is use ti fix fish eye effect
 // line_height is the line height and lineo is the line offset
-
-// @Cam - line-off - verifier si le 2 est int ou float 
 
 int	draw_walls(t_cub *cub, t_rays *rays)
 {

@@ -24,8 +24,12 @@ static void	draw_cropped_map(t_cub *cub, t_minimap *mini)
 		{
 			if (cub->map[(mini->ymin / 8) * cub->mapx + (mini->xmin / 8)] == 1)
 				my_mlx_pixel_put(cub, x, mini->y, 0x7f388b);
-			if (cub->map[(mini->ymin / 8) * cub->mapx + (mini->xmin / 8)] == 0)
+			if (cub->map[(mini->ymin / 8) * cub->mapx + (mini->xmin / 8)] == 0
+				|| (cub->map[(mini->ymin / 8) * cub->mapx + (mini->xmin / 8)]
+					== 4))
 				my_mlx_pixel_put(cub, x, mini->y, 0xbdabc4);
+			if (cub->map[(mini->ymin / 8) * cub->mapx + (mini->xmin / 8)] == 3)
+				my_mlx_pixel_put(cub, x, mini->y, 663333);
 		}
 		++mini->xmin;
 		++x;

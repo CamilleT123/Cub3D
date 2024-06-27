@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 10:29:28 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:50:14 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 			rays->distv = distance(cub->player_x, cub->player_y, rays->vx,
 					rays->vy);
 			rays->dof = cub->mapmax;
-			if (cub->map[rays->mp] == DOOR)
-				rays->wall = WDOOR;
+			rays->mpv = rays->mp;
 		}
 		else
 		{
@@ -42,6 +41,7 @@ static int	check_if_vertical_wall(t_cub *cub, t_rays *rays)
 
 // check where the ray hit the vertical lines first if player is looking left, 
 // then if looking right and finally if looking up or down
+
 int	check_vertical_lines(t_cub *cub, t_rays *rays)
 {
 	rays->dof = 0;
@@ -73,15 +73,16 @@ int	check_vertical_lines(t_cub *cub, t_rays *rays)
 
 // compare the distance of the horizontal and vertical walls hit
 
-int	compare_distances(t_rays *rays)
+int	compare_distances(t_cub *cub, t_rays *rays)
 {
 	if (rays->disth < rays->distv)
 	{
 		rays->rx = rays->hx;
 		rays->ry = rays->hy;
 		rays->distt = rays->disth;
-		rays->color = 0xB40000;
-		if (rays->ra > PI && rays->wall != WDOOR)
+		if (cub->map[rays->mph] == DOOR)
+				rays->wall = WDOOR;
+		else if (rays->ra > PI && rays->wall != WDOOR)
 			rays->wall = SOUTH;
 	}
 	if (rays->distv < rays->disth)
@@ -89,18 +90,13 @@ int	compare_distances(t_rays *rays)
 		rays->rx = rays->vx;
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;
-		rays->color = 0xE60000;
-		if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2) && rays->wall != WDOOR)
+		if (cub->map[rays->mpv] == DOOR)
+				rays->wall = WDOOR;
+		else if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2)
+			&& rays->wall != WDOOR)
 			rays->wall = WEST;
 		else if (rays->wall != WDOOR)
 			rays->wall = EAST;
 	}
 	return (0);
 }
-
-// if (rays->r == (WINW / 2))
-	// {
-	// 	printf("WALLS\nhx=%f hy=%f\n", rays->hx, rays->hy);
-	// 	printf("vx=%f vy=%f\n", rays->vx, rays->vy);
-	// 	printf("disth=%f distv=%f\n", rays->disth, rays->distv);	
-	// }

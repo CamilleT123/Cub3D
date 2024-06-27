@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 18:51:22 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:53:35 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		bresenham_walls(t_cub *cub, t_rays *rays, t_line *line);
 int		calculate_rays(t_cub *cub, t_rays *rays);
 int		draw_rays(t_cub *cub, t_rays *rays, t_line *line);
 int		check_vertical_lines(t_cub *cub, t_rays *rays);
-int		compare_distances(t_rays *rays);
+int		compare_distances(t_cub *cub, t_rays *rays);
 
 /*------------ DRAWING MINIMAP -------------*/
 int		draw_minimap(t_cub *cub);

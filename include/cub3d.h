@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 15:27:42 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:51:22 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum s_walls
 	SOUTH,
 	EAST,
 	WEST,
+	WDOOR
 }			t_walls;
 
 typedef enum s_tile
@@ -38,6 +39,8 @@ typedef enum s_tile
 	FLOOR,
 	WALL,
 	HOLE,
+	DOOR,
+	ODOOR
 }		t_tile;
 
 /*------------ PARSING/INIT -------------*/
@@ -52,6 +55,7 @@ int		close_win(t_cub *cub);
 
 /*------------ MOVING -------------*/
 void	changing_direction(int key, t_cub *cub);
+void	changing_direction_mouse(int x, t_cub *cub);
 int		keymapping(int key, t_cub *cub);
 int		moving_straight(int key, t_cub *cub, t_collision *collision);
 int		moving_side(int key, t_cub *cub, t_collision *collision);
@@ -68,6 +72,11 @@ int		calculate_rays(t_cub *cub, t_rays *rays);
 int		draw_rays(t_cub *cub, t_rays *rays, t_line *line);
 int		check_vertical_lines(t_cub *cub, t_rays *rays);
 int		compare_distances(t_rays *rays);
+
+/*------------ DRAWING MINIMAP -------------*/
+int		draw_minimap(t_cub *cub);
+int		draw_full_map(t_cub *cub);
+int		draw_player(t_cub *cub, float x, float y);
 
 /*------------ UTILS -------------*/
 time_t	get_time(void);

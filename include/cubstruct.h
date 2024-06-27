@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 15:07:01 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:40:51 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ typedef struct s_texture
 	int		height;
 	int		endian;
 }			t_texture;
+
+typedef struct s_minimap
+{
+	int	xmin;
+	int	ymin;
+	int	xmax;
+	int	ymax;
+	int	y;
+	int	x;
+}			t_minimap;
 
 typedef struct s_cub
 {
@@ -51,6 +61,8 @@ typedef struct s_cub
 	int			mapmax;
 	int			*map;
 	time_t		t_update;
+	int			minimapx;
+	int			minimapy;
 	int			unitpc;
 	int			ppc;
 	int			oldx;

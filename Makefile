@@ -6,7 +6,7 @@
 #    By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/05 12:29:55 by ctruchot          #+#    #+#              #
-#    Updated: 2024/06/27 15:19:05 by aduvilla         ###   ########.fr        #
+#    Updated: 2024/06/27 16:37:13 by aduvilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,23 +32,23 @@ FPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c		\
 C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(TEXTURES)
 
 #------------ SOURCE BONUS -------------#
-BSRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c			\
+BSRC			= $(addprefix ./src_bonus/, main.c moving.c fps.c ending.c	\
 			  changing_direction.c)
 
-BINIT		= $(addprefix ./src/init/, init_cub.c exit.c utils.c			\
+BINIT		= $(addprefix ./src_bonus/init/, init_cub.c exit.c utils.c		\
 			  init_scene.c edit_scene.c char_condition.c check_map.c init_map.c)
 
 GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
 
-BRAYT		= $(addprefix ./src/raycasting/, rays.c rays2.c)
+BRAYT		= $(addprefix ./src_bonus/raycasting/, rays.c rays2.c)
 
-BFPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c		\
-			  draw_view.c utils.c draw_textures.c)
+BFPS		= $(addprefix ./src_bonus/FPS_view/, draw_lines.c			\
+			  draw_walls.c draw_view.c utils.c draw_textures.c)
 
-BMINIMAP		= $(addprefix ./src/minimap/, draw_minimap.c draw_fullmap.c		\
-			  draw_player.c)
+BMINIMAP	= $(addprefix ./src_bonus/minimap/, draw_minimap.c			\
+			  draw_fullmap.c draw_player.c)
 
-B_FILES		= $(BSRC) $(GNL) $(BINIT) $(BRAYT) $(BFPS) $(MINIMAP) $(TEXTURES)
+B_FILES		= $(BSRC) $(GNL) $(BINIT) $(BRAYT) $(BFPS) $(BMINIMAP) $(TEXTURES)
 
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g
@@ -80,7 +80,7 @@ bonus		: $(OBJ_BONUS)
 	$(CC) $(BFLAGS) $^ $(LIBRARIES) -o cub3D
 
 clean		:
-	rm -f $(OBJ) $(GNL_OBJ)
+	rm -f $(OBJ) $(GNL_OBJ) $(OBJ_BONUS)
 	make clean -C mlx
 	make clean -C libft
 

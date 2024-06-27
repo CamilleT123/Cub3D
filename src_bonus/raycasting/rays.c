@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 17:45:45 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:23:23 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,10 @@ static int	rays_init(t_cub *cub, t_rays *rays)
 	rays->yo = 0;
 	rays->disth = 0;
 	rays->distv = 0;
-	rays->xstep = 0;
-	rays->ystep = 0;
 	rays->mp = 0;
 	rays->mx = 0;
 	rays->my = 0;
 	rays->dof = 0;
-	rays->nb_rays = 60;
 	return (0);
 }
 

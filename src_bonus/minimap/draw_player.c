@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:02:48 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:43:48 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:39:12 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	draw_direction(t_cub *cub, float x, float y)
 	{
 		xbis = x + cos(cub->player_angle) * d;
 		ybis = y + sin(cub->player_angle) * d;
-		my_mlx_pixel_put(cub, xbis, ybis, 0x00FF0000);
+		my_mlx_pixel_put(cub, xbis, ybis, PLAYERCOLOR);
 		d++;
 	}
 	return (0);
@@ -41,7 +41,7 @@ int	draw_player(t_cub *cub, float x, float y)
 	{
 		j = x - PLAYERSIZE;
 		while (j < x + PLAYERSIZE)
-			my_mlx_pixel_put(cub, j++, i, 0x00FF0000);
+			my_mlx_pixel_put(cub, j++, i, PLAYERCOLOR);
 		++i;
 	}
 	draw_direction(cub, x, y);

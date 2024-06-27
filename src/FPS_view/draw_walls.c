@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:33:28 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 16:49:15 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:01:04 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,44 @@ static void	fix_fish_eye(t_cub *cub, t_rays *rays)
 	rays->distt = rays->distt * cos(ca);
 }
 
+static void	draw_vertical_line(t_line *line, t_cub *cub, t_rays *rays)
+{
+	int	y;
+	int	pixel;
+
+	pixel = 0;
+	y = line->y1;
+	while (y != line->y2)
+	{
+		pixel = (int)line->ty * cub->texture[rays->wall]->width + (int)line->tx;
+		line->color = *(unsigned int *)(cub->texture[rays->wall]->addr + pixel);
+		my_mlx_pixel_put(cub, line->x1, y, line->color);
+		y++;
+		line->ty += line->ty_step;
+	}
+}
+
+static void	get_texture_index(t_line *line, t_cub *cub, t_rays *rays)
+{
+	line->ty = line->ty_off * line->ty_step;
+	if (rays->disth < rays->distv)
+	{
+		line->tx = (int)(rays->rx * (cub->texture[rays->wall]->width / 16.0))
+			% cub->texture[rays->wall]->width;
+		if (rays->ra < 180 * DEGTORAD)
+			line->tx = (cub->texture[rays->wall]->width - 1) - line->tx;
+	}
+	else
+	{
+		line->tx = (int)(rays->ry * (cub->texture[rays->wall]->width / 16.0))
+			% cub->texture[rays->wall]->width;
+		if (rays->ra > (90 * DEGTORAD) && rays->ra < (270 * DEGTORAD))
+			line->tx = (cub->texture[rays->wall]->width - 1) - line->tx;
+	}
+	draw_vertical_line(line, cub, rays);
+}
 // ca is use ti fix fish eye effect
 // line_height is the line height and lineo is the line offset
-
-// @Cam - line-off - verifier si le 2 est int ou float 
 
 int	draw_walls(t_cub *cub, t_rays *rays)
 {
@@ -48,6 +82,6 @@ int	draw_walls(t_cub *cub, t_rays *rays)
 	wall.y1 = line_off;
 	wall.x2 = rays->r;
 	wall.y2 = wall.line_height + line_off;
-	bresenham_walls(cub, rays, &wall);
+	get_texture_index(&wall, cub, rays);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:12:53 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:01:14 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:09:29 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || x >= WINW || y < 0 || y >= WINH)
+		return ;
 	dst = cub->addr + (y * cub->line_length + x
 			* (cub->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

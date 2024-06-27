@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 16:53:35 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:59:16 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		display(t_cub *cub);
 int		draw_line(t_cub *cub, t_rays *rays, t_line *line);
 int		draw_walls(t_cub *cub, t_rays *rays);
 int		init_line(t_cub *cub, t_rays *rays, t_line *line);
-int		bresenham_walls(t_cub *cub, t_rays *rays, t_line *line);
+void	vertical_wall(t_line *line, t_cub *cub, t_rays *rays);
 
 /*------------ RAYCASTING -------------*/
 int		calculate_rays(t_cub *cub, t_rays *rays);

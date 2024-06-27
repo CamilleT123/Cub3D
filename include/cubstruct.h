@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 16:53:52 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:22:55 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ typedef struct s_rays
 	float	disth;
 	float	distv;
 	float	distt;
-	float	xstep;
-	float	ystep;
 	int		mx;
 	int		my;
 	int		mp;
@@ -101,7 +99,6 @@ typedef struct s_rays
 	float	atan;
 	float	ntan;
 	int		wall;
-	int		nb_rays;
 }			t_rays;
 
 typedef struct s_line
@@ -117,17 +114,6 @@ typedef struct s_line
 	float	tx;
 	int		color;
 }			t_line;
-
-typedef struct s_bres
-{
-	int			dx;
-	int			dy;
-	int			incx;
-	int			incy;
-	int			x2;
-	int			y2;
-	t_texture	*ptr_texture;
-}			t_bres;
 
 /*
 xo offset = la boule de securite

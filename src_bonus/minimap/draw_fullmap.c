@@ -22,7 +22,7 @@ static int	draw_map_3(t_cub *cub, int x, int y)
 	{
 		xo = x * cub->ppc;
 		while (xo < x * cub->ppc + cub->ppc)
-			my_mlx_pixel_put(cub, xo++, yo, 663333);
+			my_mlx_pixel_put(cub, xo++, yo, MAPDOOR);
 		++yo;
 	}
 	return (0);
@@ -38,7 +38,7 @@ static int	draw_map_1(t_cub *cub, int x, int y)
 	{
 		xo = x * cub->ppc;
 		while (xo < x * cub->ppc + cub->ppc)
-			my_mlx_pixel_put(cub, xo++, yo, 0x7f388b);
+			my_mlx_pixel_put(cub, xo++, yo, MAPWALL);
 		++yo;
 	}
 	return (0);
@@ -54,7 +54,7 @@ static int	draw_map_0(t_cub *cub, int x, int y)
 	{
 		xo = x * cub->ppc;
 		while (xo < x * cub->ppc + cub->ppc)
-			my_mlx_pixel_put(cub, xo++, yo, 0xbdabc4);
+			my_mlx_pixel_put(cub, xo++, yo, MAPFLOOR);
 		++yo;
 	}
 	return (0);

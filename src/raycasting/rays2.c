@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 17:27:46 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:26:24 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	compare_distances(t_cub *cub, t_rays *rays)
 		rays->rx = rays->hx;
 		rays->ry = rays->hy;
 		rays->distt = rays->disth;
-		rays->color = 0xB40000;
 		if (rays->ra > PI)
 			rays->wall = SOUTH;
 	}
@@ -87,7 +86,6 @@ int	compare_distances(t_cub *cub, t_rays *rays)
 		rays->rx = rays->vx;
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;
-		rays->color = 0xE60000;
 		if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2))
 			rays->wall = WEST;
 		else
@@ -96,4 +94,3 @@ int	compare_distances(t_cub *cub, t_rays *rays)
 	(void)cub;
 	return (0);
 }
-

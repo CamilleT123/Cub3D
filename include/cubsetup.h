@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 17:25:44 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:38:44 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define ALEFTK 65363
 # define ARIGHTK 65361
 # define DELAY 15.625 
-# define UNITPC 24
+# define UNITPC 16
 # define PPCMIN 6
 # define PPCMAX 16
 # define PLAYERSIZE 3
@@ -36,6 +36,10 @@
 # define MINIMAPMAX 256
 # define MINIMAPMIN 128
 # define MINIMAPPPC 8
+# define MAPFLOOR 0xbdabc4
+# define MAPWALL 0x7f388b
+# define MAPDOOR 0xcc33cc //0x4a0f0f /// 0xcc33cc
+# define PLAYERCOLOR 0x000099
 
 # define DIRECTIONSIZE 10
 # define DOORPATH "textures/Door1.xpm"

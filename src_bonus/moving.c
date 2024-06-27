@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 17:45:28 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:26:05 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,3 @@ int	moving_straight(int key, t_cub *cub, t_collision *coll)
 	}
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 15:27:54 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:27:36 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,35 +86,3 @@ int	main(int ac, char **av)
 	mlx_loop(cub.mlx);
 	close_win(&cub);
 }
-
-//	test_map(&cub);
-
-// int	test_map(t_cub *cub)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	ft_putar(cub->scene.map);
-// 	printf("long: %d larg: %d total: %d\n", cub->mapx, cub->mapy, cub->mapsize);
-// 	while (i < cub->mapsize)
-// 	{
-// 		printf("%d", cub->map[i]);
-// 		if (i == cub->mapx - 1)
-// 			printf("\n");
-// 		if (i > cub->mapx && (i + 1) % cub->mapx == 0)
-// 			printf("\n");
-// 		i++;
-// 	}
-// 	return (0);
-// }
-	// printf("unitpc = %d\n", UNITPC);
-	// cub->player_xmini = cub->scene.start_x;
-	// cub->player_ymini = cub->scene.start_y;
-	// printf("player_xmini = %d\n", cub->player_xmini);
-	// printf("player_ymini = %d\n", cub->player_ymini);
-	// printf("start_x = %f\n", cub->scene.start_x);
-	// printf("start_y = %f\n", cub->scene.start_y);
-	// printf("unitpc = %d\n", UNITPC);
-	// printf("ppc = %d\n", cub->ppc);
-	// printf("player_xmini = %f\n", cub->player_xmini);
-	// printf("player_ymini = %f\n", cub->player_ymini);

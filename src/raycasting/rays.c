@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 15:58:29 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:27:43 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	calculate_rays(t_cub *cub, t_rays *rays)
 		init_each_ray(cub, rays);
 		check_horizontal_lines(cub, rays);
 		check_vertical_lines(cub, rays);
-		compare_distances(rays);
+		compare_distances(cub, rays);
 		draw_walls(cub, rays);
 		rays->ra += (FIELDOFVIEW / WINW) * DEGTORAD;
 		if (rays->ra < 0)
@@ -128,16 +128,3 @@ int	calculate_rays(t_cub *cub, t_rays *rays)
 	}
 	return (0);
 }
-// if (rays->r == WINW / 2)
-			// {
-			// 	printf("mapx = %d\n", cub->mapx);
-			// 	printf("1.rx = %f\n", rays->rx);
-			// 	printf("1.ry = %f\n", rays->ry);
-			// 	printf("dof = %d\n", rays->dof);
-			// }
-// 	if (rays->r == WINW / 2)
-		// 	{
-		// 		printf("yo");
-		// 		printf("hx = %f\n", rays->hx);
-		// 		printf("hy = %f\n", rays->hy);
-		// 	}

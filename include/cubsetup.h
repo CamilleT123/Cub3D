@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 16:53:39 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:25:44 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define ALEFTK 65363
 # define ARIGHTK 65361
 # define DELAY 15.625 
-# define UNITPC 16
+# define UNITPC 24
 # define PPCMIN 6
 # define PPCMAX 16
 # define PLAYERSIZE 3

@@ -51,7 +51,7 @@ a)
 	;;
 esac
 if [ $mode -eq 1 ] || [ $mode -eq 3 ]; then
-	make 2>/dev/null >/dev/null              # make et stdout et stderr redirigé vers null cad empeche l'affichage
+	make bonus 2>/dev/null >/dev/null              # make et stdout et stderr redirigé vers null cad empeche l'affichage
 	cd maps/valid                            # on se déplace dans le fichier des maps non valides
 	echo "ARG=(" >>../../maps.sh             # on creer le fichier maps.sh qui sert de liste d'arguments (ARG)
 	ls | sed 's/^/"/;s/$/"/' >>../../maps.sh # on le remplis avec la list du dossier et ajoute des double quotes aux extremités avec sed

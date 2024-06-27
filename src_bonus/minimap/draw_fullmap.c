@@ -74,7 +74,6 @@ int	draw_full_map(t_cub *cub)
 			if (cub->map[y * cub->mapx + x] == 1)
 				draw_map_1(cub, x, y);
 			if (cub->map[y * cub->mapx + x] == 0
-				|| cub->map[y * cub->mapx + x] == 2
 				|| cub->map[y * cub->mapx + x] == 4)
 				draw_map_0(cub, x, y);
 			if (cub->map[y * cub->mapx + x] == 3)

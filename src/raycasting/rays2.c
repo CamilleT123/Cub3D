@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 15:16:47 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:27:46 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	check_vertical_lines(t_cub *cub, t_rays *rays)
 
 // compare the distance of the horizontal and vertical walls hit
 
-int	compare_distances(t_rays *rays)
+int	compare_distances(t_cub *cub, t_rays *rays)
 {
 	if (rays->disth < rays->distv)
 	{
@@ -93,12 +93,7 @@ int	compare_distances(t_rays *rays)
 		else
 			rays->wall = EAST;
 	}
+	(void)cub;
 	return (0);
 }
 
-// if (rays->r == (WINW / 2))
-	// {
-	// 	printf("WALLS\nhx=%f hy=%f\n", rays->hx, rays->hy);
-	// 	printf("vx=%f vy=%f\n", rays->vx, rays->vy);
-	// 	printf("disth=%f distv=%f\n", rays->disth, rays->distv);	
-	// }

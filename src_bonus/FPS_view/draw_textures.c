@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:16 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 16:34:13 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:45:36 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	bresenham_walls(t_cub *cub, t_rays *rays, t_line *line)
 	bres.dy = ft_abs(bres.dy);
 	if (bres.dx == 0)
 		vertical_wall(line, &bres, cub, rays);
-	else
-		printf("\nERROR\n");
+	// else
+	// 	printf("\nERROR\n");
 	return (0);
 }

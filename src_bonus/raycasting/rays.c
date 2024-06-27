@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:48:20 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:33:32 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 			rays->hy = rays->ry;
 			rays->disth = distance(cub->player_x, cub->player_y, rays->hx,
 					rays->hy);
-			if (cub->map[rays->mp] == DOOR)
-				rays->wall = WDOOR;
+			rays->mph = rays->mp;
 		}
 		else
 		{
@@ -119,7 +118,7 @@ int	calculate_rays(t_cub *cub, t_rays *rays)
 		init_each_ray(cub, rays);
 		check_horizontal_lines(cub, rays);
 		check_vertical_lines(cub, rays);
-		compare_distances(rays);
+		compare_distances(cub, rays);
 		draw_walls(cub, rays);
 		rays->ra += (FIELDOFVIEW / WINW) * DEGTORAD;
 		if (rays->ra < 0)

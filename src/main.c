@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 14:38:13 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:08:01 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,6 @@ int	keymapping(int key, t_cub *cub)
 	return (0);
 }
 
-// int	mouse_moving(int x, int y, t_cub *cub)
-// {
-// 	(void)y;
-// 	changing_direction_mouse(x, cub);
-// 	(void)cub;
-// 	// display(cub);
-// 	return (0);
-// }
-
 int	main(int ac, char **av)
 {
 	t_cub	cub;
@@ -91,7 +82,6 @@ int	main(int ac, char **av)
 			&cub.line_length, &cub.endian);
 	display(&cub);
 	mlx_hook(cub.win, KeyPress, KeyPressMask, &keymapping, &cub);
-	mlx_hook(cub.win, MotionNotify, PointerMotionMask, &mouse_moving, &cub);
 	mlx_hook(cub.win, DestroyNotify, NoEventMask, &close_win, &cub);
 	mlx_loop(cub.mlx);
 	close_win(&cub);

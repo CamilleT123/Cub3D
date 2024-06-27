@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:26:15 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:05:33 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	init_coll(t_cub *cub, t_collision *coll)
 {
-	coll->ax = coll->ipy * cub->mapx +
-		(int)((cub->player_x + coll->xo) / UNITPC);
-	coll->sx = coll->ipy * cub->mapx +
-		(int)((cub->player_x - coll->xo) / UNITPC);
+	coll->ax = coll->ipy * cub->mapx
+		+ (int)((cub->player_x + coll->xo) / UNITPC);
+	coll->sx = coll->ipy * cub->mapx
+		+ (int)((cub->player_x - coll->xo) / UNITPC);
 	coll->ay = (int)((cub->player_y + coll->yo) / UNITPC) *
 		cub->mapx + coll->ipx;
 	coll->sy = (int)((cub->player_y - coll->yo) / UNITPC) *

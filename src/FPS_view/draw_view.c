@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_view.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:55:08 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:00:26 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:41:01 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	display(t_cub *cub)
 	display_floor(cub);
 	display_ceiling(cub);
 	calculate_rays(cub, &rays);
-	draw_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	return (0);
 }

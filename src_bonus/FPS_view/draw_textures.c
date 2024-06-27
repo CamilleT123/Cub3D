@@ -6,13 +6,13 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:16 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:40:37 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:58:25 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
+static void	draw_vert_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 {
 	int	y;
 	int	pixel;
@@ -46,7 +46,7 @@ static void	vertical_wall(t_line *line, t_bres *bres, t_cub *cub, t_rays *rays)
 		if (rays->ra > (90 * DEGTORAD) && rays->ra < (270 * DEGTORAD))
 			line->tx = (cub->texture[rays->wall]->width - 1) - line->tx;
 	}
-	draw_vertical_wall(line, bres, cub, rays);
+	draw_vert_wall(line, bres, cub, rays);
 }
 
 int	bresenham_walls(t_cub *cub, t_rays *rays, t_line *line)

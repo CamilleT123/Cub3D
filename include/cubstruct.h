@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:56:52 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 16:31:10 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:49:35 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_rays
 	int		my;
 	int		mp;
 	int		mpv;
-	int 	mph;
+	int		mph;
 	int		dof;
 	int		color;
 	float	atan;

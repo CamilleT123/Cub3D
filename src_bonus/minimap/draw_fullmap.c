@@ -12,6 +12,22 @@
 
 #include "cub3d.h"
 
+static int	draw_map_3(t_cub *cub, int x, int y)
+{
+	int	yo;
+	int	xo;
+
+	yo = y * cub->ppc;
+	while (yo < y * cub->ppc + cub->ppc)
+	{
+		xo = x * cub->ppc;
+		while (xo < x * cub->ppc + cub->ppc)
+			my_mlx_pixel_put(cub, xo++, yo, 663333);
+		++yo;
+	}
+	return (0);
+}
+
 static int	draw_map_1(t_cub *cub, int x, int y)
 {
 	int	yo;
@@ -58,8 +74,11 @@ int	draw_full_map(t_cub *cub)
 			if (cub->map[y * cub->mapx + x] == 1)
 				draw_map_1(cub, x, y);
 			if (cub->map[y * cub->mapx + x] == 0
-				|| cub->map[y * cub->mapx + x] == 2)
+				|| cub->map[y * cub->mapx + x] == 2
+				|| cub->map[y * cub->mapx + x] == 4)
 				draw_map_0(cub, x, y);
+			if (cub->map[y * cub->mapx + x] == 3)
+				draw_map_3(cub, x, y);
 			++x;
 		}
 		++y;

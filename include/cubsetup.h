@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:06:12 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 15:49:55 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:50:52 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@
 # define MINIMAPPPC 8
 
 # define DIRECTIONSIZE 10
-# define DOORPATH "textures/Brick32.xpm"
+# define DOORPATH "textures/Door1.xpm"
 
 #endif

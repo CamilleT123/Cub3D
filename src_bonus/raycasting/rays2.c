@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:33 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 16:34:18 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:50:14 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	compare_distances(t_cub *cub, t_rays *rays)
 		rays->rx = rays->hx;
 		rays->ry = rays->hy;
 		rays->distt = rays->disth;
-		rays->color = 0xB40000;
 		if (cub->map[rays->mph] == DOOR)
 				rays->wall = WDOOR;
 		else if (rays->ra > PI && rays->wall != WDOOR)
@@ -91,21 +90,13 @@ int	compare_distances(t_cub *cub, t_rays *rays)
 		rays->rx = rays->vx;
 		rays->ry = rays->vy;
 		rays->distt = rays->distv;
-		rays->color = 0xE60000;
 		if (cub->map[rays->mpv] == DOOR)
 				rays->wall = WDOOR;
-		else if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2) && rays->wall != WDOOR)
+		else if (rays->ra > PI / 2 && rays->ra < (3 * PI / 2)
+			&& rays->wall != WDOOR)
 			rays->wall = WEST;
 		else if (rays->wall != WDOOR)
 			rays->wall = EAST;
-		
 	}
 	return (0);
 }
-
-// if (rays->r == (WINW / 2))
-	// {
-	// 	printf("WALLS\nhx=%f hy=%f\n", rays->hx, rays->hy);
-	// 	printf("vx=%f vy=%f\n", rays->vx, rays->vy);
-	// 	printf("disth=%f distv=%f\n", rays->disth, rays->distv);	
-	// }

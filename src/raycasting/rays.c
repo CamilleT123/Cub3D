@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:31:13 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:48:20 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:17:24 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@ static int	check_if_horizontal_wall(t_cub *cub, t_rays *rays)
 		rays->my = (int)(rays->ry) / UNITPC;
 		rays->mp = rays->my * cub->mapx + rays->mx;
 		if (rays->mp > 0 && rays->mp < cub->mapx * cub->mapy
-			&& (cub->map[rays->mp] == WALL || cub->map[rays->mp] == DOOR))
+			&& (cub->map[rays->mp] == WALL))
 		{
 			rays->dof = cub->mapmax;
 			rays->hx = rays->rx;
 			rays->hy = rays->ry;
 			rays->disth = distance(cub->player_x, cub->player_y, rays->hx,
 					rays->hy);
-			if (cub->map[rays->mp] == DOOR)
-				rays->wall = WDOOR;
 		}
 		else
 		{

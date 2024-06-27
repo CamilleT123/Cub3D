@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/26 13:51:14 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:58:55 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,23 +98,21 @@ static int	get_texture(t_cub *cub, int i, char *path)
 int	init_textures(t_cub *cub)
 {
 	int		i;
-	char	*arrtex[5];
+	char	*arrtex[4];
 
-	cub->texture = malloc(sizeof(t_texture *) * 5);
+	cub->texture = malloc(sizeof(t_texture *) * 4);
 	if (!cub->texture)
 		return (map_error("", MALLOC, 1));
 	arrtex[0] = cub->scene.north;
 	arrtex[1] = cub->scene.south;
 	arrtex[2] = cub->scene.east;
 	arrtex[3] = cub->scene.west;
-	arrtex[4] = DOORPATH;
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		if (get_texture(cub, i, arrtex[i]))
 			return (exit_map(cub, 1));
-		if (i < 4)
-			free(arrtex[i]);
+		free(arrtex[i]);
 		i++;
 	}
 	cub->scene.north = NULL;

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:09:22 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/26 17:25:37 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:59:22 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static int	is_valid_info(t_cub *cub, char **map)
 	int	i;
 
 	i = 0;
-	if (check_file(DOORPATH, ".xpm"))
-		return (1);
 	while (map && map[i] && i < NB_ELEMENT)
 	{
 		if (check_info(cub, map[i]))

@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:24:59 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 18:51:22 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:01:02 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef enum s_walls
 	SOUTH,
 	EAST,
 	WEST,
-	WDOOR
 }			t_walls;
 
 typedef enum s_tile
@@ -39,8 +38,6 @@ typedef enum s_tile
 	FLOOR,
 	WALL,
 	HOLE,
-	DOOR,
-	ODOOR
 }		t_tile;
 
 /*------------ PARSING/INIT -------------*/

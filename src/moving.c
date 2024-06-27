@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:48:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 23:26:15 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:15:33 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 static void	init_coll(t_cub *cub, t_collision *coll)
 {
-	coll->ax = coll->ipy * cub->mapx +
-		(int)((cub->player_x + coll->xo) / UNITPC);
-	coll->sx = coll->ipy * cub->mapx +
-		(int)((cub->player_x - coll->xo) / UNITPC);
-	coll->ay = (int)((cub->player_y + coll->yo) / UNITPC) *
-		cub->mapx + coll->ipx;
-	coll->sy = (int)((cub->player_y - coll->yo) / UNITPC) *
-		cub->mapx + coll->ipx;
+	int	addx;
+	int	subx;
+	int	addy;
+	int	suby;
+
+	addx = (int)((cub->player_x + coll->xo) / UNITPC);
+	addy = (int)((cub->player_y + coll->yo) / UNITPC);
+	subx = (int)((cub->player_x - coll->xo) / UNITPC);
+	suby = (int)((cub->player_y - coll->yo) / UNITPC);
+	coll->ax = coll->ipy * cub->mapx + addx;
+	coll->sx = coll->ipy * cub->mapx + subx;
+	coll->ay = addy * cub->mapx + coll->ipx;
+	coll->sy = suby * cub->mapx + coll->ipx;
 }
 
 int	init_collision_side(t_cub *cub, t_collision *collision)
@@ -56,16 +61,16 @@ int	moving_side(int key, t_cub *cub, t_collision *coll)
 	init_collision_side(cub, coll);
 	if (key == LEFTK)
 	{
-		if (cub->map[coll->ax] == FLOOR || cub->map[coll->ax] == ODOOR)
+		if (cub->map[coll->ax] == FLOOR)
 			cub->player_x += cub->pdy;
-		if (cub->map[coll->ay] == FLOOR || cub->map[coll->ay] == ODOOR)
+		if (cub->map[coll->ay] == FLOOR)
 			cub->player_y -= cub->pdx;
 	}
 	if (key == RIGHTK)
 	{
-		if (cub->map[coll->sx] == FLOOR || cub->map[coll->sx] == ODOOR)
+		if (cub->map[coll->sx] == FLOOR)
 			cub->player_x -= cub->pdy;
-		if (cub->map[coll->sy] == FLOOR || cub->map[coll->sy] == ODOOR)
+		if (cub->map[coll->sy] == FLOOR)
 			cub->player_y += cub->pdx;
 	}
 	return (0);
@@ -137,20 +142,16 @@ int	moving_straight(int key, t_cub *cub, t_collision *coll)
 	init_collision_straight(cub, coll);
 	if (key == FORWARDK)
 	{
-		if (cub->map[coll->ax] == DOOR)
-			cub->map[coll->ax] = ODOOR;
-		if (cub->map[coll->ay] == DOOR)
-			cub->map[coll->ay] = ODOOR;
-		if (cub->map[coll->ax] == FLOOR || cub->map[coll->ax] == ODOOR)
+		if (cub->map[coll->ax] == FLOOR)
 			cub->player_x += cub->pdx;
-		if (cub->map[coll->ay] == FLOOR || cub->map[coll->ay] == ODOOR)
+		if (cub->map[coll->ay] == FLOOR)
 			cub->player_y += cub->pdy;
 	}
 	if (key == BACKK)
 	{
-		if (cub->map[coll->sx] == FLOOR || cub->map[coll->sx] == ODOOR)
+		if (cub->map[coll->sx] == FLOOR)
 			cub->player_x -= cub->pdx;
-		if (cub->map[coll->sy] == FLOOR || cub->map[coll->sy] == ODOOR)
+		if (cub->map[coll->sy] == FLOOR)
 			cub->player_y -= cub->pdy;
 	}
 	return (0);

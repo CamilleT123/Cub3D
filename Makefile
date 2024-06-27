@@ -15,7 +15,7 @@ NAME		= cub3D
 
 CC 			= cc
 
-#------------ SOURCE -------------#
+#------------ SOURCE MANDATORY -------------#
 SRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c			\
 			  changing_direction.c)
 
@@ -29,10 +29,26 @@ RAYT		= $(addprefix ./src/raycasting/, rays.c rays2.c)
 FPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c		\
 			  draw_view.c utils.c draw_textures.c)
 
-MINIMAP		= $(addprefix ./src/minimap/, draw_minimap.c draw_fullmap.c		\
+C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
+
+#------------ SOURCE BONUS -------------#
+BSRC			= $(addprefix ./src/, main.c moving.c fps.c ending.c			\
+			  changing_direction.c)
+
+BINIT		= $(addprefix ./src/init/, init_cub.c exit.c utils.c			\
+			  init_scene.c edit_scene.c char_condition.c check_map.c init_map.c)
+
+GNL			= $(addprefix ./gnl/, get_next_line.c get_next_line_utils.c)
+
+BRAYT		= $(addprefix ./src/raycasting/, rays.c rays2.c)
+
+BFPS			= $(addprefix ./src/FPS_view/, draw_lines.c draw_walls.c		\
+			  draw_view.c utils.c draw_textures.c)
+
+BMINIMAP		= $(addprefix ./src/minimap/, draw_minimap.c draw_fullmap.c		\
 			  draw_player.c)
 
-C_FILES		= $(SRC) $(GNL) $(INIT) $(RAYT) $(FPS) $(MINIMAP) $(TEXTURES)
+C_FILES		= $(BSRC) $(GNL) $(BINIT) $(BRAYT) $(BFPS) $(MINIMAP) $(TEXTURES)
 
 #------------ FLAGS + INCLUDE -------------#
 CFLAGS		= -Wextra -Wall -Werror -g

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ending.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/26 13:56:18 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:58:25 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	destroy_tex(t_cub *cub)
 	i = 0;
 	while (i < 5)
 	{
-		if (cub->texture[i]->img)
+		if (cub->texture[i] && cub->texture[i]->img)		
 		{
 			mlx_destroy_image(cub->mlx, cub->texture[i]->img);
 			free(cub->texture[i]);

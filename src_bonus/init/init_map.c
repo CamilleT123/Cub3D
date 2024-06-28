@@ -6,7 +6,7 @@
 /*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/28 16:13:16 by ctruchot         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:57:53 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ int	init_textures(t_cub *cub)
 	arrtex[2] = cub->scene.east;
 	arrtex[3] = cub->scene.west;
 	arrtex[4] = DOORPATH;
+	i = 0;
+	while (i < 5)
+	{
+		cub->texture[i] = NULL;
+		i++;
+	}
 	i = 0;
 	while (i < 5)
 	{

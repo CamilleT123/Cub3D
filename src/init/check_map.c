@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 08:53:04 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/11 16:55:38 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:49:09 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	check_midmap(char **map, int lim)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' || is_startchar(map[i][j]))
+			if (map[i][j] == '0' || is_startchar(map[i][j]) || map[i][j] == '3')
 				if (check_arround(map, i, j))
 					return (map_error("", WALLS, 1));
 			j++;

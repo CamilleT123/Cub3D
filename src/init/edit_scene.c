@@ -6,7 +6,7 @@
 /*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:08:31 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/26 13:26:48 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:56:43 by aduvilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static int	check_colors(char **code)
 	i = 0;
 	while (code && code[i])
 	{
-		if (i > 3)
+		if (i > 2)
 			return (map_error("", TM_NUM, 1));
 		j = 0;
 		while (code[i][j])
 		{
-			if (j > 3)
+			if (j > 2)
 				return (map_error(code[i], BIG_NUM, 1));
 			if (!ft_isdigit(code[i][j]))
 				return (map_error(code[i], INVALID_NUM, 1));

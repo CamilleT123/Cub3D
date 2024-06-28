@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ending.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:30:26 by ctruchot          #+#    #+#             */
-/*   Updated: 2024/06/27 14:59:52 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:26:35 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	destroy_tex(t_cub *cub)
 	i = 0;
 	while (i < 4)
 	{
-		if (cub->texture[i]->img)
+		// printf("cub->texture[%d]->img = %p\n", i, cub->texture[i]->img);
+		if (cub->texture[i] && cub->texture[i]->img)
 		{
 			mlx_destroy_image(cub->mlx, cub->texture[i]->img);
 			free(cub->texture[i]);
@@ -32,6 +33,8 @@ static void	destroy_tex(t_cub *cub)
 
 int	close_win(t_cub *cub)
 {
+	printf("here\n");
+	printf("cub->texture = %p\n", cub->texture);
 	if (cub->texture)
 		destroy_tex(cub);
 	if (cub->map)

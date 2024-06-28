@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/27 14:58:55 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:26:53 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ static int	get_texture(t_cub *cub, int i, char *path)
 	ft_bzero(tex, sizeof(t_texture));
 	tex->img = mlx_xpm_file_to_image(cub->mlx, path, &tex->width, &tex->height);
 	if (!tex->img)
+	{
+		free(tex);
 		return (map_error("", "cannot create image", 1));
+	}
 	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
 			&tex->line_length, &tex->endian);
 	if (!tex->addr)
@@ -103,10 +106,17 @@ int	init_textures(t_cub *cub)
 	cub->texture = malloc(sizeof(t_texture *) * 4);
 	if (!cub->texture)
 		return (map_error("", MALLOC, 1));
+	ft_bzero(cub->texture, sizeof(t_texture *));
 	arrtex[0] = cub->scene.north;
 	arrtex[1] = cub->scene.south;
 	arrtex[2] = cub->scene.east;
 	arrtex[3] = cub->scene.west;
+	i = 0;
+	while (i < 4)
+	{
+		cub->texture[i] = NULL;
+		i++;
+	}
 	i = 0;
 	while (i < 4)
 	{

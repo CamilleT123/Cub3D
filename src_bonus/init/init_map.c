@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduvilla <aduvilla@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ctruchot <ctruchot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:07:27 by aduvilla          #+#    #+#             */
-/*   Updated: 2024/06/26 13:51:14 by aduvilla         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:13:16 by ctruchot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	init_textures(t_cub *cub)
 	cub->texture = malloc(sizeof(t_texture *) * 5);
 	if (!cub->texture)
 		return (map_error("", MALLOC, 1));
+	ft_bzero(cub->texture, sizeof(t_texture *));
 	arrtex[0] = cub->scene.north;
 	arrtex[1] = cub->scene.south;
 	arrtex[2] = cub->scene.east;
